@@ -1,0 +1,97 @@
+body{
+    background-image: url(https://media.istockphoto.com/id/1305533078/photo/multicolored-straight-strands-texture-background-sewing-equipment-loom-equipment-at-a-garment.jpg?s=612x612&w=0&k=20&c=zGDhSsF_nCyM7vIA0WB3dIqkHE_TpNRDRxWDAqpLFlI=);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+    background-color: transparent;
+    overflow: hidden;
+    height: 0vh;
+}
+
+.input{
+    background-color: gray;
+    padding: 10px;
+    border-radius: 15px;
+    max-width: 250px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    position: relative;
+    left: 450px;
+    top: 20px;
+}
+
+.input input{
+    padding: 10px;
+    border-radius: 16px;
+    border: solid 1px gray;
+    font-size: 15px;
+}
+
+.input input[name="icon"] {
+    background-image: url(https://cdn.pixabay.com/photo/2023/02/18/11/00/icon-7797704_1280.png);
+    background-repeat: no-repeat;
+    background-position: 10px center;
+    padding-left: 35px;
+    background-size: 16px 16px;
+}
+
+button{
+    padding: 10px;
+    border: none;
+    border-radius: 15px;
+    font-weight: bold;
+    cursor: pointer;
+    background-color: cyan;
+}
+
+a{
+    background-color: transparent;
+    width: 115px;
+    border-radius: 100%;
+}
+
+.titulo{
+    position: relative;
+    left: 480px;
+    color: aliceblue;
+}
+
+.titulito{
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 12px;
+    color: aqua;
+}
+
+.enlaces{
+    background-color: grey;
+    box-shadow: 0px 5px 50px black;
+    padding: 20px 50px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo{
+    display: flex;
+    align-items: center;
+}
+
+.bienvenido h1{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+}
+
+.bienvenido p{
+    position: relative;
+    left: 400px;
+    font-size: 16px;
+    color: whitesmoke;
+}
+
+.logito img{
+    width: 50px;
+    height: 50px;
+}

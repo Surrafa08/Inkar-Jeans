@@ -1,7 +1,66 @@
 <!DOCTYPE html>
 <html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="{{ url_for('static', filename='estilos.css') }}">
+        <title>Menú Principal</title>
+        <script>
+            window.onload = function(){
+                const enlaces = document.querySelectorAll('nav .enlaces a');
+                enlaces.forEach(function (link){
+                    if(link.textContent.trim() !== "Iniciar sesión"){
+                        link.addEventListener('click', function (e) {
+                            e.preventDefault();
+                            alert("Inicie sesión para acceder al panel de control.")
+                        });
+                    }
+                });
+            }
+        </script>
+    </head>
     <body>
-        <h1>Inkar Jeans</h1>
-        <p>Automatización Empresarial</p>
+        <nav>
+            <div>&#9776;</div>
+            <div class="enlaces">
+                <div class="logito">
+                    <img src="{{url_for('static', filename='imgs/logoInkar.jpg')}}" alt="Logo Inkar">
+                    <div>
+                        INKAR JEANS<br>
+                        <span>SISTEMA ADMINISTRATIVO</span>
+                    </div>
+                    <a href="#">Inicio</a>
+                    <a href="#">Empleado</a>
+                    <a href="#">Horas trabajadas</a>
+                    <a href="#">Nómina</a>
+                    <a href="#">Inventario</a>
+                </div>
+                <a href="{{url_for('inicio_sesion')}}">Iniciar sesión</a>
+            </div>
+        </nav>
+        <div class="bienvenido">
+            <h1>Bienvenido Administrador</h1>
+            <p>Este es el panel principal del sistema administrativo de Inkar Jeans</p>
+        </div>
+        <div>
+            <div>
+                <button>Empleados</button>
+            </div>
+            <div>
+                <button>Horas trabajadas</button>
+            </div>
+            <div>
+                <button>Productos</button>
+            </div>
+            <div>
+                <button>Nómina</button>
+            </div>
+            <div>
+                <button>Historial de pagos</button>
+            </div>
+            <div>
+                <button>Proveedores</button>
+            </div>
+        </div>
     </body>
 </html>

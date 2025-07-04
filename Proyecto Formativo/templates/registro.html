@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+    <link rel="stylesheet" href="{{ url_for('static', filename='estilos.css') }}">
+    <title>Registro de usuario</title>
+    <body>
+        <div class="input">
+            <div>
+                <h1>Inkar Jeans</h1>
+                <p>Automatización Empresarial</p>
+            </div>
+            <input type="text" name="icon" placeholder="Nombre completo">
+            <input type="text" name="icon" placeholder="Correo electronico">
+            <input type="text" name="icon" placeholder="Usuario">
+            <input type="text" name="icon" placeholder="Password">
+            <a href="#"><button>Registrarse</button></a>
+            <a href="{{url_for('inicio_sesion')}}"><button>Volver</button></a>
+        </div>
+    </body>
+</html>
