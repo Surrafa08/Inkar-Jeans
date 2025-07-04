@@ -12,7 +12,7 @@
                     if(link.textContent.trim() !== "Iniciar sesión"){
                         link.addEventListener('click', function (e) {
                             e.preventDefault();
-                            alert("Inicie sesión para acceder al panel de control.")
+                            alert("Inicie sesión para acceder al panel administrativo.")
                         });
                     }
                 });
@@ -23,7 +23,7 @@
         <nav>
             <div>&#9776;</div>
             <div class="enlaces">
-                <div class="logito">
+                <div class="logo">
                     <img src="{{url_for('static', filename='imgs/logoInkar.jpg')}}" alt="Logo Inkar">
                     <div>
                         INKAR JEANS<br>
