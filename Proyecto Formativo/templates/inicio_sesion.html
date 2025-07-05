@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <link rel="stylesheet" href="{{ url_for('static', filename='estilos.css') }}">
+    <title>Inicio de Sesión</title>
+    <body>
+        <div class="titulo">
+            <h1>Inicio de sesión</h1>
+        </div>
+        <div class="input">
+            <div class="logo">
+            <img src="{{url_for('static', filename='imgs/logoInkar.jpg')}}">
+            </div>
+            <div class="titulito">
+                Inkar Jeans<br>
+                <span>Automatización Empresarial</span>
+            </div>
+            <form>
+            <input type="text" name="icon" placeholder="Usuario" required>
+            <input type="text" name="icon" placeholder="Password" required>
+            <button type="submit">Iniciar sesión</button>
+            </form>
+            <a href="{{url_for('mostrar_index')}}"><button>Menú principal</button></a>
+            <p>¿Ya tienes una cuenta? <a href="{{url_for('registro')}}">Registrarse</a></p>
+            <p>¿Se te olvidó la contraseña? <a href="{{url_for('restablecer_contra')}}">Restablecer contraseña</a></p>
+        </div>
+    </body>
+</html>
