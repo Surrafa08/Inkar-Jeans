@@ -36,6 +36,30 @@ body{
     background-size: 16px 16px;
 }
 
+.input input[name="icon"] {
+    background-image: url(https://cdn.pixabay.com/photo/2023/02/18/11/00/icon-7797704_1280.png);
+    background-repeat: no-repeat;
+    background-position: 10px center;
+    padding-left: 35px;
+    background-size: 16px 16px;
+}
+
+.input input[name="usuario"] {
+    background-image: url(https://cdn.pixabay.com/photo/2023/02/18/11/00/icon-7797704_1280.png);
+    background-repeat: no-repeat;
+    background-position: 10px center;
+    padding-left: 35px;
+    background-size: 16px 16px;
+}
+
+.input input[name="password"] {
+    background-image: url(https://cdn.pixabay.com/photo/2023/02/18/11/00/icon-7797704_1280.png);
+    background-repeat: no-repeat;
+    background-position: 10px center;
+    padding-left: 35px;
+    background-size: 16px 16px;
+}
+
 .input input[placeholder="Usuario"]{
     color: skyblue;
 }
@@ -143,4 +167,22 @@ a{
     left: 400px;
     font-size: 16px;
     color: whitesmoke;
+}
+
+.cont_card{
+    background-color: transparent;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 50px;
+    padding: 80px;
+    max-width: 100%;
+}
+
+.card{
+    background-color: transparent;
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    border-radius: 30px;
+    box-shadow: black;
 }

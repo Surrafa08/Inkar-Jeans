@@ -1,13 +1,20 @@
 <!DOCTYPE html>
 <html>
-    <link rel="stylesheet" href="{{url_for('static', filename='estilos.css')}}">
-    <title>Restablecer contraseña</title>
+    <head>
+        <link rel="stylesheet" href="{{url_for('static', filename='estilos.css')}}">
+        <title>Restablecer contraseña</title>
+        <script>
+            const mensaje = document.getElementsByName('nuevo');
+        </script>
+    </head>
     <body>
         <div class="input">
             <h2>Restablecer contraseña</h2>
             <p>Ingresa la contraseña nueva y asegurate de guardarlo o anotarlo para que no se te olvide🤗</p>
-            <input type="text" name="icon" placeholder="Contraseña nueva" required>
+            <form>
+            <input type="text" name="icon" placeholder="Contraseña nueva" required><br></br>
             <a href="#"><button>Aceptar</button></a>
+            </form>
             <a href="{{url_for('inicio_sesion')}}"><button>Volver</button></a>
         </div>
     </body>
