@@ -8,8 +8,8 @@ body{
     height: 0vh;
 }
 
-.input{
-    background-color: gray;
+.contenedor_form{
+    background-color: darkblue;
     padding: 10px;
     border-radius: 15px;
     max-width: 250px;
@@ -21,14 +21,15 @@ body{
     top: 20px;
 }
 
-.input input{
+.contenedor_form input{
     padding: 10px;
     border-radius: 16px;
-    border: solid 1px slateblue;
+    border: solid 1px skyblue;
     font-size: 15px;
+    margin: auto;
 }
 
-.input input[name="icon"] {
+.contenedor_form input[name="icon"] {
     background-image: url(https://cdn.pixabay.com/photo/2023/02/18/11/00/icon-7797704_1280.png);
     background-repeat: no-repeat;
     background-position: 10px center;
@@ -36,7 +37,7 @@ body{
     background-size: 16px 16px;
 }
 
-.input input[name="icon"] {
+.contenedor_form input[name="icon"] {
     background-image: url(https://cdn.pixabay.com/photo/2023/02/18/11/00/icon-7797704_1280.png);
     background-repeat: no-repeat;
     background-position: 10px center;
@@ -44,7 +45,7 @@ body{
     background-size: 16px 16px;
 }
 
-.input input[name="usuario"] {
+.contenedor_form input[name="usuario"] {
     background-image: url(https://cdn.pixabay.com/photo/2023/02/18/11/00/icon-7797704_1280.png);
     background-repeat: no-repeat;
     background-position: 10px center;
@@ -52,19 +53,12 @@ body{
     background-size: 16px 16px;
 }
 
-.input input[name="password"] {
+.contenedor_form input[name="password"] {
     background-image: url(https://cdn.pixabay.com/photo/2023/02/18/11/00/icon-7797704_1280.png);
     background-repeat: no-repeat;
     background-position: 10px center;
     padding-left: 35px;
     background-size: 16px 16px;
-}
-
-.input input[placeholder="Usuario"]{
-    color: skyblue;
-}
-.input input[placeholder="Password"]{
-    color: skyblue;
 }
 
 button{
@@ -78,8 +72,10 @@ button{
 
 a{
     background-color: transparent;
+    color: aqua;
     width: 115px;
     border-radius: 100%;
+    text-decoration: none;
 }
 
 .titulo{
@@ -103,6 +99,8 @@ a{
     display: flex;
     justify-content: space-between;
     align-items: center;
+    position: relative;
+    bottom: 8px;
 }
 
 .logo{
@@ -116,8 +114,10 @@ a{
 }
 
 .logo span{
-    display: flex;
-    justify-content: center;
+    display: block;
+    letter-spacing: 0.5px;
+    color: darkblue;
+    font-size: 12px;
 }
 
 .links{
@@ -128,7 +128,7 @@ a{
 .links a{
     text-decoration: none;
     font-weight: 500;
-    color: purple;
+    color: skyblue;
     transition: color 0.3s ease;
 }
 .links a:hover{
@@ -185,4 +185,8 @@ a{
     gap: 10px;
     border-radius: 30px;
     box-shadow: black;
+}
+
+#textito{
+    color: snow;
 }
