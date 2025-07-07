@@ -5,7 +5,12 @@ body{
     background-attachment: fixed;
     background-color: transparent;
     overflow: hidden;
-    height: 0vh;
+    height: auto;
+}
+
+body.x{
+    background-color: skyblue;
+    background-image: none;
 }
 
 .contenedor_form{
@@ -68,6 +73,7 @@ button{
     font-weight: bold;
     cursor: pointer;
     background-color: cyan;
+    color: purple;
 }
 
 a{
@@ -93,7 +99,7 @@ a{
 }
 
 .enlaces{
-    background-color: gainsboro;
+    background-color: darkblue;
     box-shadow: 0px 5px 50px black;
     padding: 20px 50px;
     display: flex;
@@ -116,7 +122,7 @@ a{
 .logo span{
     display: block;
     letter-spacing: 0.5px;
-    color: darkblue;
+    color: snow;
     font-size: 12px;
 }
 
@@ -151,7 +157,7 @@ a{
 .rayitas{
     position: relative;
     right: 30px;
-    color: blue;
+    color: aliceblue;
     font-size: 2rem;
 }
 
@@ -159,14 +165,14 @@ a{
     display: flex;
     justify-content: center;
     align-items: center;
-    color: white;
+    color: blue;
 }
 
 .bienvenido p{
     position: relative;
     left: 400px;
     font-size: 16px;
-    color: whitesmoke;
+    color: blue;
 }
 
 .cont_card{
@@ -179,14 +185,41 @@ a{
 }
 
 .card{
-    background-color: transparent;
+    background-color: snow;
     display: flex;
     justify-content: center;
+    align-items: center;
     gap: 10px;
     border-radius: 30px;
+    padding: 30px;
     box-shadow: black;
+    margin: 10px;
+    transition: trasnform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover{
+    transform: translateY(-5px);
+    box-shadow: 0px 1px 3px rgb(100,30,10);
 }
 
 #textito{
     color: snow;
+}
+
+#span{
+    color: snow;
+}
+
+#registitu{
+    display: flex;
+    justify-content: center;
+    position: relative;
+    right: 30px;
+    color: seashell;
+}
+
+#contratitu{
+    position: relative;
+    left: 420px;
+    color: seashell;
 }
