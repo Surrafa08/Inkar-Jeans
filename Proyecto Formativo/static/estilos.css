@@ -35,15 +35,15 @@ body.x{
 }
 
 .contenedor_form input[name="icon"] {
-    background-image: url(https://cdn.pixabay.com/photo/2023/02/18/11/00/icon-7797704_1280.png);
+    background-image: url(imgs/usuario.webp);
     background-repeat: no-repeat;
     background-position: 10px center;
     padding-left: 35px;
     background-size: 16px 16px;
 }
 
-.contenedor_form input[name="icon"] {
-    background-image: url(https://cdn.pixabay.com/photo/2023/02/18/11/00/icon-7797704_1280.png);
+.contenedor_form input[name="email"] {
+    background-image: url(imgs/email.jpg);
     background-repeat: no-repeat;
     background-position: 10px center;
     padding-left: 35px;
@@ -51,7 +51,7 @@ body.x{
 }
 
 .contenedor_form input[name="usuario"] {
-    background-image: url(https://cdn.pixabay.com/photo/2023/02/18/11/00/icon-7797704_1280.png);
+    background-image: url(imgs/usuario.webp);
     background-repeat: no-repeat;
     background-position: 10px center;
     padding-left: 35px;
@@ -59,7 +59,7 @@ body.x{
 }
 
 .contenedor_form input[name="password"] {
-    background-image: url(https://cdn.pixabay.com/photo/2023/02/18/11/00/icon-7797704_1280.png);
+    background-image: url(imgs/iconkey.png);
     background-repeat: no-repeat;
     background-position: 10px center;
     padding-left: 35px;
