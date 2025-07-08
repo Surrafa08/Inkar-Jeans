@@ -225,7 +225,7 @@ a{
 }
 
 .icono{
-    font-size: 10px;
+    font-size: 23px;
 }
 
 .card .text{
@@ -236,7 +236,7 @@ a{
 
 .iconoempleados::before{content: '👤';}
 .iconohoras::before{content: '⏱️';}
-.icononómina::before{content: '📄';}
+.icononomina::before{content: '💸';}
 .iconoinventario::before{content: '📦';}
 .iconoreportes::before{content: '📊';}
-.iconohistorialpagos::before{content: '💸';}
+.iconoproduc::before{content: '📄';}
