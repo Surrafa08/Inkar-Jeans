@@ -9,7 +9,7 @@
             window.onload = function(){
                 const enlaces = document.querySelectorAll('nav .enlaces a');
                 enlaces.forEach(function (link){
-                    if(link.textContent.trim() !== "Cerrar sesion" && "Inicio"){
+                    if(link.textContent.trim() !== "Cerrar sesion" && link.textContent.trim() !== "Inicio"){
                         link.addEventListener('click', function (e) {
                             e.preventDefault();
                             alert("Inicie sesión para acceder al panel administrativo.")

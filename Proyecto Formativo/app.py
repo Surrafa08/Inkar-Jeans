@@ -1,7 +1,5 @@
 from flask import Flask, render_template
-import sqlalchemy
-
-print("SQLALchemy instalado correctamente. Version:", sqlalchemy.__version__)
+from sqlalchemy import create_engine
 
 app=Flask(__name__)
 
