@@ -142,8 +142,8 @@ a{
 }
 
 .botonsesion{
-    background-color: aquamarine;
-    color: blueviolet;
+    background-color: transparent;
+    color: cyan;
     padding: 10px 10px;
     border-radius: 10px;
     text-decoration: none;
@@ -223,3 +223,20 @@ a{
     left: 420px;
     color: seashell;
 }
+
+.icono{
+    font-size: 10px;
+}
+
+.card .text{
+    font-size: 20px;
+    color: purple;
+    background-color: transparent;
+}
+
+.iconoempleados::before{content: '👤';}
+.iconohoras::before{content: '⏱️';}
+.icononómina::before{content: '📄';}
+.iconoinventario::before{content: '📦';}
+.iconoreportes::before{content: '📊';}
+.iconohistorialpagos::before{content: '💸';}
