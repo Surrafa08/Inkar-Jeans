@@ -1,7 +1,9 @@
 from flask import Flask, render_template
-from sqlalchemy import create_engine
+from sqlalchemy import create_engine, Column, Integer, String
 
 app=Flask(__name__)
+
+create_engine = ("sqlite:///basedatos.db")
 
 @app.route('/')
 def index():
