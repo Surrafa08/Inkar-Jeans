@@ -3,20 +3,6 @@
     <head>
         <link rel="stylesheet" href="{{ url_for('static', filename='estilos.css') }}">
         <title>Registro de usuario</title>
-        <script>
-            const usuregistrados=["liebe@gmail.com", "luna@hotmail.com"]
-
-            function registrar(){
-                const email=document.getElementById("email").value;
-                if(usuregistrados.includes(email)){
-                    alert("Ya estás registrado.");
-                    return false;
-                } else{
-                    alert("Cuenta registrada éxitosamente.");
-                    return true;
-                }
-            }
-        </script>
     </head>
     <body>
         <h1 id="registitu">Crear cuenta</h1>
@@ -25,11 +11,13 @@
                 <h1>Inkar Jeans</h1>
                 <p>Automatización Empresarial</p>
             </div>
-                <input type="text" name="icon" placeholder="Nombre completo" required>
-                <input type="email" id="email" name="email" placeholder="Correo electronico" required>
+            <form method="POST" action="{{url_for('registro')}}">
+                <input type="text" name="nombre" placeholder="Nombre completo" required>
+                <input type="email" name="email" placeholder="Correo electronico" required>
                 <input type="text" name="usuario" placeholder="Usuario" required>
                 <input type="text" name="password" placeholder="Contraseña" required>
-            <button type="submit">Registrar</button>
+                <button type="submit">Registrar</button>
+            </form>
             <p id="textito">¿Ya tienes una cuenta? <a href="{{url_for('index')}}">Iniciar Sesion</a></p>
         </div>
     </body>

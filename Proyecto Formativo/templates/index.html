@@ -18,10 +18,11 @@
                 Inkar Jeans<br>
                 <span>Automatización Empresarial</span>
             </div>
-            <input type="text" name="usuario" placeholder="Usuario" required>
-            <input type="text" name="password" placeholder="Contraseña" required>
-            <button type="submit">Iniciar sesión</button>
-            <a href="{{url_for('administracion')}}"><button>Panel admin</button></a>
+            <form method="POST" action="{{url_for('administracion')}}">
+                <input type="text" name="usuario" placeholder="Usuario" required>
+                <input type="text" name="password" placeholder="Contraseña" required>
+                <button type="submit">Iniciar sesión</button>
+            </form>
             <p id="textito">¿No tienes una cuenta? <a href="{{url_for('registro')}}">Registrate</a></p>
             <p id="textito">¿Se te olvidó la contraseña? <a href="{{url_for('restablecer_contra')}}">Restablecer contraseña</a></p>
         </div>

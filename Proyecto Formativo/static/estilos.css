@@ -34,7 +34,7 @@ body.x{
     margin: auto;
 }
 
-.contenedor_form input[name="icon"] {
+.contenedor_form input[name="nombre"] {
     background-image: url(imgs/usuario.webp);
     background-repeat: no-repeat;
     background-position: 10px center;
@@ -107,6 +107,8 @@ a{
     align-items: center;
     position: relative;
     bottom: 8px;
+    right: 10px;
+    width: 93.5%;
 }
 
 .logo{
@@ -124,6 +126,13 @@ a{
     letter-spacing: 0.5px;
     color: snow;
     font-size: 12px;
+}
+
+.titu{
+    color: snow;
+    position: relative;
+    left: 3px;
+    top: 5px
 }
 
 .links{
