@@ -151,16 +151,17 @@ a{
 }
 
 .botonsesion{
-    background-color: transparent;
+    background-color: darkgray;
     color: cyan;
-    padding: 10px 10px;
+    padding: 8px 10px;
     border-radius: 10px;
     text-decoration: none;
     font-size: 18px;
     font-weight: bold;
+    text-align: center;
 }
 .botonsesion:hover{
-    background-color: cornflowerblue;
+    background-color: red;
 }
 
 .rayitas{
@@ -249,3 +250,24 @@ a{
 .iconoinventario::before{content: '📦';}
 .iconoreportes::before{content: '📊';}
 .iconoproduc::before{content: '📄';}
+
+/***Empleados***/
+
+body.emple{
+    background-color: blueviolet;
+    background-image: none;
+}
+
+.panel{
+    background-color: darkred;
+}
+
+.agregaremple{
+    background-color: blue;
+    color: yellow;
+    border: 0;
+    border-radius: 16px;
+    padding: 10px 16px;
+    cursor: pointer;
+    margin-bottom: 15px;
+}

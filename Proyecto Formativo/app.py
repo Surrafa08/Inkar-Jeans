@@ -64,6 +64,10 @@ def registro():
 def restablecer_contra():
     return render_template('restablecer_contra.html')
 
+@app.route('/empleados')
+def empleados():
+    return render_template('empleados.html')
+
 @app.route('/mostrar_index')
 def mostrar_index():
     return render_template('index.html') 
