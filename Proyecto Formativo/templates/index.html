@@ -3,72 +3,28 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" href="{{ url_for('static', filename='estilos.css') }}">
-        <title>Inkar Jeans - Sistema Administrativo</title>
-        <script>
-            window.onload = function(){
-                const enlaces = document.querySelectorAll('nav .enlaces a');
-                enlaces.forEach(function (link){
-                    if(link.textContent.trim() !== "Iniciar sesión"){
-                        link.addEventListener('click', function (e) {
-                            e.preventDefault();
-                            alert("Inicie sesión para acceder al panel administrativo.")
-                        });
-                    }
-                });
-            }
-        </script>
     </head>
-    <body class="x">
-        <nav>
-            <div class="enlaces">
-                <div class="logo">
-                    <div class="rayitas">&#9776;</div>
-                    <img src="{{url_for('static', filename='imgs/logoInkar.jpg')}}" alt="Logo Inkar">
-                    <div>
-                        Inkar Jeans<br>
-                        <span>SISTEMA ADMINISTRATIVO</span>
-                    </div>
-                    <div class="links">
-                        <a href="#">Inicio</a>
-                        <a href="#">Empleado</a>
-                        <a href="#">Horas trabajadas</a>
-                        <a href="#">Nómina</a>
-                        <a href="#">Inventario</a>
-                    </div>
-                </div>
-                <a href="{{url_for('inicio_sesion')}}" class="botonsesion">Iniciar sesión</a>
-            </div>
-        </nav>
-        <div class="bienvenido">
-            <h1>Bienvenido Administrador</h1>
-            <p>Este es el panel principal del sistema administrativo de Inkar Jeans</p>
+    <link rel="stylesheet" href="{{ url_for('static', filename='estilos.css') }}">
+    <title>Inicio de Sesión</title>
+    <body>
+        <div class="titulo">
+            <h1>Inicio de sesión</h1>
         </div>
-        <div class="cont_card">
-            <div class="card">
-                <span></span>
-                <button>Empleados</button>
+        <div class="contenedor_form">
+            <div class="logo">
+                <img src="{{url_for('static', filename='imgs/logoInkar.jpg')}}">
             </div>
-            <div class="card">
-                <span></span>
-                <button>Horas trabajadas</button>
+            <div class="titulito">
+                Inkar Jeans<br>
+                <span>Automatización Empresarial</span>
             </div>
-            <div class="card">
-                <span></span>
-                <button>Productos</button>
-            </div>
-            <div class="card">
-                <span></span>
-                <button>Nómina</button>
-            </div>
-            <div class="card">
-                <span></span>
-                <button>Historial de pagos</button>
-            </div>
-            <div class="card">
-                <span></span>
-                <button>Proveedores</button>
-            </div>
+            <form method="POST" action="{{url_for('administracion')}}">
+                <input type="text" name="usuario" placeholder="Usuario" required>
+                <input type="text" name="password" placeholder="Contraseña" required>
+                <button type="submit">Iniciar sesión</button>
+            </form>
+            <p id="textito">¿No tienes una cuenta? <a href="{{url_for('registro')}}">Registrate</a></p>
+            <p id="textito">¿Se te olvidó la contraseña? <a href="{{url_for('restablecer_contra')}}">Restablecer contraseña</a></p>
         </div>
     </body>
 </html>

@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="{{ url_for('static', filename='estilos.css') }}">
+        <title>Inkar Jeans - Sistema Administrativo</title>
+        <script>
+            window.onload = function(){
+                const enlaces = document.querySelectorAll('nav .enlaces a');
+                enlaces.forEach(function (link){
+                    if(link.textContent.trim() !== "Cerrar sesion" && link.textContent.trim() !== "Inicio"){
+                        link.addEventListener('click', function (e) {
+                            e.preventDefault();
+                            alert("Inicie sesión para acceder al panel administrativo.")
+                        });
+                    }
+                });
+            }
+        </script>
+    </head>
+    <body class="x">
+        <nav>
+            <div class="enlaces">
+                <div class="logo">
+                    <img src="{{url_for('static', filename='imgs/logoInkar.jpg')}}" alt="Logo Inkar">
+                    <div class="titu">
+                        Inkar Jeans<br>
+                        <span>SISTEMA ADMINISTRATIVO</span>
+                    </div>
+                    <div class="links">
+                        <a href="{{url_for('index')}}">Inicio</a>
+                        <a href="#">Empleado</a>
+                        <a href="#">Horas trabajadas</a>
+                        <a href="#">Nómina</a>
+                        <a href="#">Inventario</a>
+                    </div>
+                </div>
+                <a href="{{url_for('index')}}" class="botonsesion">Cerrar sesion</a>
+            </div>
+        </nav>
+        <div class="bienvenido">
+            <h1>Bienvenido Administrador</h1>
+            <p>Este es el panel principal del sistema administrativo de Inkar Jeans</p>
+        </div>
+        <div class="cont_card">
+            <div class="card">
+                <span class="icono iconoempleados"></span>
+                <button class="text">Empleados</button>
+            </div>
+            <div class="card">
+                <span class="icono iconohoras"></span>
+                <button class="text">Horas trabajadas</button>
+            </div>
+            <div class="icono card">
+                <span class="icon iconoproduc"></span>
+                <button class="text">Productos</button>
+            </div>
+            <div class="card">
+                <span class="icono icononomina"></span>
+                <button class="text">Nómina</button>
+            </div>
+            <div class="card">
+                <span class="icono iconoinventario"></span>
+                <button class="text">Inventario</button>
+            </div>
+            <div class="card">
+                <span class="icono iconoreportes"></span>
+                <button class="text">Reportes</button>
+            </div>
+        </div>
+    </body>
+</html>
+
+

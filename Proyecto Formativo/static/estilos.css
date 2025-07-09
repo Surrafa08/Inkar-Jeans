@@ -34,16 +34,16 @@ body.x{
     margin: auto;
 }
 
-.contenedor_form input[name="icon"] {
-    background-image: url(https://cdn.pixabay.com/photo/2023/02/18/11/00/icon-7797704_1280.png);
+.contenedor_form input[name="nombre"] {
+    background-image: url(imgs/usuario.webp);
     background-repeat: no-repeat;
     background-position: 10px center;
     padding-left: 35px;
     background-size: 16px 16px;
 }
 
-.contenedor_form input[name="icon"] {
-    background-image: url(https://cdn.pixabay.com/photo/2023/02/18/11/00/icon-7797704_1280.png);
+.contenedor_form input[name="email"] {
+    background-image: url(imgs/email.jpg);
     background-repeat: no-repeat;
     background-position: 10px center;
     padding-left: 35px;
@@ -51,7 +51,7 @@ body.x{
 }
 
 .contenedor_form input[name="usuario"] {
-    background-image: url(https://cdn.pixabay.com/photo/2023/02/18/11/00/icon-7797704_1280.png);
+    background-image: url(imgs/usuario.webp);
     background-repeat: no-repeat;
     background-position: 10px center;
     padding-left: 35px;
@@ -59,7 +59,7 @@ body.x{
 }
 
 .contenedor_form input[name="password"] {
-    background-image: url(https://cdn.pixabay.com/photo/2023/02/18/11/00/icon-7797704_1280.png);
+    background-image: url(imgs/iconkey.png);
     background-repeat: no-repeat;
     background-position: 10px center;
     padding-left: 35px;
@@ -107,6 +107,8 @@ a{
     align-items: center;
     position: relative;
     bottom: 8px;
+    right: 10px;
+    width: 93.5%;
 }
 
 .logo{
@@ -126,6 +128,13 @@ a{
     font-size: 12px;
 }
 
+.titu{
+    color: snow;
+    position: relative;
+    left: 3px;
+    top: 5px
+}
+
 .links{
     display: flex;
     gap: 30px;
@@ -142,8 +151,8 @@ a{
 }
 
 .botonsesion{
-    background-color: aquamarine;
-    color: blueviolet;
+    background-color: transparent;
+    color: cyan;
     padding: 10px 10px;
     border-radius: 10px;
     text-decoration: none;
@@ -223,3 +232,20 @@ a{
     left: 420px;
     color: seashell;
 }
+
+.icono{
+    font-size: 23px;
+}
+
+.card .text{
+    font-size: 20px;
+    color: purple;
+    background-color: transparent;
+}
+
+.iconoempleados::before{content: '👤';}
+.iconohoras::before{content: '⏱️';}
+.icononomina::before{content: '💸';}
+.iconoinventario::before{content: '📦';}
+.iconoreportes::before{content: '📊';}
+.iconoproduc::before{content: '📄';}
