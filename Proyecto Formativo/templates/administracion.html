@@ -5,19 +5,6 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="{{ url_for('static', filename='estilos.css') }}">
         <title>Inkar Jeans - Sistema Administrativo</title>
-        <script>
-            window.onload = function(){
-                const enlaces = document.querySelectorAll('nav .enlaces a');
-                enlaces.forEach(function (link){
-                    if(link.textContent.trim() !== "Cerrar sesion" && link.textContent.trim() !== "Inicio"){
-                        link.addEventListener('click', function (e) {
-                            e.preventDefault();
-                            alert("Inicie sesión para acceder al panel administrativo.")
-                        });
-                    }
-                });
-            }
-        </script>
     </head>
     <body class="x">
         <nav>
@@ -28,21 +15,25 @@
                         Inkar Jeans<br>
                         <span>SISTEMA ADMINISTRATIVO</span>
                     </div>
-                    <div class="links">
-                        <a href="{{url_for('index')}}">Inicio</a>
-                        <a href="#">Empleado</a>
-                        <a href="#">Horas trabajadas</a>
-                        <a href="#">Nómina</a>
-                        <a href="#">Inventario</a>
-                    </div>
                 </div>
                 <a href="{{url_for('index')}}" class="botonsesion">Cerrar sesion</a>
             </div>
         </nav>
+        {% if nombre %}
+        <div class="bienvenido">
+            <h1>Bienvenido {{nombre}}</h1>
+            <p>Este es el panel principal del sistema administrativo de Inkar Jeans</p>
+        </div>
+        {% else %}
         <div class="bienvenido">
             <h1>Bienvenido Administrador</h1>
             <p>Este es el panel principal del sistema administrativo de Inkar Jeans</p>
         </div>
+        {% endif %}
+
+        {% if error %}
+        <p id="error">{{error}}</p>
+        {% endif %}
         <div class="cont_card">
             <div class="card">
                 <span class="icono iconoempleados"></span>
