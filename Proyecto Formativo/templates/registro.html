@@ -3,6 +3,13 @@
     <head>
         <link rel="stylesheet" href="{{ url_for('static', filename='estilos.css') }}">
         <title>Registro de usuario</title>
+        <script>
+            function mostrar_ocultar_password(){
+                const passwordocult=document.getElementById("ocultar");
+                const type=passwordocult.getAttribute("type");
+                passwordocult.setAttribute("type", type==="password" ? "text" : "password");
+            }
+        </script>
     </head>
     <body>
         <h1 id="registitu">Crear cuenta</h1>
@@ -14,8 +21,11 @@
             <form method="POST" action="{{url_for('registro')}}">
                 <input type="text" name="nombre" placeholder="Nombre completo" required>
                 <input type="email" name="email" placeholder="Correo electronico" required>
-                <input type="text" name="usuario" placeholder="Usuario" required>
-                <input type="text" name="password" placeholder="Contraseña" required>
+                <input type="text" name="usuarioregis" placeholder="Usuario" required>
+                <input type="password" name="password" id="ocultar" placeholder="Contraseña" required>
+                <span onclick="mostrar_ocultar_password()" id="passwordcrear">
+                    👁️
+                </span>
                 <button type="submit">Registrar</button>
             </form>
             <p id="textito">¿Ya tienes una cuenta? <a href="{{url_for('index')}}">Iniciar Sesion</a></p>

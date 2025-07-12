@@ -1,6 +1,7 @@
 from flask import Flask, render_template, request, redirect, url_for
 from sqlalchemy import create_engine, Column, Integer, String
 from sqlalchemy.orm import declarative_base, sessionmaker
+import bcrypt
 
 app=Flask(__name__)
 
@@ -13,7 +14,7 @@ class Usuario(tablita):
     nombre=Column(String(50), nullable=False)
     email=Column(String(50), nullable=False)
     usuario=Column(String(50), nullable=False)
-    password=Column(String(50),nullable=False)
+    password=Column(String(100),nullable=False)
 
 tablita.metadata.create_all(engine)
 
@@ -26,14 +27,19 @@ def index():
 
 @app.route('/administracion', methods=['GET', 'POST'])
 def administracion():
+    error=None
     if request.method=='POST':
-        usuario=request.form.get('usuario')
-        password=request.form.get('password')
+        usuario_input=request.form.get('usuario')
+        password_input=request.form.get('password')
 
-        if usuario=='admin' and password=='123':
-            return render_template('administracion.html')
+        usu=session.query(Usuario).filter_by(usuario=usuario_input).first()
+
+        if usu and bcrypt.checkpw(password_input.encode('utf-8'), usu.password.encode('utf-8')):
+            return render_template('administracion.html', nombre=usu.nombre)
         else:
-            return "Usuario o contraseña incorrectos", 401
+            error = "Usuario o contraseña incorrectos o no estás registrado"
+            return render_template('index.html', error=error)
+        
     return render_template('administracion.html')
 
 @app.route('/registro', methods=['GET', 'POST'])
@@ -41,8 +47,10 @@ def registro():
     if request.method=='POST':
         nombre=request.form['nombre']
         email=request.form['email']
-        usuario=request.form['usuario']
-        password=request.form['password']
+        usuarioregis=request.form['usuarioregis']
+        clave=request.form['password']
+
+        password_hash=bcrypt.hashpw(clave.encode('utf-8'), bcrypt.gensalt()).decode('utf-8')
         
         yaexiste=session.query(Usuario).filter_by(email=email).first()
         if yaexiste:
@@ -51,8 +59,8 @@ def registro():
             nuevo_usuario = Usuario(
                 nombre=nombre,
                 email=email,
-                usuario=usuario,
-                password=password
+                usuario=usuarioregis,
+                password=password_hash
             )
             session.add(nuevo_usuario)
             session.commit()
@@ -63,6 +71,10 @@ def registro():
 @app.route('/restablecer_contra.html')
 def restablecer_contra():
     return render_template('restablecer_contra.html')
+
+@app.route('/empleados')
+def empleados():
+    return render_template('empleados.html')
 
 @app.route('/mostrar_index')
 def mostrar_index():

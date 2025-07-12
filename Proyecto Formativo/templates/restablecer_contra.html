@@ -5,6 +5,12 @@
         <title>Restablecer contraseña</title>
         <script>
             const mensaje = document.getElementsByName('nuevo');
+
+            function mostrar_ocultar_password(){
+                const passwordocult=document.getElementById("ocultar");
+                const type=passwordocult.getAttribute("type");
+                passwordocult.setAttribute("type", type==="password" ? "text" : "password");
+            }
         </script>
     </head>
     <body>
@@ -13,10 +19,11 @@
             <h2 id="textito">Inkar Jeans</h2>
             <span id="span">Ingrese la contraseña nueva y asegurate de guardarlo o anotarlo para que no se te olvide🤗</span id="span">
             <form>
-            <input type="text" name="icon" placeholder="Contraseña nueva" required><br></br>
-            <button type="submit">Aceptar</button>
+                <input type="password" name="password" id="ocultar" placeholder="Contraseña nueva" required>
+                <span onclick="mostrar_ocultar_password()" id="password">👁️</span><br></br>
+                <button type="submit" id="restable">Aceptar</button>
             </form>
-            <a href="{{url_for('index')}}"><button>Volver</button></a>
+            <a href="{{url_for('index')}}"><button id="restable_volver">Volver</button></a>
         </div>
     </body>
 </html>
