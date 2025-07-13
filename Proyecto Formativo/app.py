@@ -2,6 +2,7 @@ from flask import Flask, render_template, request, redirect, url_for
 from sqlalchemy import create_engine, Column, Integer, String
 from sqlalchemy.orm import declarative_base, sessionmaker
 import bcrypt
+import sqlite3
 
 app=Flask(__name__)
 
@@ -15,6 +16,20 @@ class Usuario(tablita):
     email=Column(String(50), nullable=False)
     usuario=Column(String(50), nullable=False)
     password=Column(String(100),nullable=False)
+
+tablita.metadata.create_all(engine)
+
+class Empleado(tablita):
+    __tablename__="Empleados"
+    id=Column(Integer, primary_key=True)
+    nombre=Column(String(50), nullable=False)
+    cedula=Column(String(50), nullable=False)
+    correo=Column(String(50), nullable=False)
+    telefono=Column(String(50), nullable=False)
+    direccion=Column(String(50), nullable=False)
+    salario=Column(String(50), nullable=False)
+    horario=Column(String(50), nullable=False)
+    fechaingreso=Column(String(50), nullable=False)
 
 tablita.metadata.create_all(engine)
 
@@ -74,7 +89,12 @@ def restablecer_contra():
 
 @app.route('/empleados')
 def empleados():
-    return render_template('empleados.html')
+    lista_empleados=session.query(Empleado).all()
+    return render_template('empleados.html', empleados=lista_empleados)
+
+@app.route('/agregar_empelado')
+def agregar_empleado():
+    return render_template('agregar_empleado.html')
 
 @app.route('/mostrar_index')
 def mostrar_index():

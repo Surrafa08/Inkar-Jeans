@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" href="{{url_for('static', filename='estilos_empleado.css')}}">
+        <title>Agregar Empleado - Inkar Jeans</title>
+    </head>
+    <body>
+        <h1>Empleados</h1>
+        <form action="{{url_for('empleados')}}">
+            <div>
+                <input type="text" placeholder="Nombre completo" required>
+            </div>
+        </form>
+    </body>
+</html>
