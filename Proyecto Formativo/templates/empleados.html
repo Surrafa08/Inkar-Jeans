@@ -2,19 +2,24 @@
 <html>
     <head>
         <link rel="stylesheet" href="{{url_for('static', filename='estilos.css')}}">
-        <title>Empleados</title>
+        <title>Gestion de empleados</title>
     </head>
     <body class="emple">
         <section class="panel">
-            <h2>Gestion de empleados</h2>
-            <button class="agregaremple">Agregar empleado</button>
+            <h2>Lista de empleados</h2>
+            <a href="{{url_for('agregar_empleado')}}"><button class="agregaremple">Agregar empleado</button></a>
             <table>
                 <thead>
                     <tr>
-                        <th>Nombre</th>
-                        <th>Puesto</th>
-                        <th>Estado</th>
-                        <th>Acciones</th>
+                        <th>Nombre completo</th>
+                        <th>Cedula</th>
+                        <th>Correo</th>
+                        <th>Telefono</th>
+                        <th>Direccion</th>
+                        <th>Cargo</th>
+                        <th>Salario</th>
+                        <th>Horario</th>
+                        <th>Fecha de ingreso</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -22,11 +27,9 @@
                         <td>Juan</td>
                         <td>Cortador</td>
                         <td>Activo</td>
-                        <td>
-                            <button>Editar</button>
-                            <button>Eliminar</button>
-                        </td>
                     </tr>
+                    <button>Editar</button>
+                    <button>Eliminar</button>
                 </tbody>
             </table>
         </section>
