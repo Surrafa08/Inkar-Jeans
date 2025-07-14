@@ -16,22 +16,29 @@
                         <th>Correo</th>
                         <th>Telefono</th>
                         <th>Direccion</th>
-                        <th>Cargo</th>
                         <th>Salario</th>
                         <th>Horario</th>
                         <th>Fecha de ingreso</th>
                     </tr>
                 </thead>
                 <tbody>
+                    {% for dato in empleados %}
                     <tr>
-                        <td>Juan</td>
-                        <td>Cortador</td>
-                        <td>Activo</td>
+                        <td>{{dato.nombre}}</td>
+                        <td>{{dato.cedula}}</td>
+                        <td>{{dato.correo}}</td>
+                        <td>{{dato.telefono}}</td>
+                        <td>{{dato.direccion}}</td>
+                        <td>{{dato.salario}}</td>
+                        <td>{{dato.horario}}</td>
+                        <td>{{dato.fechaingreso}}</td>
                     </tr>
-                    <button>Editar</button>
-                    <button>Eliminar</button>
+                    {% endfor %}
                 </tbody>
+                <a href="{{url_for('editar_empleado')}}"><button>Editar</button></a>
+                <a href="#"></a><button>Eliminar</button>
             </table>
         </section>
+        <a href="{{url_for('administracion')}}"><button>Volver</button></a>
     </body>
 </html>
