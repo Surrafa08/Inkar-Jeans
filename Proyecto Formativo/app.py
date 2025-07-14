@@ -3,6 +3,7 @@ from sqlalchemy import create_engine, Column, Integer, String
 from sqlalchemy.orm import declarative_base, sessionmaker
 import bcrypt
 import sqlite3
+from datetime import datetime
 
 app=Flask(__name__)
 
@@ -29,8 +30,8 @@ class Empleado(tablita):
     direccion=Column(String(50), nullable=False)
     salario=Column(String(50), nullable=False)
     horario=Column(String(50), nullable=False)
-    fechaingreso=Column(String(50), nullable=False)
-
+    fechaingreso=Column(String(50), default=datetime.now().strftime("%Y-%m-%d"))
+    
 tablita.metadata.create_all(engine)
 
 Session=sessionmaker(bind=engine)
@@ -92,9 +93,54 @@ def empleados():
     lista_empleados=session.query(Empleado).all()
     return render_template('empleados.html', empleados=lista_empleados)
 
-@app.route('/agregar_empelado')
+@app.route('/agregar_empleado', methods=['GET', 'POST'])
 def agregar_empleado():
+    if request.method=='POST':
+        nuevo=Empleado(
+            nombre=request.form['nombre'],
+            cedula=request.form['cedula'],
+            correo=request.form['correo'],
+            telefono=request.form['telefono'],
+            direccion=request.form['direccion'],
+            salario=request.form['salario'],
+            horario=request.form['horario'],
+            fechaingreso=datetime.now().strftime("%Y-%m-%d")
+        )
+        session.add(nuevo)
+        session.commit()
+        return redirect(url_for('empleados'))
+    
     return render_template('agregar_empleado.html')
+
+@app.route('/editar_empleado/<int:id>', methods=['GET', 'POST'])
+def editar_empleado(id):
+    empleado = session.query(Empleado).get(id)
+    if not empleado:
+        return "Empleado no encontrado", 404
+    
+    if request.method == 'POST':
+        empleado.nombre = request.form['nombre']
+        empleado.cedula = request.form['cedula']
+        empleado.correo = request.form['correo']
+        empleado.telefono = request.form['telefono']
+        empleado.direccion = request.form['direccion']
+        empleado.salario = request.form['salario']
+        empleado.horario = request.form['horario']
+        
+        empleado.fechaingreso = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+
+        session.commit()
+        return redirect(url_for('empleados'))
+    
+    return render_template('editar_empleado.html', empleado=empleado)
+
+@app.route('/eliminar_empleado/<int:id>', methods=['POST'])
+def eliminar_empleado(id):
+    empleado=session.query(Empleado).get(id)
+    if empleado:
+        session.delete(empleado)
+        session.commit()
+    return redirect(url_for('empleados'))
 
 @app.route('/mostrar_index')
 def mostrar_index():

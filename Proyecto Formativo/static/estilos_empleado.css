@@ -39,3 +39,16 @@ h1{
     position: relative;
     right: 80px;
 }
+
+.cambio{
+    display: flex;
+    flex-direction: column;
+    background-color: green;
+    position: relative;
+    left: 400px;
+    top: 20px;
+    gap: 10px;
+    padding: 30px;
+    width: 200px;
+    border-radius: 16px;
+}
