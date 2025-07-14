@@ -5,11 +5,18 @@
         <title>Agregar Empleado - Inkar Jeans</title>
     </head>
     <body>
-        <h1>Empleados</h1>
+        <h1>Registrar empleado</h1>
         <form action="{{url_for('empleados')}}">
-            <div>
+            <div class="contenedor">
                 <input type="text" placeholder="Nombre completo" required>
+                <input type="text" placeholder="Cedula" required>
+                <input type="text" placeholder="Correo" required>
+                <input type="text" placeholder="Telefono" required>
+                <input type="text" placeholder="Direccion"required>
+                <input type="text" placeholder="Salario" required>
+                <input type="text" placeholder="Horario" required>
             </div>
+            <button>Aceptar</button>
         </form>
     </body>
 </html>
