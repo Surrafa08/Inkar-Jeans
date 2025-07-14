@@ -108,13 +108,39 @@ def agregar_empleado():
         )
         session.add(nuevo)
         session.commit()
-        print("Empleado guardado:", nuevo.nombre)
         return redirect(url_for('empleados'))
+    
     return render_template('agregar_empleado.html')
 
-@app.route('/editar_empleado')
-def editar_empleado():
-    return render_template('editar_empleado.html')
+@app.route('/editar_empleado/<int:id>', methods=['GET', 'POST'])
+def editar_empleado(id):
+    empleado = session.query(Empleado).get(id)
+    if not empleado:
+        return "Empleado no encontrado", 404
+    
+    if request.method == 'POST':
+        empleado.nombre = request.form['nombre']
+        empleado.cedula = request.form['cedula']
+        empleado.correo = request.form['correo']
+        empleado.telefono = request.form['telefono']
+        empleado.direccion = request.form['direccion']
+        empleado.salario = request.form['salario']
+        empleado.horario = request.form['horario']
+        
+        empleado.fechaingreso = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+
+        session.commit()
+        return redirect(url_for('empleados'))
+    
+    return render_template('editar_empleado.html', empleado=empleado)
+
+@app.route('/eliminar_empleado/<int:id>', methods=['POST'])
+def eliminar_empleado(id):
+    empleado=session.query(Empleado).get(id)
+    if empleado:
+        session.delete(empleado)
+        session.commit()
+    return redirect(url_for('empleados'))
 
 @app.route('/mostrar_index')
 def mostrar_index():

@@ -32,11 +32,17 @@
                         <td>{{dato.salario}}</td>
                         <td>{{dato.horario}}</td>
                         <td>{{dato.fechaingreso}}</td>
+                        <td>
+                            <a href="{{url_for('editar_empleado', id=dato.id)}}"><button>Editar</button></a>
+                        </td>
+                        <td>
+                            <form method="POST" action="{{url_for('eliminar_empleado', id=dato.id)}}" onsubmit="return confirm('¿Seguro que quiere eliminar este empleado?');">
+                                <button type="submit">Eliminar</button>
+                            </form>
+                        </td>
                     </tr>
                     {% endfor %}
                 </tbody>
-                <a href="{{url_for('editar_empleado')}}"><button>Editar</button></a>
-                <a href="#"></a><button>Eliminar</button>
             </table>
         </section>
         <a href="{{url_for('administracion')}}"><button>Volver</button></a>
