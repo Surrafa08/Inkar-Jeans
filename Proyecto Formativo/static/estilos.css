@@ -9,7 +9,7 @@ body{
 }
 
 body.x{
-    background-color: skyblue;
+    background-color: aliceblue;
     background-image: none;
 }
 
@@ -119,7 +119,7 @@ a{
     position: relative;
     bottom: 8px;
     right: 10px;
-    width: 93.5%;
+    width: 94%;
 }
 
 .logo{
@@ -163,8 +163,8 @@ a{
 }
 
 .botonsesion{
-    background-color: darkgray;
-    color: cyan;
+    background-color: aliceblue;
+    color: darkblue;
     padding: 8px 10px;
     border-radius: 10px;
     text-decoration: none;
@@ -174,13 +174,6 @@ a{
 }
 .botonsesion:hover{
     background-color: red;
-}
-
-.rayitas{
-    position: relative;
-    right: 30px;
-    color: aliceblue;
-    font-size: 2rem;
 }
 
 .bienvenido h1{
@@ -207,13 +200,15 @@ a{
 }
 
 .card{
-    background-color: snow;
+    background-color: darkgray;
     display: flex;
     justify-content: center;
     align-items: center;
     gap: 10px;
-    border-radius: 30px;
+    border-radius: 20px;
     padding: 30px;
+    position: relative;
+    bottom: 20px;
     box-shadow: black;
     margin: 10px;
     transition: trasnform 0.3s ease, box-shadow 0.3s ease;
