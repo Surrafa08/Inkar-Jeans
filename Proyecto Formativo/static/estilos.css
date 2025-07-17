@@ -56,6 +56,7 @@ body.x{
     background-position: 10px center;
     padding-left: 35px;
     background-size: 16px 16px;
+    margin-bottom: 5px;
 }
 
 .contenedor_form input[name="password"] {
@@ -82,6 +83,8 @@ button{
     cursor: pointer;
     background-color: cyan;
     color: purple;
+    position: relative;
+    top: 5px;
 }
 
 a{
@@ -140,8 +143,8 @@ a{
     color: snow;
     position: relative;
     font-size: 30px;
-    left: 300px;
-    top: 5px
+    left: 10px;
+    top: 1px
 }
 
 .links{
@@ -305,7 +308,7 @@ body.emple{
 
 #restable{
     position: relative;
-    bottom: 20px;
+    top: 50px;
     left: 130px;
     width: 100px;
 }

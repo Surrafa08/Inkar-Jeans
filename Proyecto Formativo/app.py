@@ -1,11 +1,13 @@
-from flask import Flask, render_template, request, redirect, url_for
+from flask import Flask, render_template, request, redirect, url_for, request, session as flask_session
 from sqlalchemy import create_engine, Column, Integer, String
 from sqlalchemy.orm import declarative_base, sessionmaker
 import bcrypt
 import sqlite3
 from datetime import datetime
+import os
 
 app=Flask(__name__)
+app.secret_key=os.urandom(23)
 
 engine = create_engine("sqlite:///basedatos.db", echo=True)
 tablita=declarative_base()
@@ -43,6 +45,7 @@ def index():
 
 @app.route('/administracion', methods=['GET', 'POST'])
 def administracion():
+    nombre=flask_session.get('nombre')
     error=None
     if request.method=='POST':
         usuario_input=request.form.get('usuario')
@@ -51,12 +54,13 @@ def administracion():
         usu=session.query(Usuario).filter_by(usuario=usuario_input).first()
 
         if usu and bcrypt.checkpw(password_input.encode('utf-8'), usu.password.encode('utf-8')):
+            flask_session['nombre']=usu.nombre
             return render_template('administracion.html', nombre=usu.nombre)
         else:
             error = "Usuario o contraseña incorrectos o no estás registrado"
             return render_template('index.html', error=error)
-        
-    return render_template('administracion.html')
+    
+    return render_template('administracion.html', nombre=flask_session.get('nombre'))
 
 @app.route('/registro', methods=['GET', 'POST'])
 def registro():
