@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Horas Trabajadas - Inkar Jeans</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='estilos.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='horas_trabajadas.css') }}">
+</head>
+<body class="FondoHorasTrabajadas">
+
+  <!-- Esto es el encabezado -->
+  <nav>
+    <div class="enlaces">
+      <div class="logo">
+        <img src="{{ url_for('static', filename='imgs/logoInkar.jpg') }}" alt="Logo Inkar">
+        <div class="titu">
+          Inkar Jeans<br>
+          <span>SISTEMA ADMINISTRATIVO</span>
+        </div>
+      </div>
+      <h1 class="Titulo">Registro de Horas Trabajadas</h1>
+      <a href="{{ url_for('administracion') }}" class="BotonVolver">Volver</a>
+    </div>
+  </nav>
+
+  <!--Esto es el contenedor que rodea en blanco el formulario y la tabla -->
+  <div class="ContenedorBlanco">
+
+    <!-- Esto alinea el formulario y la tabla para que esten juntos -->
+    <div class="ContenedorHorizontal">
+
+      <!-- El formulario -->
+      <div class="ContenedorDelFormulario">
+        <h2 class="TituloFormulario">Formulario</h2>
+        <form method="POST">
+          <div class="FormularioVertical">
+            <input type="text" name="empleado" placeholder="Empleado" required>
+            <input type="date" name="fecha" required>
+            <input type="number" name="horas" placeholder="Horas" required>
+            <input type="text" name="actividad" placeholder="Actividad Realizada" required>
+            <button type="submit">Registrar</button>
+          </div>
+        </form>    
+
+        <!-- BOTÓN DE ELIMINAR QUE APARECE AL SELECCIONAR UNA FILA -->
+        <form method="POST" action="{{ url_for('eliminar_hora') }}" id="formEliminar">
+          <input type="hidden" name="id" id="inputEliminarID">
+          <div id="botonEliminarContainer" style="display: none;">
+            <button type="submit" class="BotonEliminarEmpleado">Eliminar empleado</button>
+          </div>
+        </form>
+      </div>
+
+      <!-- Tabla -->
+      <div class="ContenedorTabla">
+
+        <!-- Esto es lo del buscador -->
+        <input type="text" id="buscadorEmpleado" class="BuscadorDeEmpleado" placeholder="Buscar empleado..." onkeyup="filtrarEmpleado()">
+
+
+        <table>
+          <thead>
+            <tr>
+              <th>Empleado</th>
+              <th>Fecha</th>
+              <th>Horas</th>
+              <th>Actividad</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for hora in horas %}
+            <tr>
+              <td>{{ hora.empleado }}</td>
+              <td>{{ hora.fecha }}</td>
+              <td>{{ hora.horas }}</td>
+              <td>{{ hora.actividad }}</td>
+              <td>
+                <input type="radio" name="seleccionEliminar" value="{{ hora.id }}" onclick="toggleSeleccion(this)">
+              </td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <!-- Este Script es para mostrar o ocultar el boton de eliminar -->
+  <script>
+    let ultimoSeleccionado = null;
+
+    function toggleSeleccion(radio) {
+      const botonEliminar = document.getElementById("botonEliminarContainer");
+      const inputID = document.getElementById("inputEliminarID");
+
+      if (ultimoSeleccionado === radio) {
+        radio.checked = false;
+        ultimoSeleccionado = null;
+        botonEliminar.style.display = "none";
+        inputID.value = "";
+      } else {
+        ultimoSeleccionado = radio;
+        inputID.value = radio.value;
+        botonEliminar.style.display = "block";
+      }
+    }
+
+    // Este Script hace que filtre el nombre de empleado que pongamos
+    function filtrarEmpleado() {
+      const input = document.getElementById("buscadorEmpleado");
+      const filtro = input.value.toLowerCase();
+      const tabla = document.querySelector("table tbody");
+      const filas = tabla.getElementsByTagName("tr");
+
+      for (let i = 0; i < filas.length; i++) {
+        const columnaEmpleado = filas[i].getElementsByTagName("td")[0];
+        if (columnaEmpleado) {
+          const nombre = columnaEmpleado.textContent || columnaEmpleado.innerText;
+          filas[i].style.display = nombre.toLowerCase().includes(filtro) ? "" : "none";
+        }
+      }
+    }
+  </script>
+
+</body>
+</html>
