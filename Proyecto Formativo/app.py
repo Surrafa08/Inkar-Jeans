@@ -36,6 +36,16 @@ class Empleado(tablita):
     
 tablita.metadata.create_all(engine)
 
+class HorasTrabajadas(tablita):
+    __tablename__ = "Horas"
+    id = Column(Integer, primary_key=True)
+    empleado = Column(String(100), nullable=False)
+    fecha = Column(String(20), nullable=False)
+    horas = Column(Integer, nullable=False)
+    actividad = Column(String(200), nullable=False)
+
+tablita.metadata.create_all(engine)
+
 Session=sessionmaker(bind=engine)
 session=Session()
 
@@ -146,9 +156,42 @@ def eliminar_empleado(id):
         session.commit()
     return redirect(url_for('empleados'))
 
+@app.route('/horas', methods=['GET', 'POST'])
+def horas_trabajadas():
+    if request.method == 'POST':
+        empleado = request.form['empleado']
+        fecha = request.form['fecha']
+        horas = request.form['horas']
+        actividad = request.form['actividad']
+
+        nueva_hora = HorasTrabajadas(
+            empleado=empleado,
+            fecha=fecha,
+            horas=horas,
+            actividad=actividad
+        )
+        session.add(nueva_hora)
+        session.commit()
+        return redirect(url_for('horas_trabajadas'))
+
+    horas = session.query(HorasTrabajadas).all()
+    return render_template('horas_trabajadas.html', horas=horas)
+
+
+@app.route('/eliminar_hora', methods=['POST'])
+def eliminar_hora():
+    id = request.form.get('id')
+    if id:
+        hora = session.query(HorasTrabajadas).get(int(id))
+        if hora:
+            session.delete(hora)
+            session.commit()
+    return redirect(url_for('horas_trabajadas'))
+
 @app.route('/mostrar_index')
 def mostrar_index():
     return render_template('index.html') 
+    
 
 if __name__=='__main__':
     app.run(debug=True)
