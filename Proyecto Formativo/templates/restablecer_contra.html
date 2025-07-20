@@ -16,9 +16,12 @@
     <body>
         <h1 id="contratitu">Restablecer Contraseña</h1>
         <div class="contenedor_form">
+            <div class="logo">
+                <img src="{{url_for('static', filename='imgs/logoInkar.jpg')}}">
+            </div>
             <h2 id="textito">Inkar Jeans</h2>
             <span id="span">Ingrese la contraseña nueva y asegurate de guardarlo o anotarlo para que no se te olvide🤗</span id="span">
-            <form>
+            <form action="{{url_for('restablecer_contra')}}" method="POST">
                 <input type="email" name="email" id="ocultar" placeholder="Correo electrónico" required><br></br>
                 <input type="password" name="password" id="ocultar" placeholder="Contraseña nueva" required>
                 <span onclick="mostrar_ocultar_password()" id="password">👁️</span><br></br>

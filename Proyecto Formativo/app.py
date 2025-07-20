@@ -98,8 +98,23 @@ def registro():
 
     return render_template('registro.html')
 
-@app.route('/restablecer_contra.html')
+@app.route('/restablecer_contra.html', methods=['GET', 'POST'])
 def restablecer_contra():
+    if request.method=='POST':
+        email=request.form['email']
+        nueva_contra=request.form['password']
+
+        usuario=session.query(Usuario).filter_by(email=email).first()
+        
+        if not usuario:
+            return "Correo no registrado."
+        
+        nueva_contra_hash=bcrypt.hashpw(nueva_contra.encode('utf-8'), bcrypt.gensalt()).decode('utf-8')
+        usuario.password = nueva_contra_hash
+        session.commit()
+        
+        return redirect(url_for('index'))
+    
     return render_template('restablecer_contra.html')
 
 @app.route('/empleados')
