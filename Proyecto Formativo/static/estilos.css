@@ -177,7 +177,8 @@ a{
     text-align: center;
 }
 .botonsesion:hover{
-    background-color: red;
+    background-color: darkred;
+    color: darkgrey;
 }
 
 .bienvenido h1{
@@ -261,27 +262,6 @@ a{
 .iconoinventario::before{content: '📦';}
 .iconoreportes::before{content: '📊';}
 .iconoproduc::before{content: '📄';}
-
-/***Empleados***/
-
-body.emple{
-    background-color: blueviolet;
-    background-image: none;
-}
-
-.panel{
-    background-color: grey;
-}
-
-.agregaremple{
-    background-color: blue;
-    color: yellow;
-    border: 0;
-    border-radius: 16px;
-    padding: 10px 16px;
-    cursor: pointer;
-    margin-bottom: 15px;
-}
 
 /*index*/
 

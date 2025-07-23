@@ -1,12 +1,15 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <link rel="stylesheet" href="{{url_for('static', filename='estilos.css')}}">
+        <link rel="stylesheet" href="{{url_for('static', filename='empleados.css')}}">
         <title>Gestion de empleados</title>
     </head>
-    <body class="emple">
-        <section class="panel">
+    <body>
+        <div class="contenedor">
             <h2>Lista de empleados</h2>
+            <a href="{{url_for('administracion')}}"><button class="botonvolver">Volver</button></a>
+        </div>
+        <section class="panel">
             <a href="{{url_for('agregar_empleado')}}"><button class="agregaremple">Agregar empleado</button></a>
             <table>
                 <thead>
@@ -45,6 +48,5 @@
                 </tbody>
             </table>
         </section>
-        <a href="{{url_for('administracion')}}"><button>Volver</button></a>
     </body>
 </html>
