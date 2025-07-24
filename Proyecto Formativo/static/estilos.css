@@ -126,6 +126,16 @@ a{
     width: 94%;
 }
 
+.texnav{
+    color: white;
+    position: relative;
+    left: 50%;
+    display: flex;
+    align-items: center;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 30px;
+}
+
 .logo{
     display: flex;
     left: 40px;

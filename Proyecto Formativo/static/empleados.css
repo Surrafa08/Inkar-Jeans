@@ -7,6 +7,7 @@ body{
     padding: 20px;
     margin: 0;
     color: whitesmoke;
+    overflow: hidden;
 }
 
 .panel{
@@ -25,19 +26,21 @@ h2{
 }
 
 .agregaremple{
-    background-color: blue;
-    color: yellow;
+    background-color: green;
+    color: white;
     border: none;
-    border-radius: 16px;
+    border-radius: 10px;
     padding: 10px 16px;
     cursor: pointer;
     margin-bottom: 15px;
     padding: 10px 20px;
+    position: relative;
+    left: 86%;
+    top: 60px;
 }
 
 .agregaremple:hover{
-    background-color: cyan;
-    color: purple;
+    background-color: darkgreen;
 }
 
 .contenedor{
@@ -59,7 +62,7 @@ h2{
     cursor: pointer;
     border: none;
     border-radius: 10px;
-    padding: 5px 20px;
+    padding: 10px 20px;
 }
 
 .botonvolver:hover{
@@ -94,7 +97,7 @@ button{
 }
 
 button:hover{
-    background-color: green;
+    background-color: darkcyan;
     color: white;
 }
 
