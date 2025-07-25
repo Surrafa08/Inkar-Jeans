@@ -4,11 +4,11 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Reportes - Inkar Jeans</title>
-  <link rel="stylesheet" href="imgs/estilo_Reportes.css" />
+  <link rel="stylesheet" href="estilo_Reportes.css" />
 </head>
 <body>
   <h1>Reportes</h1>
-  <form id="formReportes">
+  <form id="formReportes" novalidate>
     <input
       type="text"
       name="tipo"
@@ -17,6 +17,7 @@
       pattern="[A-Za-zÀ-ÿ\s]+"
       title="Solo letras y espacios permitidos"
       required
+      autocomplete="off"
     />
     <input
       type="text"
@@ -26,6 +27,7 @@
       pattern="^(0[1-9]|[12][0-9]|3[01])/(0[1-9]|1[012])/\d{4}$"
       title="Formato fecha válido: DD/MM/AAAA"
       required
+      autocomplete="off"
     />
     <button type="submit">Agregar</button>
   </form>
@@ -38,7 +40,9 @@
         <th>Acción</th>
       </tr>
     </thead>
-    <tbody id="tbodyReportes"></tbody>
+    <tbody id="tbodyReportes">
+      <tr><td colspan="3">No hay reportes.</td></tr>
+    </tbody>
   </table>
 
   <script>
