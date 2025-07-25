@@ -1,28 +1,57 @@
 body{
-    background-color: cyan;
+    background-color: transparent;
     background-image: url(https://media.istockphoto.com/id/1305533078/photo/multicolored-straight-strands-texture-background-sewing-equipment-loom-equipment-at-a-garment.jpg?s=612x612&w=0&k=20&c=zGDhSsF_nCyM7vIA0WB3dIqkHE_TpNRDRxWDAqpLFlI=);
     background-repeat: no-repeat;
     background-size: cover;
     font-family: Arial, Helvetica, sans-serif;
-    padding: 20px;
+    padding: 5px;
     margin: 0;
-    color: whitesmoke;
-    overflow: hidden;
+    color: black;
 }
 
 .panel{
-    background-color: grey;
+    background-color: #c8c8c8;
     border-radius: 10px;
     box-shadow: 0, 2px 6px rgb(0, 0, 0, 0.1);
     max-width: 1200px;
     margin: auto;
-    padding: 25px 50px;
+    padding: 5px 50px;
+    border: 1px solid blue;
 }
 
 h2{
     text-align: center;
     margin-bottom: 20px;
     color: white;
+    position: relative;
+    right: 50px;
+    font-size: 30px;
+}
+
+.logo{
+    display: flex;
+    position: relative;
+    left: 10px;
+}
+
+.logo img{
+    width: 50px;
+    height: 50px;
+}
+
+.logo span{
+    display: block;
+    letter-spacing: 0.5px;
+    color: snow;
+    font-size: 12px;
+}
+
+.titu{
+    color: snow;
+    position: relative;
+    font-size: 30px;
+    left: 10px;
+    top: 1px
 }
 
 .agregaremple{
@@ -84,7 +113,7 @@ thead{
 th, td{
     padding: 10px 14px;
     text-align: left;
-    border-bottom: 20px;
+    border-bottom: 1px solid white;
 }
 
 tr:hover{
@@ -92,12 +121,12 @@ tr:hover{
 }
 
 button{
-    background-color: skyblue;
-    color: black;
+    background-color: #2980b9;
+    color: white;
 }
 
 button:hover{
-    background-color: darkcyan;
+    background-color: #1c5980;
     color: white;
 }
 
