@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Inventario - Inkar Jeans</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <h1>Inventario</h1>
+  <form id="formInventario">
+    <input
+      type="text"
+      name="nombre"
+      id="nombreProducto"
+      placeholder="Nombre del producto"
+      pattern="[A-Za-z\s]+"
+      title="Solo letras"
+      required
+    />
+    <input
+      type="number"
+      name="cantidad"
+      id="cantidadProducto"
+      placeholder="Cantidad"
+      min="1"
+      required
+    />
+    <button type="submit">Agregar</button>
+  </form>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Nombre</th>
+        <th>Cantidad</th>
+        <th>Acción</th>
+      </tr>
+    </thead>
+    <tbody id="tbodyInventario"></tbody>
+  </table>
+
+  <script>
+    const inventario = [];
+    const tbody = document.getElementById('tbodyInventario');
+    const form = document.getElementById('formInventario');
+
+    function render() {
+      tbody.innerHTML = '';
+      if (inventario.length === 0) {
+        tbody.innerHTML = '<tr><td colspan="3">Inventario vacío.</td></tr>';
+        return;
+      }
+      inventario.forEach((item, i) => {
+        const tr = document.createElement('tr');
+        tr.innerHTML = `
+          <td>${item.nombre}</td>
+          <td>${item.cantidad}</td>
+          <td><button class="eliminar" onclick="eliminar(${i})">Eliminar</button></td>
+        `;
+        tbody.appendChild(tr);
+      });
+    }
+
+    function eliminar(i) {
+      inventario.splice(i, 1);
+      render();
+    }
+    window.eliminar = eliminar;
+
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+
+      const nombre = form.nombre.value.trim();
+      const cantidad = parseInt(form.cantidad.value, 10);
+
+      if (!/^[A-Za-z\s]+$/.test(nombre)) {
+        alert('El nombre debe contener solo letras y espacios.');
+        form.nombre.focus();
+        return;
+      }
+      if (isNaN(cantidad) || cantidad < 1) {
+        alert('Cantidad inválida.');
+        form.cantidad.focus();
+        return;
+      }
+
+      inventario.push({ nombre, cantidad });
+      form.reset();
+      render();
+    });
+
+    // Inicializa tabla vacía
+    render();
+  </script>
+</body>
+</html>
