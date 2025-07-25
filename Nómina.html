@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Nómina - Inkar Jeans</title>
+  <link rel="stylesheet" href="styless.css" />
+</head>
+<body>
+  <h1>Nómina</h1>
+  <form id="formNomina">
+    <input
+      type="text"
+      name="empleado"
+      id="nombreEmpleado"
+      placeholder="Nombre del empleado"
+      pattern="[A-Za-z\s]+"
+      title="Solo letras"
+      required
+    />
+    <input
+      type="number"
+      name="salario"
+      id="salarioEmpleado"
+      placeholder="Salario"
+      min="0"
+      step="0.01"
+      required
+    />
+    <button type="submit">Agregar</button>
+  </form>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Empleado</th>
+        <th>Salario</th>
+        <th>Acción</th>
+      </tr>
+    </thead>
+    <tbody id="tbodyNomina"></tbody>
+  </table>
+
+  <script>
+    const nomina = [];
+    const tbody = document.getElementById('tbodyNomina');
+    const form = document.getElementById('formNomina');
+
+    function render() {
+      tbody.innerHTML = '';
+      if (nomina.length === 0) {
+        tbody.innerHTML = '<tr><td colspan="3">Nómina vacía.</td></tr>';
+        return;
+      }
+      nomina.forEach((item, i) => {
+        const salarioFormateado = '$' + item.salario.toLocaleString('es-ES', { minimumFractionDigits: 2 });
+        const tr = document.createElement('tr');
+        tr.innerHTML = `
+          <td>${item.empleado}</td>
+          <td>${salarioFormateado}</td>
+          <td><button class="eliminar" onclick="eliminar(${i})">Eliminar</button></td>
+        `;
+        tbody.appendChild(tr);
+      });
+    }
+
+    function eliminar(i) {
+      nomina.splice(i, 1);
+      render();
+    }
+    window.eliminar = eliminar;
+
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+
+      const empleado = form.empleado.value.trim();
+      const salario = parseFloat(form.salario.value);
+
+      if (!/^[A-Za-z\s]+$/.test(empleado)) {
+        alert('El nombre debe contener solo letras y espacios.');
+        form.empleado.focus();
+        return;
+      }
+      if (isNaN(salario) || salario < 0) {
+        alert('Salario inválido.');
+        form.salario.focus();
+        return;
+      }
+
+      nomina.push({ empleado, salario });
+      form.reset();
+      render();
+    });
+
+    // Inicializa tabla vacía
+    render();
+  </script>
+</body>
+</html>
