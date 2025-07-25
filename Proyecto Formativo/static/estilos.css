@@ -177,8 +177,8 @@ a{
 }
 
 .botonsesion{
-    background-color: aliceblue;
-    color: darkblue;
+    background-color: transparent;
+    color: white;
     padding: 8px 10px;
     border-radius: 10px;
     text-decoration: none;
@@ -187,8 +187,8 @@ a{
     text-align: center;
 }
 .botonsesion:hover{
-    background-color: darkred;
-    color: darkgrey;
+    color: white;
+    text-decoration: underline;
 }
 
 .bienvenido h1{
@@ -200,8 +200,8 @@ a{
 
 .bienvenido p{
     position: relative;
-    left: 400px;
-    font-size: 16px;
+    left: 350px;
+    font-size: 20px;
     color: blue;
 }
 
@@ -215,7 +215,7 @@ a{
 }
 
 .card{
-    background-color: darkgray;
+    background-color: silver;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -223,7 +223,7 @@ a{
     border-radius: 20px;
     padding: 30px;
     position: relative;
-    bottom: 20px;
+    bottom: 50px;
     box-shadow: black;
     margin: 10px;
     transition: trasnform 0.3s ease, box-shadow 0.3s ease;
@@ -231,7 +231,7 @@ a{
 
 .card:hover{
     transform: translateY(-5px);
-    box-shadow: 0px 1px 3px rgb(100,30,10);
+    box-shadow: 0px 1px 3px rgb(157, 118, 107);
 }
 
 #textito{
