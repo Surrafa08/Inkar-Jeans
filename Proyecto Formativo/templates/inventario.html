@@ -1,0 +1,142 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Inventario - Inkar Jeans</title>
+  <link rel="stylesheet" href="{{url_for('static', filename='estilos_inventario.css')}}" />
+</head>
+<body>
+  <h1>Inventario - Inkar Jeans</h1>
+
+  <form id="formInventario">
+    <input
+      type="text"
+      name="nombre"
+      id="nombreProducto"
+      placeholder="Nombre del producto"
+      pattern="[A-Za-z\s]+"
+      title="Solo letras y espacios"
+      required
+    />
+    <input
+      type="number"
+      name="cantidad"
+      id="cantidadProducto"
+      placeholder="Cantidad"
+      min="1"
+      required
+    />
+    <button type="submit">Agregar</button>
+  </form>
+
+  <input
+    type="text"
+    id="buscadorProducto"
+    placeholder="Buscar producto..."
+    onkeyup="filtrarProducto()"
+  />
+
+  <form id="formEliminar" onsubmit="eliminarProducto(event)">
+    <table>
+      <thead>
+        <tr>
+          <th>Nombre</th>
+          <th>Cantidad</th>
+          <th>Seleccionar</th>
+        </tr>
+      </thead>
+      <tbody id="tbodyInventario">
+      </tbody>
+    </table>
+
+    <div id="botonEliminarContainer" style="display:none;">
+      <button type="submit">Eliminar producto</button>
+    </div>
+  </form>
+
+  <script>
+    const formInventario = document.getElementById('formInventario');
+    const tbodyInventario = document.getElementById('tbodyInventario');
+    const botonEliminarContainer = document.getElementById('botonEliminarContainer');
+    const buscadorProducto = document.getElementById('buscadorProducto');
+
+    formInventario.addEventListener('submit', function(e) {
+      e.preventDefault();
+
+      const nombreInput = document.getElementById('nombreProducto');
+      const cantidadInput = document.getElementById('cantidadProducto');
+
+      const nombre = nombreInput.value.trim();
+      const cantidad = cantidadInput.value;
+
+      const pattern = /^[A-Za-z\s]+$/;
+      if (!pattern.test(nombre)) {
+        alert('El nombre del producto debe contener solo letras y espacios.');
+        return;
+      }
+
+      const tr = document.createElement('tr');
+
+      const tdNombre = document.createElement('td');
+      tdNombre.textContent = nombre;
+
+      const tdCantidad = document.createElement('td');
+      tdCantidad.textContent = cantidad;
+
+      const tdSeleccionar = document.createElement('td');
+      const checkbox = document.createElement('input');
+      checkbox.type = 'checkbox';
+      checkbox.addEventListener('change', toggleEliminarBoton);
+      tdSeleccionar.appendChild(checkbox);
+
+      tr.appendChild(tdNombre);
+      tr.appendChild(tdCantidad);
+      tr.appendChild(tdSeleccionar);
+
+      tbodyInventario.appendChild(tr);
+
+      nombreInput.value = '';
+      cantidadInput.value = '';
+
+      toggleEliminarBoton();
+      filtrarProducto();
+    });
+
+    function toggleEliminarBoton() {
+      const checkboxes = tbodyInventario.querySelectorAll('input[type="checkbox"]');
+      const algunoSeleccionado = Array.from(checkboxes).some(chk => chk.checked);
+      botonEliminarContainer.style.display = algunoSeleccionado ? 'block' : 'none';
+    }
+
+    function eliminarProducto(event) {
+      event.preventDefault();
+
+      const filas = Array.from(tbodyInventario.querySelectorAll('tr'));
+      filas.forEach(fila => {
+        const checkbox = fila.querySelector('input[type="checkbox"]');
+        if (checkbox && checkbox.checked) {
+          fila.remove();
+        }
+      });
+
+      toggleEliminarBoton();
+    }
+
+    function filtrarProducto() {
+      const filtro = buscadorProducto.value.toLowerCase();
+      const filas = tbodyInventario.querySelectorAll('tr');
+
+      filas.forEach(fila => {
+        const nombre = fila.cells[0].textContent.toLowerCase();
+        if (nombre.indexOf(filtro) > -1) {
+          fila.style.display = '';
+        } else {
+          fila.style.display = 'none';
+        }
+      });
+    }
+  </script>
+</body>
+</html>

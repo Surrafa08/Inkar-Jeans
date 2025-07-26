@@ -20,8 +20,6 @@ class Usuario(tablita):
     usuario=Column(String(50), nullable=False)
     password=Column(String(100),nullable=False)
 
-tablita.metadata.create_all(engine)
-
 class Empleado(tablita):
     __tablename__="Empleados"
     id=Column(Integer, primary_key=True)
@@ -34,8 +32,6 @@ class Empleado(tablita):
     horario=Column(String(50), nullable=False)
     fechaingreso=Column(String(50), default=datetime.now().strftime("%Y-%m-%d"))
     
-tablita.metadata.create_all(engine)
-
 class HorasTrabajadas(tablita):
     __tablename__ = "Horas"
     id = Column(Integer, primary_key=True)
@@ -44,14 +40,28 @@ class HorasTrabajadas(tablita):
     horas = Column(Integer, nullable=False)
     actividad = Column(String(200), nullable=False)
 
+class Producto(tablita):
+    __tablename__ = "Productos"
+    id = Column(Integer, primary_key=True)
+    nombre = Column(String(100), nullable=False)
+    cantidad = Column(Integer, nullable=False)
+
+class Reporte(tablita):
+    __tablename__ = "Reportes"
+    id = Column(Integer, primary_key=True)
+    tipo = Column(String(100), nullable=False)
+    fecha = Column(String(20), nullable=False)
+
 tablita.metadata.create_all(engine)
 
 Session=sessionmaker(bind=engine)
 session=Session()
 
+
 @app.route('/')
 def index():
     return render_template('index.html')
+
 
 @app.route('/administracion', methods=['GET', 'POST'])
 def administracion():
@@ -71,6 +81,7 @@ def administracion():
             return render_template('index.html', error=error)
     
     return render_template('administracion.html', nombre=flask_session.get('nombre'))
+
 
 @app.route('/registro', methods=['GET', 'POST'])
 def registro():
@@ -98,6 +109,7 @@ def registro():
 
     return render_template('registro.html')
 
+
 @app.route('/restablecer_contra.html', methods=['GET', 'POST'])
 def restablecer_contra():
     if request.method=='POST':
@@ -117,10 +129,12 @@ def restablecer_contra():
     
     return render_template('restablecer_contra.html')
 
+
 @app.route('/empleados')
 def empleados():
     lista_empleados=session.query(Empleado).all()
     return render_template('empleados.html', empleados=lista_empleados)
+
 
 @app.route('/agregar_empleado', methods=['GET', 'POST'])
 def agregar_empleado():
@@ -140,6 +154,7 @@ def agregar_empleado():
         return redirect(url_for('empleados'))
     
     return render_template('agregar_empleado.html')
+
 
 @app.route('/editar_empleado/<int:id>', methods=['GET', 'POST'])
 def editar_empleado(id):
@@ -163,6 +178,7 @@ def editar_empleado(id):
     
     return render_template('editar_empleado.html', empleado=empleado)
 
+
 @app.route('/eliminar_empleado/<int:id>', methods=['POST'])
 def eliminar_empleado(id):
     empleado=session.query(Empleado).get(id)
@@ -170,6 +186,7 @@ def eliminar_empleado(id):
         session.delete(empleado)
         session.commit()
     return redirect(url_for('empleados'))
+
 
 @app.route('/horas', methods=['GET', 'POST'])
 def horas_trabajadas():
@@ -202,6 +219,79 @@ def eliminar_hora():
             session.delete(hora)
             session.commit()
     return redirect(url_for('horas_trabajadas'))
+
+
+@app.route('/productos/agregar', methods=['GET', 'POST'])
+def agregar_producto():
+    if request.method == 'POST':
+        nombre = request.form.get('nombre', '').strip()
+        cantidad = request.form.get('cantidad', '').strip()
+        if not nombre:
+            return "El nombre es obligatorio", 400
+
+        if not cantidad.isdigit() or int(cantidad) < 0:
+            return "Cantidad debe ser un número entero positivo", 400
+        
+        nuevo_producto = Producto(nombre=nombre, cantidad=int(cantidad))
+        session.add(nuevo_producto)
+        session.commit()
+        return redirect(url_for('productos'))
+    
+    return render_template('productos.html')
+
+
+@app.route('/productos/eliminar/<int:id>', methods=['POST'])
+def eliminar_producto(id):
+    producto = session.query(Producto).get(id)
+    if producto:
+        session.delete(producto)
+        session.commit()
+    return redirect(url_for('productos'))
+
+
+@app.route('/reportes', methods=['GET'])
+def reportes():
+    lista_reportes = session.query(Reporte).all()
+    return render_template('reportes.html', reportes=lista_reportes)
+
+
+@app.route('/reportes/agregar', methods=['GET', 'POST'])
+def agregar_reporte():
+    if request.method == 'POST':
+        tipo = request.form.get('tipo', '').strip()
+        fecha = request.form.get('fecha', '').strip()
+
+        import re
+        tipoRegex = re.compile(r'^[A-Za-zÀ-ÿ\s]+$')
+        fechaRegex = re.compile(r'^(0[1-9]|[12][0-9]|3[01])/(0[1-9]|1[012])/\d{4}$')
+        
+        if not tipoRegex.match(tipo):
+            return "El campo 'tipo' solo acepta letras y espacios.", 400
+        if not fechaRegex.match(fecha):
+            return "El campo 'fecha' debe tener formato DD/MM/AAAA válido.", 400
+
+        nuevo_reporte = Reporte(tipo=tipo, fecha=fecha)
+        session.add(nuevo_reporte)
+        session.commit()
+        return redirect(url_for('reportes'))
+
+    return render_template('reportes.html')
+
+
+@app.route('/reportes/eliminar/<int:id>', methods=['POST'])
+def eliminar_reporte(id):
+    reporte = session.query(Reporte).get(id)
+    if reporte:
+        session.delete(reporte)
+        session.commit()
+    return redirect(url_for('reportes'))
+
+
+@app.route('/productos', methods=['GET'])
+def productos():
+    lista_productos = session.query(Producto).all()
+    return render_template('productos.html', productos=lista_productos)
+
 
 @app.route('/mostrar_index')
 def mostrar_index():
