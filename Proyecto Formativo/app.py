@@ -208,29 +208,10 @@ def mostrar_index():
     return render_template('index.html') 
     
 
-if __name__=='__main__':
-    app.run(debug=True)
-
-    @app.route("/", methods=["GET"])
-def index():
+@app.route("/inventario", methods=["GET"])
+def inventario_route():
     return render_template_string(HTML_TEMPLATE, inventario=inventario)
 
-@app.route("/agregar", methods=["POST"])
-def agregar_producto():
-    nombre = request.form.get("nombre", "").strip()
-    cantidad = request.form.get("cantidad", "").strip()
-    if nombre and cantidad.isdigit() and int(cantidad) > 0:
-        inventario.append({"nombre": nombre, "cantidad": int(cantidad)})
-    return redirect(url_for("index"))
-
-@app.route("/eliminar", methods=["POST"])
-def eliminar_producto():
-    indices = request.form.getlist("eliminar")
-    indices = [int(i) for i in indices]
-    for i in sorted(indices, reverse=True):
-        if 0 <= i < len(inventario):
-            inventario.pop(i)
-    return redirect(url_for("index"))
 
     @app.route('/reportes', methods=['GET'])
 def reportes():
