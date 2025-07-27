@@ -1,17 +1,8 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <link rel="stylesheet" href="{{url_for('static', filename='estilos.css')}}">
+        <link rel="stylesheet" href="{{url_for('static', filename='contra_nueva.css')}}">
         <title>Restablecer contraseña</title>
-        <script>
-            const mensaje = document.getElementsByName('nuevo');
-
-            function mostrar_ocultar_password(){
-                const passwordocult=document.getElementById("ocultar");
-                const type=passwordocult.getAttribute("type");
-                passwordocult.setAttribute("type", type==="password" ? "text" : "password");
-            }
-        </script>
     </head>
     <body>
         <h1 id="contratitu">Restablecer Contraseña</h1>
@@ -22,12 +13,20 @@
             <h2 id="textito">Inkar Jeans</h2>
             <span id="span">Ingrese la contraseña nueva y asegurate de guardarlo o anotarlo para que no se te olvide🤗</span id="span">
             <form action="{{url_for('restablecer_contra')}}" method="POST">
-                <input type="email" name="email" id="ocultar" placeholder="Correo electrónico" required><br></br>
+                <input type="email" name="email" placeholder="Correo electrónico" required><br></br>
                 <input type="password" name="password" id="ocultar" placeholder="Contraseña nueva" required>
-                <span onclick="mostrar_ocultar_password()" id="password">👁️</span><br></br>
+                <span onclick="mostrar_ocultar_password()" id="ojo">👁️</span>
                 <button type="submit" id="restable">Aceptar</button>
             </form>
             <a href="{{url_for('index')}}"><button id="restable_volver">Volver</button></a>
         </div>
+
+        <script>
+            function mostrar_ocultar_password(){
+                const passwordocult=document.getElementById("ocultar");
+                const type=passwordocult.getAttribute("type");
+                passwordocult.setAttribute("type", type==="password" ? "text" : "password");
+            }
+        </script>
     </body>
 </html>

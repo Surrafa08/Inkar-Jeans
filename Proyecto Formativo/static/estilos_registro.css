@@ -5,7 +5,6 @@ body{
     background-attachment: fixed;
     background-color: transparent;
     overflow: hidden;
-    height: auto;
 }
 
 .contenedor_form{
@@ -15,7 +14,6 @@ body{
     max-width: 250px;
     display: flex;
     flex-direction: column;
-    gap: 10px;
     position: relative;
     left: 450px;
     top: 20px;
@@ -27,6 +25,17 @@ body{
     border: solid 1px skyblue;
     font-size: 15px;
     margin: auto;
+    position: relative;
+    bottom: 100px;
+}
+
+.contenedor_form input[name="nombre"] {
+    background-image: url(imgs/usuario.webp);
+    background-repeat: no-repeat;
+    background-position: 10px center;
+    padding-left: 35px;
+    background-size: 16px 16px;
+    margin-bottom: 5px;
 }
 
 .contenedor_form input[name="email"] {
@@ -35,7 +44,16 @@ body{
     background-position: 10px center;
     padding-left: 35px;
     background-size: 16px 16px;
-    margin-bottom: 2px;
+    margin-bottom: 5px;
+}
+
+.contenedor_form input[name="usuario"] {
+    background-image: url(imgs/usuario.webp);
+    background-repeat: no-repeat;
+    background-position: 10px center;
+    padding-left: 35px;
+    background-size: 16px 16px;
+    margin-bottom: 5px;
 }
 
 .contenedor_form input[name="password"] {
@@ -44,33 +62,35 @@ body{
     background-position: 10px center;
     padding-left: 35px;
     background-size: 16px 16px;
-    margin-bottom: 3px;
+    margin-bottom: 5px;
+}
+
+.contenedor_form input[name="usuarioregis"] {
+    background-image: url(imgs/usuario.webp);
+    background-repeat: no-repeat;
+    background-position: 10px center;
+    padding-left: 35px;
+    background-size: 16px 16px;
+    margin-bottom: 5px;
 }
 
 button{
-    padding: 10px;
+    padding: 7px;
     border: none;
-    border-radius: 15px;
+    border-radius: 5px;
     font-weight: bold;
     cursor: pointer;
     background-color: cyan;
     color: purple;
     position: relative;
-    top: 5px;
+    bottom: 90px;
+    left: 50px;
 }
 
 a{
     background-color: transparent;
     color: aqua;
-    width: 115px;
-    border-radius: 100%;
     text-decoration: none;
-}
-
-#contratitu{
-    position: relative;
-    left: 420px;
-    color: seashell;
 }
 
 .logo{
@@ -83,41 +103,45 @@ a{
     height: 50px;
 }
 
-.logo span{
-    display: block;
-    letter-spacing: 0.5px;
-    color: snow;
-    font-size: 12px;
-}
-
 #textito{
     color: snow;
-    position: relative;
-    bottom: 70px;
-    left: 60px;
+    margin-bottom: 0px;
+    margin-top: -60px;
 }
 
-#span{
+#registitu{
+    display: flex;
+    justify-content: center;
+    position: relative;
+    right: 30px;
+    color: seashell;
+}
+
+.tituregis{
     color: snow;
 }
 
-#ojo{
+#h1_regist{
     position: relative;
-    bottom: 40px;
-    left: 80%;
+    left: 60px;
+    bottom: 75px;
+}
+
+#p_regist{
+    position: relative;
+    left: 60px;
+    bottom: 100px;
+}
+
+#contratitu{
+    position: relative;
+    left: 420px;
+    color: seashell;
+}
+
+span{
+    position: relative;
+    bottom: 136px;
+    left: 200px;
     cursor: pointer;
-}
-
-#restable{
-    position: relative;
-    top: 50px;
-    left: 130px;
-    width: 100px;
-}
-
-#restable_volver{
-    position: relative;
-    bottom: 64px;
-    width: 100px;
-
 }

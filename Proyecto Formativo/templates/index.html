@@ -15,13 +15,14 @@
                 <img src="{{url_for('static', filename='imgs/logoInkar.jpg')}}">
             </div>
             <div class="titulito">
-                Inkar Jeans<br>
-                <span>Automatización Empresarial</span>
+                <h1 class="h1_titu">Inkar Jeans</h1>
+                <span class="span_titu">Automatización Empresarial</span>
             </div>
             <form method="POST" action="{{url_for('administracion')}}">
                 <input type="text" name="usuario" placeholder="Usuario" required>
-                <input type="password" name="password" placeholder="Contraseña" required>
-                <button type="submit">Iniciar sesión</button>
+                <input type="password" name="password" id="ocultar" placeholder="Contraseña" required>
+                <span onclick="mostrar_ocultar_password()" id="ojo">👁️</span>
+                <button type="submit" class="inicio">Iniciar sesión</button>
             </form>
             {% if error %}
                 <p id="error">{{error}}</p>
@@ -29,5 +30,13 @@
             <p id="textito">¿No tienes una cuenta? <a href="{{url_for('registro')}}">Registrate</a></p>
             <p id="textito">¿Se te olvidó la contraseña? <a href="{{url_for('restablecer_contra')}}">Restablecer contraseña</a></p>
         </div>
+
+        <script>
+            function mostrar_ocultar_password(){
+                const passwordocult=document.getElementById("ocultar");
+                const type=passwordocult.getAttribute("type");
+                passwordocult.setAttribute("type", type==="password" ? "text" : "password");
+            }
+        </script>
     </body>
 </html>
