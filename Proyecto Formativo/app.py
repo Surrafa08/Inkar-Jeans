@@ -249,6 +249,34 @@ def eliminar_producto(id):
     return redirect(url_for('productos'))
 
 
+@app.route('/inventario', methods=['GET', 'POST'])
+def inventario():
+    if request.method == 'POST':
+        nombre = request.form.get('nombre', '').strip()
+        cantidad = request.form.get('cantidad', '').strip()
+
+        import re
+        if not re.match(r'^[A-Za-z\s]+$', nombre):
+            return "El nombre solo puede contener letras y espacios.", 400
+
+        if not cantidad.isdigit() or int(cantidad) <= 0:
+            return "La cantidad debe ser un número entero positivo.", 400
+
+        
+        producto_existente = session.query(Producto).filter_by(nombre=nombre).first()
+        if producto_existente:
+            producto_existente.cantidad += int(cantidad)
+        else:
+            nuevo_producto = Producto(nombre=nombre, cantidad=int(cantidad))
+            session.add(nuevo_producto)
+
+        session.commit()
+        return redirect(url_for('inventario'))
+
+    productos = session.query(Producto).all()
+    return render_template('inventario.html', productos=productos)
+
+
 @app.route('/reportes', methods=['GET'])
 def reportes():
     lista_reportes = session.query(Reporte).all()
