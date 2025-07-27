@@ -1,169 +1,166 @@
-body {
-  font-family: Arial, sans-serif;
-  margin: 20px;
-  background-color: skyblue;
-}
-
-
-h1 {
-  color: white;
-  font-size: 30px;
-  text-align: center;
-  margin-bottom: 20px;
-}
-
-
-.contenedorBlanco {
-  background-color: #ffffff;
-  padding: 20px;
-  border-radius: 12px;
-  max-width: 900px;
-  margin: 0 auto;
-  box-shadow: 0 0 10px rgba(0,0,0,0.1);
-}
-
-
-.contenedorHorizontal {
-  display: flex;
-  gap: 30px;
-  align-items: flex-start;
-  margin-bottom: 20px;
-}
-
-
-.contenedorDelFormulario {
-  background-color: #0051a2;
-  padding: 25px;
-  border-radius: 12px;
-  max-width: 220px;
-  color: white;
+/* Reset básico */
+* {
+  margin: 0;
+  padding: 0;
   box-sizing: border-box;
+  font-family: Arial, sans-serif;
 }
 
-.contenedorDelFormulario h2 {
-  margin-top: 0;
-  font-size: 24px;
-  text-align: center;
+body.x {
+  background-color: #f4f4f4;
+  color: #333;
+  padding: 0 20px 40px;
 }
 
-
-.formularioVertical {
+/* NAVIGATION BAR */
+nav {
+  background-color: #1a1a1a;
+  color: white;
+  padding: 15px 20px;
   display: flex;
-  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.enlaces {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  justify-content: space-between;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
   gap: 15px;
 }
 
-
-form input[type="text"],
-form input[type="number"] {
-  padding: 10px 12px 10px 35px;
-  border-radius: 8px;
-  border: 1px solid #ccc;
-  font-size: 14px;
-  width: 100%;
-  box-sizing: border-box;
-  background-repeat: no-repeat;
-  background-position: 10px center;
-  background-size: 16px;
+.logo img {
+  height: 60px;
+  border-radius: 5px;
 }
 
-#nombreProducto {
-  background-image: url('https://cdn-icons-png.flaticon.com/512/833/833314.png');
-}
-
-#cantidadProducto {
-  background-image: url('https://cdn-icons-png.flaticon.com/512/992/992651.png');
-}
-
-
-form button[type="submit"] {
-  background-color: #007bff;
-  border: none;
-  color: white;
-  border-radius: 8px;
+.titu {
+  font-size: 1.1em;
   font-weight: bold;
-  padding: 12px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
+  line-height: 1.2;
 }
 
-form button[type="submit"]:hover {
-  background-color: #0056b3;
+.titu span {
+  font-size: 0.8em;
+  color: #ccc;
 }
 
-
-#buscadorProducto {
-  padding: 8px 8px 8px 30px;
-  border-radius: 8px;
-  width: 250px;
-  margin-bottom: 15px;
-  border: 1px solid #ccc;
-  font-size: 14px;
-  background-image: url('https://cdn-icons-png.flaticon.com/512/622/622669.png');
-  background-size: 16px;
-  background-repeat: no-repeat;
-  background-position: 8px center;
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
+.texnav {
+  margin-left: 20px;
+  font-style: italic;
+  font-size: 0.9em;
+  color: #aaa;
 }
 
-
-.contenedorTabla {
-  flex-grow: 1;
-}
-
-
-table {
-  width: 100%;
-  border-collapse: collapse;
-  border-radius: 8px;
-  overflow: hidden;
-  box-shadow: 0 0 10px rgba(0,0,0,0.1);
-}
-
-table thead {
-  background-color: #0051a2;
+.botonsesion {
+  background-color: #e63946;
   color: white;
+  padding: 10px 15px;
+  text-decoration: none;
+  border-radius: 5px;
+  font-weight: bold;
+  transition: background 0.3s;
 }
 
-table th,
-table td {
-  padding: 12px;
-  border: 1px solid #ddd;
+.botonsesion:hover {
+  background-color: #c91828;
+}
+
+/* BIENVENIDO */
+.bienvenido {
+  margin: 30px 0 20px;
   text-align: center;
 }
 
-table tbody tr:nth-child(even) {
-  background-color: #67a9f4;
-  color: #fff;
+.bienvenido h1 {
+  font-size: 2em;
+  color: #1d3557;
+  margin-bottom: 10px;
 }
 
+.bienvenido p {
+  font-size: 1em;
+  color: #555;
+}
 
-input[type="checkbox"] {
-  transform: scale(1.4);
+/* INVENTARIO */
+h1 {
+  text-align: center;
+  margin: 30px 0 20px;
+  color: #1d3557;
+}
+
+form {
+  margin: 0 auto 30px;
+  max-width: 600px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: center;
+}
+
+input[type="text"],
+input[type="number"] {
+  padding: 10px;
+  font-size: 1em;
+  border: 1px solid #aaa;
+  border-radius: 5px;
+  width: calc(50% - 15px);
+}
+
+input[type="text"]#buscadorProducto {
+  width: 100%;
+  max-width: 600px;
+  margin: 0 auto 20px;
+  display: block;
+}
+
+button {
+  padding: 10px 20px;
+  font-size: 1em;
+  background-color: #457b9d;
+  color: white;
+  border: none;
+  border-radius: 5px;
   cursor: pointer;
 }
 
+button:hover {
+  background-color: #1d3557;
+}
+
+/* TABLA */
+table {
+  width: 100%;
+  max-width: 800px;
+  margin: 0 auto;
+  border-collapse: collapse;
+  background-color: white;
+  box-shadow: 0 0 8px rgba(0,0,0,0.1);
+}
+
+thead {
+  background-color: #a8dadc;
+}
+
+th, td {
+  padding: 12px 15px;
+  text-align: center;
+  border-bottom: 1px solid #ddd;
+}
+
+tbody tr:hover {
+  background-color: #f1f1f1;
+}
 
 #botonEliminarContainer {
-  margin-top: 15px;
-  text-align: right;
-  display: none; 
-}
-
-#botonEliminarContainer button {
-  background-color: crimson;
-  color: white;
-  border-radius: 20px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-  padding: 12px 25px;
-  font-weight: bold;
-  border: none;
-  width: 150px;
-}
-
-#botonEliminarContainer button:hover {
-  background-color: #b02a37;
+  text-align: center;
+  margin-top: 20px;
 }
