@@ -1,3 +1,4 @@
+/* Estilos generales */
 body {
   font-family: Arial, sans-serif;
   margin: 20px;
@@ -16,6 +17,7 @@ h1 {
   margin-bottom: 20px;
 }
 
+/* Formulario */
 form#formReportes {
   background-color: #0051a2;
   padding: 25px;
@@ -30,36 +32,29 @@ form#formReportes {
   gap: 15px;
 }
 
-.input-icon {
-  position: relative;
-  width: 100%;
-}
-
-.input-icon i {
-  position: absolute;
-  left: 10px;
-  top: 50%;
-  transform: translateY(-50%);
-  color: white;
-  font-size: 1.2em;
-  pointer-events: none;
-}
-
-.input-icon input {
-  padding-left: 35px;
+form#formReportes input[type="text"] {
+  padding: 10px 12px 10px 35px;
   border-radius: 8px;
   border: 1px solid #ccc;
   font-size: 14px;
   width: 100%;
   box-sizing: border-box;
-  height: 2.5em;
+  background-repeat: no-repeat;
+  background-position: 10px center;
+  background-size: 16px;
   color: #000;
 }
 
-form#formReportes input[type="text"] {
-  background: none;
+/* Iconos para los inputs */
+#tipoReporte {
+  background-image: url('https://cdn-icons-png.flaticon.com/512/833/833314.png');
 }
 
+#fechaReporte {
+  background-image: url('https://cdn-icons-png.flaticon.com/512/992/992651.png');
+}
+
+/* Botón agregar */
 form#formReportes button[type="submit"] {
   background-color: #007bff;
   border: none;
@@ -75,6 +70,7 @@ form#formReportes button[type="submit"]:hover {
   background-color: #0056b3;
 }
 
+/* Tabla */
 table {
   width: 100%;
   border-collapse: collapse;
@@ -105,6 +101,7 @@ tbody tr:nth-child(odd) {
   color: #000;
 }
 
+/* Botón eliminar */
 button.eliminar {
   background-color: crimson;
   color: white;
@@ -121,6 +118,7 @@ button.eliminar:hover {
   background-color: #b02a37;
 }
 
+/* Mensaje cuando no hay reportes */
 tbody td[colspan="3"] {
   font-style: italic;
   color: #555;
