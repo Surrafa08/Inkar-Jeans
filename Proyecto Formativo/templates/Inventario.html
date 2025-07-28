@@ -4,72 +4,89 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Inventario - Inkar Jeans</title>
-  <link rel="stylesheet" href="estilo_Inventario.css" />
+  <link rel="stylesheet" href="{{ url_for('static', filename='estilo_Inventario.css') }}" />
 </head>
-<body>
+<body class="FondoInventario">
+
+ 
   <nav>
     <div class="enlaces">
       <div class="logo">
-        <img src="{{url_for('static', filename='imgs/logoInkar.jpg')}}" alt="Logo Inkar">
+        <img src="{{ url_for('static', filename='imgs/logoInkar.jpg') }}" alt="Logo Inkar" />
         <div class="titu">
+          Inkar Jeans<br />
+          <span>SISTEMA ADMINISTRATIVO</span>
         </div>
+      </div>
+      <h1 class="Titulo">Inventario</h1>
+      <a href="{{ url_for('administracion') }}" class="BotonVolver">Volver</a>
     </div>
   </nav>
 
-  <!-- Botón para regresar -->
-  <div style="margin: 20px;">
-    <button onclick="history.back()" style="padding: 10px 20px; background-color: #888; color: white; border: none; border-radius: 5px; cursor: pointer;">
-      ← Regresar
-    </button>
-  </div>
+  
+  <div class="ContenedorBlanco">
 
-  <h1>Inventario - Inkar Jeans</h1>
+    
+    <div class="ContenedorHorizontal">
 
-  <form id="formInventario">
-    <input
-      type="text"
-      name="nombre"
-      id="nombreProducto"
-      placeholder="Nombre del producto"
-      pattern="[A-Za-z\s]+"
-      title="Solo letras y espacios"
-      required
-    />
-    <input
-      type="number"
-      name="cantidad"
-      id="cantidadProducto"
-      placeholder="Cantidad"
-      min="1"
-      required
-    />
-    <button type="submit">Agregar</button>
-  </form>
+      
+      <div class="ContenedorDelFormulario">
+        <h2 class="TituloFormulario">Agregar Producto</h2>
+        <form id="formInventario" method="POST">
+          <input
+            type="text"
+            name="nombre"
+            id="nombreProducto"
+            placeholder="Nombre del producto"
+            pattern="[A-Za-z\s]+"
+            title="Solo letras y espacios"
+            required
+          />
+          <input
+            type="number"
+            name="cantidad"
+            id="cantidadProducto"
+            placeholder="Cantidad"
+            min="1"
+            required
+          />
+          <button type="submit">Agregar</button>
+        </form>
+      </div>
 
-  <input
-    type="text"
-    id="buscadorProducto"
-    placeholder="Buscar producto..."
-    onkeyup="filtrarProducto()"
-  />
+      
+      <div class="ContenedorTabla">
 
-  <form id="formEliminar" onsubmit="eliminarProducto(event)">
-    <table>
-      <thead>
-        <tr>
-          <th>Nombre</th>
-          <th>Cantidad</th>
-          <th>Seleccionar</th>
-        </tr>
-      </thead>
-      <tbody id="tbodyInventario">
-      </tbody>
-    </table>
+        <input
+          type="text"
+          id="buscadorProducto"
+          class="BuscadorDeProducto"
+          placeholder="Buscar producto..."
+          onkeyup="filtrarProducto()"
+        />
 
-    <div id="botonEliminarContainer" style="display:none;">
-      <button type="submit">Eliminar producto</button>
+        <form id="formEliminar" onsubmit="eliminarProducto(event)">
+          <table>
+            <thead>
+              <tr>
+                <th>Nombre</th>
+                <th>Cantidad</th>
+                <th>Seleccionar</th>
+              </tr>
+            </thead>
+            <tbody id="tbodyInventario">
+           
+            </tbody>
+          </table>
+
+          <div id="botonEliminarContainer" style="display:none;">
+            <button type="submit" class="BotonEliminarProducto">Eliminar producto</button>
+          </div>
+        </form>
+      </div>
+
     </div>
-  </form>
+  </div>
 
   <script>
     const formInventario = document.getElementById('formInventario');
@@ -92,6 +109,7 @@
         return;
       }
 
+      
       const tr = document.createElement('tr');
 
       const tdNombre = document.createElement('td');
@@ -112,6 +130,7 @@
 
       tbodyInventario.appendChild(tr);
 
+      
       nombreInput.value = '';
       cantidadInput.value = '';
 
