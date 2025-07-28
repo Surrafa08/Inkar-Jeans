@@ -326,5 +326,77 @@ def mostrar_index():
     return render_template('index.html') 
     
 
-if __name__=='__main__':
-    app.run(debug=True)
+@app.route("/inventario", methods=["GET"])
+def inventario_route():
+    return render_template_string(HTML_TEMPLATE, inventario=inventario)
+
+
+    @app.route('/reportes', methods=['GET'])
+def reportes():
+    lista_reportes = session.query(Reporte).all()
+    return render_template('reportes.html', reportes=lista_reportes)
+
+
+@app.route('/reportes/agregar', methods=['GET', 'POST'])
+def agregar_reporte():
+    if request.method == 'POST':
+        tipo = request.form.get('tipo', '').strip()
+        fecha = request.form.get('fecha', '').strip()
+
+        import re
+        tipoRegex = re.compile(r'^[A-Za-zÀ-ÿ\s]+$')
+        fechaRegex = re.compile(r'^(0[1-9]|[12][0-9]|3[01])/(0[1-9]|1[012])/\d{4}$')
+        
+        if not tipoRegex.match(tipo):
+            return "El campo 'tipo' solo acepta letras y espacios.", 400
+        if not fechaRegex.match(fecha):
+            return "El campo 'fecha' debe tener formato DD/MM/AAAA válido.", 400
+
+        nuevo_reporte = Reporte(tipo=tipo, fecha=fecha)
+        session.add(nuevo_reporte)
+        session.commit()
+        return redirect(url_for('reportes'))
+
+    return render_template('agregar_reporte.html')
+
+
+@app.route('/reportes/eliminar/<int:id>', methods=['POST'])
+def eliminar_reporte(id):
+    reporte = session.query(Reporte).get(id)
+    if reporte:
+        session.delete(reporte)
+        session.commit()
+    return redirect(url_for('reportes'))
+
+
+
+    @app.route('/productos', methods=['GET'])
+def productos():
+    lista_productos = session.query(Producto).all()
+    return render_template('productos.html', productos=lista_productos)
+
+@app.route('/productos/agregar', methods=['GET', 'POST'])
+def agregar_producto():
+    if request.method == 'POST':
+        nombre = request.form.get('nombre', '').strip()
+        cantidad = request.form.get('cantidad', '').strip()
+        if not nombre:
+            return "El nombre es obligatorio", 400
+
+        if not cantidad.isdigit() or int(cantidad) < 0:
+            return "Cantidad debe ser un número entero positivo", 400
+        
+        nuevo_producto = Producto(nombre=nombre, cantidad=int(cantidad))
+        session.add(nuevo_producto)
+        session.commit()
+        return redirect(url_for('productos'))
+    
+    return render_template('agregar_producto.html')
+
+@app.route('/productos/eliminar/<int:id>', methods=['POST'])
+def eliminar_producto(id):
+    producto = session.query(Producto).get(id)
+    if producto:
+        session.delete(producto)
+        session.commit()
+    return redirect(url_for('productos'))
