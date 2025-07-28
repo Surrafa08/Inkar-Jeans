@@ -13,47 +13,6 @@ body.x{
     background-image: none;
 }
 
-.contenedor_form{
-    background-color: darkblue;
-    padding: 10px;
-    border-radius: 15px;
-    max-width: 250px;
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    position: relative;
-    left: 450px;
-    top: 20px;
-}
-
-.contenedor_form input{
-    padding: 10px;
-    border-radius: 16px;
-    border: solid 1px skyblue;
-    font-size: 15px;
-    margin: auto;
-    position: relative;
-    bottom: 80px;
-}
-
-.contenedor_form input[name="usuario"] {
-    background-image: url(imgs/usuario.webp);
-    background-repeat: no-repeat;
-    background-position: 10px center;
-    padding-left: 35px;
-    background-size: 16px 16px;
-    margin-bottom: 5px;
-}
-
-.contenedor_form input[name="password"] {
-    background-image: url(imgs/iconkey.png);
-    background-repeat: no-repeat;
-    background-position: 10px center;
-    padding-left: 35px;
-    background-size: 16px 16px;
-    margin-bottom: 5px;
-}
-
 button{
     padding: 7px;
     border: none;
