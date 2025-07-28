@@ -4,72 +4,79 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Productos - Inkar Jeans</title>
-  <link rel="stylesheet" href="estilo_Productos.css" />
+  <link rel="stylesheet" href="{{ url_for('static', filename='estilo_Productos.css') }}" />
 </head>
-<body>
+<body class="FondoProductos">
 
-  <!-- Barra de navegación -->
+  
   <nav>
     <div class="enlaces">
       <div class="logo">
-        <img src="{{url_for('static', filename='imgs/logoInkar.jpg')}}" alt="Logo Inkar">
+        <img src="{{ url_for('static', filename='imgs/logoInkar.jpg') }}" alt="Logo Inkar" />
         <div class="titu">
-          Inkar Jeans<br>
+          Inkar Jeans<br />
           <span>SISTEMA ADMINISTRATIVO</span>
         </div>
+      </div>
+      <h1 class="Titulo">Productos</h1>
+      <a href="{{ url_for('administracion') }}" class="BotonVolver">Volver</a>
     </div>
   </nav>
 
-  <!-- Botón Regresar -->
-  <div style="margin: 20px;">
-    <button onclick="history.back()" style="padding: 10px 20px; background-color: #888; color: white; border: none; border-radius: 5px; cursor: pointer;">
-      ← Regresar
-    </button>
+ 
+  <div class="ContenedorBlanco">
+
+    
+    <div class="ContenedorHorizontal">
+
+    
+      <div class="ContenedorDelFormulario">
+        <h2 class="TituloFormulario">Agregar Producto</h2>
+        <form id="formProductos" novalidate>
+          <input
+            type="text"
+            name="nombre"
+            id="nombreProducto"
+            placeholder="Nombre del producto"
+            pattern="[A-Za-zÀ-ÿ0-9\s]+"
+            title="Solo letras, números y espacios permitidos"
+            required
+            autocomplete="off"
+          />
+          <input
+            type="number"
+            name="precio"
+            id="precioProducto"
+            placeholder="Precio (ej: 19.99)"
+            step="0.01"
+            min="0"
+            title="Precio válido, mayor o igual a 0"
+            required
+            autocomplete="off"
+          />
+          <button type="submit">Agregar</button>
+        </form>
+      </div>
+
+      
+      <div class="ContenedorTabla">
+        <table>
+          <thead>
+            <tr>
+              <th>Nombre</th>
+              <th>Precio ($)</th>
+              <th>Acción</th>
+            </tr>
+          </thead>
+          <tbody id="tbodyProductos">
+            <tr><td colspan="3">No hay productos.</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+    </div>
   </div>
 
-  <h1>Productos</h1>
-
-  <!-- Formulario de productos -->
-  <form id="formProductos" novalidate>
-    <input
-      type="text"
-      name="nombre"
-      id="nombreProducto"
-      placeholder="Nombre del producto"
-      pattern="[A-Za-zÀ-ÿ0-9\s]+"
-      title="Solo letras, números y espacios permitidos"
-      required
-      autocomplete="off"
-    />
-    <input
-      type="number"
-      name="precio"
-      id="precioProducto"
-      placeholder="0.00"
-      step="0.01"
-      min="0"
-      title="Precio válido, mayor o igual a 0"
-      required
-      autocomplete="off"
-    />
-    <button type="submit">Agregar</button>
-  </form>
-
-  <!-- Tabla de productos -->
-  <table>
-    <thead>
-      <tr>
-        <th>Nombre</th>
-        <th>Precio</th>
-        <th>Acción</th>
-      </tr>
-    </thead>
-    <tbody id="tbodyProductos">
-      <tr><td colspan="3">No hay productos.</td></tr>
-    </tbody>
-  </table>
-
-  <!-- Script -->
   <script>
     const productos = [];
     const tbody = document.getElementById('tbodyProductos');
@@ -77,26 +84,17 @@
 
     function render() {
       tbody.innerHTML = '';
-
       if (productos.length === 0) {
         tbody.innerHTML = '<tr><td colspan="3">No hay productos.</td></tr>';
         return;
       }
-
-      const formatter = new Intl.NumberFormat('es-PE', {
-        minimumFractionDigits: 2,
-        maximumFractionDigits: 2
-      });
-
       productos.forEach((producto, i) => {
         const tr = document.createElement('tr');
         tr.innerHTML = `
           <td>${producto.nombre}</td>
-          <td>${formatter.format(producto.precio)}</td>
+          <td>${producto.precio.toFixed(2)}</td>
           <td>
-            <button class="eliminar" aria-label="Eliminar producto ${producto.nombre}" onclick="eliminar(${i})">
-              Eliminar
-            </button>
+            <button class="eliminar" aria-label="Eliminar producto ${producto.nombre}" onclick="eliminar(${i})">Eliminar</button>
           </td>
         `;
         tbody.appendChild(tr);
@@ -125,7 +123,6 @@
         nombreInput.focus();
         return;
       }
-
       if (isNaN(precioVal) || precioVal < 0) {
         alert('El campo "Precio" debe ser un número válido mayor o igual a 0.');
         precioInput.focus();
@@ -139,6 +136,5 @@
 
     render();
   </script>
-
 </body>
 </html>
