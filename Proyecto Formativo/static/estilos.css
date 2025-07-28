@@ -137,15 +137,7 @@ a{
     font-size: 12px;
 }
 
-.titu{
-    color: snow;
-    position: relative;
-    font-size: 30px;
-    left: 10px;
-    top: 1px
-}
-
-#textito{
+p{
     color: snow;
     margin-bottom: 0px;
 }

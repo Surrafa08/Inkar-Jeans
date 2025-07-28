@@ -72,3 +72,52 @@ button.eliminar {
 button.eliminar:hover {
   background-color: #d32f2f;
 }
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.logo img {
+  height: 60px;
+  border-radius: 5px;
+}
+
+.titu {
+  font-size: 1.1em;
+  font-weight: bold;
+  line-height: 1.2;
+}
+
+.titu span {
+  font-size: 0.8em;
+  color: #ccc;
+}
+
+nav {
+  background-color: darkblue;
+  color: white;
+  padding: 15px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.enlaces {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  justify-content: space-between;
+}
+
+button .l{
+  padding: 10px 20px;
+  background-color: #888;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin: 20px;
+}

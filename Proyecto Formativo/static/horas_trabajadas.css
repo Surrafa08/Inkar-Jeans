@@ -108,6 +108,9 @@
     border: none;
     transition: background-color 0.3s ease;
     cursor: pointer;
+    position: relative;
+    top: 2px;
+    left: 1px;
   }
   
   form button:hover {
