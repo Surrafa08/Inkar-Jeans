@@ -14,7 +14,7 @@ body.x {
 
 /* NAVIGATION BAR */
 nav {
-  background-color: #1a1a1a;
+  background-color: darkblue;
   color: white;
   padding: 15px 20px;
   display: flex;
@@ -30,7 +30,7 @@ nav {
   justify-content: space-between;
 }
 
-button .l{
+button.l{
   padding: 10px 20px;
   background-color: #888;
   color: white;
@@ -52,14 +52,16 @@ button .l{
 }
 
 .titu {
-  font-size: 1.1em;
-  font-weight: bold;
-  line-height: 1.2;
+  position: relative;
+  right: 10px;
+  top: 1px;
+  color: white;
+  font-size: 20px;
 }
 
 .titu span {
   font-size: 0.8em;
-  color: #ccc;
+  color: white;
 }
 
 .texnav {
