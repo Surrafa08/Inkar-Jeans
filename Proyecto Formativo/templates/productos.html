@@ -8,8 +8,6 @@
   <link rel="stylesheet" href="{{url_for('static', filename='estilos_productos.css')}}" />
 </head>
 <body>
-
-  <!-- Barra de navegación -->
   <nav>
     <div class="enlaces">
       <div class="logo">
@@ -17,16 +15,12 @@
         <div class="titu">
           Inkar Jeans<br>
           <span>SISTEMA ADMINISTRATIVO</span>
+          <div class="l">
+            <a href="{{url_for('administracion')}}"><button>← Regresar</button></a>
+          </div>
         </div>
     </div>
   </nav>
-
-  <!-- Botón Regresar -->
-  <div style="margin: 20px;">
-    <button onclick="history.back()" style="padding: 10px 20px; background-color: #888; color: white; border: none; border-radius: 5px; cursor: pointer;">
-      ← Regresar
-    </button>
-  </div>
 
   <h1>Productos</h1>
 
