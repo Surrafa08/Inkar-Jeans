@@ -7,6 +7,20 @@
   <link rel="stylesheet" href="{{url_for('static', filename='estilos_inventario.css')}}" />
 </head>
 <body>
+  <nav>
+    <div class="enlaces">
+      <div class="logo">
+        <img src="{{url_for('static', filename='imgs/logoInkar.jpg')}}" alt="Logo Inkar">
+        <div class="titu">
+          <div class="l">
+            <a href="{{url_for('administracion')}}"><button>
+              ← Regresar
+            </button></a>
+          </div>
+        </div>
+    </div>
+  </nav>
+
   <h1>Inventario - Inkar Jeans</h1>
 
   <form id="formInventario">
@@ -129,13 +143,9 @@
 
       filas.forEach(fila => {
         const nombre = fila.cells[0].textContent.toLowerCase();
-        if (nombre.indexOf(filtro) > -1) {
-          fila.style.display = '';
-        } else {
-          fila.style.display = 'none';
-        }
+        fila.style.display = nombre.includes(filtro) ? '' : 'none';
       });
     }
   </script>
 </body>
-</html> 
+</html>
