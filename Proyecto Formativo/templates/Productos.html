@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -7,14 +8,30 @@
   <link rel="stylesheet" href="estilo_Productos.css" />
 </head>
 <body>
+  <nav>
+    <div class="enlaces">
+      <div class="logo">
+        <img src="{{url_for('static', filename='imgs/logoInkar.jpg')}}" alt="Logo Inkar">
+        <div class="titu">
+          Inkar Jeans<br>
+          <span>SISTEMA ADMINISTRATIVO</span>
+          <div class="l">
+            <a href="{{url_for('administracion')}}"><button>← Regresar</button></a>
+          </div>
+        </div>
+    </div>
+  </nav>
+
   <h1>Productos</h1>
+
+  <!-- Formulario de productos -->
   <form id="formProductos" novalidate>
     <input
       type="text"
       name="nombre"
       id="nombreProducto"
       placeholder="Nombre del producto"
-      pattern="[A-Za-zÀ-ÿ0-9\s]+" 
+      pattern="[A-Za-zÀ-ÿ0-9\s]+"
       title="Solo letras, números y espacios permitidos"
       required
       autocomplete="off"
@@ -23,7 +40,7 @@
       type="number"
       name="precio"
       id="precioProducto"
-      placeholder="Precio (ej: 19.99)"
+      placeholder="0.00"
       step="0.01"
       min="0"
       title="Precio válido, mayor o igual a 0"
@@ -33,11 +50,12 @@
     <button type="submit">Agregar</button>
   </form>
 
+  <!-- Tabla de productos -->
   <table>
     <thead>
       <tr>
         <th>Nombre</th>
-        <th>Precio ($)</th>
+        <th>Precio</th>
         <th>Acción</th>
       </tr>
     </thead>
@@ -46,6 +64,7 @@
     </tbody>
   </table>
 
+  <!-- Script -->
   <script>
     const productos = [];
     const tbody = document.getElementById('tbodyProductos');
@@ -53,16 +72,27 @@
 
     function render() {
       tbody.innerHTML = '';
+
       if (productos.length === 0) {
         tbody.innerHTML = '<tr><td colspan="3">No hay productos.</td></tr>';
         return;
       }
+
+      const formatter = new Intl.NumberFormat('es-PE', {
+        minimumFractionDigits: 2,
+        maximumFractionDigits: 2
+      });
+
       productos.forEach((producto, i) => {
         const tr = document.createElement('tr');
         tr.innerHTML = `
           <td>${producto.nombre}</td>
-          <td>${producto.precio.toFixed(2)}</td>
-          <td><button class="eliminar" aria-label="Eliminar producto ${producto.nombre}" onclick="eliminar(${i})">Eliminar</button></td>
+          <td>${formatter.format(producto.precio)}</td>
+          <td>
+            <button class="eliminar" aria-label="Eliminar producto ${producto.nombre}" onclick="eliminar(${i})">
+              Eliminar
+            </button>
+          </td>
         `;
         tbody.appendChild(tr);
       });
@@ -90,6 +120,7 @@
         nombreInput.focus();
         return;
       }
+
       if (isNaN(precioVal) || precioVal < 0) {
         alert('El campo "Precio" debe ser un número válido mayor o igual a 0.');
         precioInput.focus();
