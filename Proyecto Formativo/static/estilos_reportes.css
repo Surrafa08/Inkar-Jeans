@@ -10,6 +10,57 @@ body {
   padding: 30px;
 }
 
+nav {
+  background-color: darkblue;
+  color: white;
+  padding: 15px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.enlaces {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  justify-content: space-between;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.logo img {
+  height: 60px;
+  border-radius: 5px;
+}
+
+.titu {
+  position: relative;
+  right: 10px;
+  top: 1px;
+  color: white;
+  font-size: 20px;
+}
+
+.titu span {
+  font-size: 0.8em;
+  color: white;
+}
+
+button.l{
+  padding: 10px 20px;
+  background-color: #888;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin: 20px;
+}
+
 h1 {
   color: white;
   font-size: 30px;
