@@ -275,6 +275,11 @@ def agregar_reporte():
 
     return render_template('agregar_reporte.html')
 
+@app.route('/productos', methods=['GET'])
+def productos():
+    lista_productos = session.query(Producto).all()
+    return render_template('productos.html', productos=lista_productos)
+
 
 @app.route('/reportes/eliminar/<int:id>', methods=['POST'])
 def eliminar_reporte(id):
@@ -283,12 +288,6 @@ def eliminar_reporte(id):
         session.delete(reporte)
         session.commit()
     return redirect(url_for('reportes'))
-
-
-@app.route('/productos', methods=['GET'])
-def productos():
-    lista_productos = session.query(Producto).all()
-    return render_template('productos.html', productos=lista_productos)
 
 
 @app.route('/productos/agregar', methods=['GET', 'POST'])

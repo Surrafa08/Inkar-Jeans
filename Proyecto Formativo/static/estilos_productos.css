@@ -10,6 +10,7 @@ body {
 h1 {
   text-align: center;
   margin-bottom: 1.5rem;
+  color: #1d3557;
 }
 
 form {
@@ -17,6 +18,7 @@ form {
   justify-content: center;
   gap: 0.5rem;
   margin-bottom: 1.5rem;
+  flex-wrap: wrap;
 }
 
 form input[type="text"],
@@ -26,11 +28,18 @@ form input[type="number"] {
   border: 1px solid #ccc;
   border-radius: 6px;
   width: 180px;
+  transition: border-color 0.3s ease;
+}
+
+form input[type="text"]:focus,
+form input[type="number"]:focus {
+  outline: none;
+  border-color: #0051a2;
 }
 
 form button {
   padding: 0.6rem 1rem;
-  background-color: blue;
+  background-color: #007bff;
   color: white;
   border: none;
   border-radius: 6px;
@@ -39,13 +48,16 @@ form button {
 }
 
 form button:hover {
-  background-color: #45a049;
+  background-color: #0056b3;
 }
 
 table {
   width: 100%;
   border-collapse: collapse;
   background-color: white;
+  box-shadow: 0 0 8px rgba(0,0,0,0.1);
+  border-radius: 8px;
+  overflow: hidden;
 }
 
 th, td {
@@ -55,8 +67,16 @@ th, td {
 }
 
 th {
-  background-color: blue;
+  background-color: #0051a2;
   color: white;
+}
+
+tbody tr:nth-child(even) {
+  background-color: #d7e8fc;
+}
+
+tbody tr:hover {
+  background-color: #a9cdfb;
 }
 
 button.eliminar {
@@ -88,6 +108,7 @@ button.eliminar:hover {
   font-size: 1.1em;
   font-weight: bold;
   line-height: 1.2;
+  color: white;
 }
 
 .titu span {
@@ -96,7 +117,7 @@ button.eliminar:hover {
 }
 
 nav {
-  background-color: darkblue;
+  background-color: #0051a2;
   color: white;
   padding: 15px 20px;
   display: flex;
@@ -112,7 +133,7 @@ nav {
   justify-content: space-between;
 }
 
-button .l{
+button.l {
   padding: 10px 20px;
   background-color: #888;
   color: white;
@@ -120,4 +141,28 @@ button .l{
   border-radius: 5px;
   cursor: pointer;
   margin: 20px;
+  transition: background-color 0.3s ease;
+}
+
+button.l:hover {
+  background-color: #666;
+}
+
+@media (max-width: 600px) {
+  form {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  form input[type="text"],
+  form input[type="number"],
+  form button {
+    width: 100%;
+    max-width: 300px;
+  }
+
+  .enlaces {
+    flex-direction: column;
+    gap: 10px;
+  }
 }
