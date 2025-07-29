@@ -2,13 +2,11 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Inventario - Inkar Jeans</title>
-  <link rel="stylesheet" href="{{ url_for('static', filename='estilo_Inventario.css') }}" />
+  <link rel="stylesheet" href="{{ url_for('static', filename='estilos_inventario.css') }}" />
 </head>
-<body class="FondoInventario">
-
- 
+<body>
+  <!-- Esto es el encabezado -->
   <nav>
     <div class="enlaces">
       <div class="logo">
@@ -18,18 +16,14 @@
           <span>SISTEMA ADMINISTRATIVO</span>
         </div>
       </div>
-      <h1 class="Titulo">Inventario</h1>
+      <h1 class="Titulo">Inventario de Productos</h1>
       <a href="{{ url_for('administracion') }}" class="BotonVolver">Volver</a>
     </div>
   </nav>
 
-  
   <div class="ContenedorBlanco">
-
-    
     <div class="ContenedorHorizontal">
 
-      
       <div class="ContenedorDelFormulario">
         <h2 class="TituloFormulario">Agregar Producto</h2>
         <form id="formInventario" method="POST">
@@ -54,9 +48,7 @@
         </form>
       </div>
 
-      
       <div class="ContenedorTabla">
-
         <input
           type="text"
           id="buscadorProducto"
@@ -74,9 +66,7 @@
                 <th>Seleccionar</th>
               </tr>
             </thead>
-            <tbody id="tbodyInventario">
-           
-            </tbody>
+            <tbody id="tbodyInventario"></tbody>
           </table>
 
           <div id="botonEliminarContainer" style="display:none;">
@@ -84,7 +74,6 @@
           </div>
         </form>
       </div>
-
     </div>
   </div>
 
@@ -109,7 +98,6 @@
         return;
       }
 
-      
       const tr = document.createElement('tr');
 
       const tdNombre = document.createElement('td');
@@ -130,7 +118,6 @@
 
       tbodyInventario.appendChild(tr);
 
-      
       nombreInput.value = '';
       cantidadInput.value = '';
 
