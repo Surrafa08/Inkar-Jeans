@@ -6,7 +6,11 @@
   <link rel="stylesheet" href="{{ url_for('static', filename='estilos_inventario.css') }}" />
 </head>
 <body>
+<<<<<<< HEAD
   <!-- Encabezado -->
+=======
+  <!-- Esto es el encabezado -->
+>>>>>>> df9f7a91d2245a440dc1ce32d1d1fc6ace79b7bf
   <nav>
     <div class="enlaces">
       <div class="logo">
@@ -24,7 +28,10 @@
   <div class="ContenedorBlanco">
     <div class="ContenedorHorizontal">
 
+<<<<<<< HEAD
       <!-- Formulario para agregar producto -->
+=======
+>>>>>>> df9f7a91d2245a440dc1ce32d1d1fc6ace79b7bf
       <div class="ContenedorDelFormulario">
         <h2 class="TituloFormulario">Agregar Producto</h2>
         <form method="POST" action="{{ url_for('inventario') }}">
@@ -49,7 +56,10 @@
         </form>
       </div>
 
+<<<<<<< HEAD
       <!-- Tabla con productos -->
+=======
+>>>>>>> df9f7a91d2245a440dc1ce32d1d1fc6ace79b7bf
       <div class="ContenedorTabla">
         <input
           type="text"
@@ -69,6 +79,7 @@
                 <th>Seleccionar</th>
               </tr>
             </thead>
+<<<<<<< HEAD
             <tbody id="tbodyInventario">
               {% for producto in productos %}
               <tr>
@@ -80,6 +91,9 @@
               </tr>
               {% endfor %}
             </tbody>
+=======
+            <tbody id="tbodyInventario"></tbody>
+>>>>>>> df9f7a91d2245a440dc1ce32d1d1fc6ace79b7bf
           </table>
 
           <div id="botonEliminarContainer" style="display:none;">
@@ -95,6 +109,72 @@
     const buscadorProducto = document.getElementById('buscadorProducto');
     const tbodyInventario = document.getElementById('tbodyInventario');
     const botonEliminarContainer = document.getElementById('botonEliminarContainer');
+<<<<<<< HEAD
+=======
+    const buscadorProducto = document.getElementById('buscadorProducto');
+
+    formInventario.addEventListener('submit', function(e) {
+      e.preventDefault();
+
+      const nombreInput = document.getElementById('nombreProducto');
+      const cantidadInput = document.getElementById('cantidadProducto');
+
+      const nombre = nombreInput.value.trim();
+      const cantidad = cantidadInput.value;
+
+      const pattern = /^[A-Za-z\s]+$/;
+      if (!pattern.test(nombre)) {
+        alert('El nombre del producto debe contener solo letras y espacios.');
+        return;
+      }
+
+      const tr = document.createElement('tr');
+
+      const tdNombre = document.createElement('td');
+      tdNombre.textContent = nombre;
+
+      const tdCantidad = document.createElement('td');
+      tdCantidad.textContent = cantidad;
+
+      const tdSeleccionar = document.createElement('td');
+      const checkbox = document.createElement('input');
+      checkbox.type = 'checkbox';
+      checkbox.addEventListener('change', toggleEliminarBoton);
+      tdSeleccionar.appendChild(checkbox);
+
+      tr.appendChild(tdNombre);
+      tr.appendChild(tdCantidad);
+      tr.appendChild(tdSeleccionar);
+
+      tbodyInventario.appendChild(tr);
+
+      nombreInput.value = '';
+      cantidadInput.value = '';
+
+      toggleEliminarBoton();
+      filtrarProducto();
+    });
+
+    function toggleEliminarBoton() {
+      const checkboxes = tbodyInventario.querySelectorAll('input[type="checkbox"]');
+      const algunoSeleccionado = Array.from(checkboxes).some(chk => chk.checked);
+      botonEliminarContainer.style.display = algunoSeleccionado ? 'block' : 'none';
+    }
+
+    function eliminarProducto(event) {
+      event.preventDefault();
+
+      const filas = Array.from(tbodyInventario.querySelectorAll('tr'));
+      filas.forEach(fila => {
+        const checkbox = fila.querySelector('input[type="checkbox"]');
+        if (checkbox && checkbox.checked) {
+          fila.remove();
+        }
+      });
+
+      toggleEliminarBoton();
+    }
+>>>>>>> df9f7a91d2245a440dc1ce32d1d1fc6ace79b7bf
 
     function filtrarProducto() {
       const filtro = buscadorProducto.value.toLowerCase();
