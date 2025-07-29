@@ -4,8 +4,6 @@ body{
     background-repeat: no-repeat;
     background-size: cover;
     font-family: Arial, Helvetica, sans-serif;
-    padding: 5px;
-    margin: 0;
     color: black;
 }
 
@@ -17,9 +15,9 @@ body{
     justify-content: space-between;
     align-items: center;
     position: relative;
-    bottom: 10px;
-    right: 10px;
-    width: 93%;
+    bottom: 14px;
+    right: 15px;
+    width: 93.6%;
 }
 
 .panel{
