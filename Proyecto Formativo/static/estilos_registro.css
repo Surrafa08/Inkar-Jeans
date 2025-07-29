@@ -1,0 +1,147 @@
+body{
+    background-image: url(https://media.istockphoto.com/id/1305533078/photo/multicolored-straight-strands-texture-background-sewing-equipment-loom-equipment-at-a-garment.jpg?s=612x612&w=0&k=20&c=zGDhSsF_nCyM7vIA0WB3dIqkHE_TpNRDRxWDAqpLFlI=);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+    background-color: transparent;
+    overflow: hidden;
+}
+
+.contenedor_form{
+    background-color: darkblue;
+    padding: 10px;
+    border-radius: 15px;
+    max-width: 250px;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    left: 450px;
+    top: 20px;
+}
+
+.contenedor_form input{
+    padding: 10px;
+    border-radius: 16px;
+    border: solid 1px skyblue;
+    font-size: 15px;
+    margin: auto;
+    position: relative;
+    bottom: 100px;
+}
+
+.contenedor_form input[name="nombre"] {
+    background-image: url(imgs/usuario.webp);
+    background-repeat: no-repeat;
+    background-position: 10px center;
+    padding-left: 35px;
+    background-size: 16px 16px;
+    margin-bottom: 5px;
+}
+
+.contenedor_form input[name="email"] {
+    background-image: url(imgs/email.jpg);
+    background-repeat: no-repeat;
+    background-position: 10px center;
+    padding-left: 35px;
+    background-size: 16px 16px;
+    margin-bottom: 5px;
+}
+
+.contenedor_form input[name="usuario"] {
+    background-image: url(imgs/usuario.webp);
+    background-repeat: no-repeat;
+    background-position: 10px center;
+    padding-left: 35px;
+    background-size: 16px 16px;
+    margin-bottom: 5px;
+}
+
+.contenedor_form input[name="password"] {
+    background-image: url(imgs/iconkey.png);
+    background-repeat: no-repeat;
+    background-position: 10px center;
+    padding-left: 35px;
+    background-size: 16px 16px;
+    margin-bottom: 5px;
+}
+
+.contenedor_form input[name="usuarioregis"] {
+    background-image: url(imgs/usuario.webp);
+    background-repeat: no-repeat;
+    background-position: 10px center;
+    padding-left: 35px;
+    background-size: 16px 16px;
+    margin-bottom: 5px;
+}
+
+button{
+    padding: 7px;
+    border: none;
+    border-radius: 5px;
+    font-weight: bold;
+    cursor: pointer;
+    background-color: cyan;
+    color: purple;
+    position: relative;
+    bottom: 90px;
+    left: 50px;
+}
+
+a{
+    background-color: transparent;
+    color: aqua;
+    text-decoration: none;
+}
+
+.logo{
+    display: flex;
+    left: 40px;
+}
+
+.logo img{
+    width: 50px;
+    height: 50px;
+}
+
+#textito{
+    color: snow;
+    margin-bottom: 0px;
+    margin-top: -60px;
+}
+
+#registitu{
+    display: flex;
+    justify-content: center;
+    position: relative;
+    right: 30px;
+    color: seashell;
+}
+
+.tituregis{
+    color: snow;
+}
+
+#h1_regist{
+    position: relative;
+    left: 60px;
+    bottom: 75px;
+}
+
+#p_regist{
+    position: relative;
+    left: 60px;
+    bottom: 100px;
+}
+
+#contratitu{
+    position: relative;
+    left: 420px;
+    color: seashell;
+}
+
+span{
+    position: relative;
+    bottom: 136px;
+    left: 200px;
+    cursor: pointer;
+}

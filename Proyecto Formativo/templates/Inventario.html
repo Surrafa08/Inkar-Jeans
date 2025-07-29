@@ -2,13 +2,11 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Inventario - Inkar Jeans</title>
-  <link rel="stylesheet" href="{{ url_for('static', filename='estilo_Inventario.css') }}" />
+  <link rel="stylesheet" href="{{ url_for('static', filename='estilos_inventario.css') }}" />
 </head>
-<body class="FondoInventario">
-
- 
+<body>
+  <!-- Encabezado -->
   <nav>
     <div class="enlaces">
       <div class="logo">
@@ -18,21 +16,18 @@
           <span>SISTEMA ADMINISTRATIVO</span>
         </div>
       </div>
-      <h1 class="Titulo">Inventario</h1>
+      <h1 class="Titulo">Inventario de Productos</h1>
       <a href="{{ url_for('administracion') }}" class="BotonVolver">Volver</a>
     </div>
   </nav>
 
-  
   <div class="ContenedorBlanco">
-
-    
     <div class="ContenedorHorizontal">
 
-      
+      <!-- Formulario para agregar producto -->
       <div class="ContenedorDelFormulario">
         <h2 class="TituloFormulario">Agregar Producto</h2>
-        <form id="formInventario" method="POST">
+        <form method="POST" action="{{ url_for('inventario') }}">
           <input
             type="text"
             name="nombre"
@@ -54,9 +49,8 @@
         </form>
       </div>
 
-      
+      <!-- Tabla con productos -->
       <div class="ContenedorTabla">
-
         <input
           type="text"
           id="buscadorProducto"
@@ -65,7 +59,8 @@
           onkeyup="filtrarProducto()"
         />
 
-        <form id="formEliminar" onsubmit="eliminarProducto(event)">
+        <!-- Formulario de eliminación -->
+        <form id="formEliminar" method="POST" action="{{ url_for('eliminar_productos') }}">
           <table>
             <thead>
               <tr>
@@ -75,88 +70,31 @@
               </tr>
             </thead>
             <tbody id="tbodyInventario">
-           
+              {% for producto in productos %}
+              <tr>
+                <td>{{ producto.nombre }}</td>
+                <td>{{ producto.cantidad }}</td>
+                <td>
+                  <input type="checkbox" name="eliminar_ids" value="{{ producto.id }}" onchange="toggleEliminarBoton()">
+                </td>
+              </tr>
+              {% endfor %}
             </tbody>
           </table>
 
           <div id="botonEliminarContainer" style="display:none;">
-            <button type="submit" class="BotonEliminarProducto">Eliminar producto</button>
+            <button type="submit" class="BotonEliminarProducto">Eliminar productos seleccionados</button>
           </div>
         </form>
       </div>
-
     </div>
   </div>
 
+  <!-- Script de búsqueda y mostrar botón -->
   <script>
-    const formInventario = document.getElementById('formInventario');
+    const buscadorProducto = document.getElementById('buscadorProducto');
     const tbodyInventario = document.getElementById('tbodyInventario');
     const botonEliminarContainer = document.getElementById('botonEliminarContainer');
-    const buscadorProducto = document.getElementById('buscadorProducto');
-
-    formInventario.addEventListener('submit', function(e) {
-      e.preventDefault();
-
-      const nombreInput = document.getElementById('nombreProducto');
-      const cantidadInput = document.getElementById('cantidadProducto');
-
-      const nombre = nombreInput.value.trim();
-      const cantidad = cantidadInput.value;
-
-      const pattern = /^[A-Za-z\s]+$/;
-      if (!pattern.test(nombre)) {
-        alert('El nombre del producto debe contener solo letras y espacios.');
-        return;
-      }
-
-      
-      const tr = document.createElement('tr');
-
-      const tdNombre = document.createElement('td');
-      tdNombre.textContent = nombre;
-
-      const tdCantidad = document.createElement('td');
-      tdCantidad.textContent = cantidad;
-
-      const tdSeleccionar = document.createElement('td');
-      const checkbox = document.createElement('input');
-      checkbox.type = 'checkbox';
-      checkbox.addEventListener('change', toggleEliminarBoton);
-      tdSeleccionar.appendChild(checkbox);
-
-      tr.appendChild(tdNombre);
-      tr.appendChild(tdCantidad);
-      tr.appendChild(tdSeleccionar);
-
-      tbodyInventario.appendChild(tr);
-
-      
-      nombreInput.value = '';
-      cantidadInput.value = '';
-
-      toggleEliminarBoton();
-      filtrarProducto();
-    });
-
-    function toggleEliminarBoton() {
-      const checkboxes = tbodyInventario.querySelectorAll('input[type="checkbox"]');
-      const algunoSeleccionado = Array.from(checkboxes).some(chk => chk.checked);
-      botonEliminarContainer.style.display = algunoSeleccionado ? 'block' : 'none';
-    }
-
-    function eliminarProducto(event) {
-      event.preventDefault();
-
-      const filas = Array.from(tbodyInventario.querySelectorAll('tr'));
-      filas.forEach(fila => {
-        const checkbox = fila.querySelector('input[type="checkbox"]');
-        if (checkbox && checkbox.checked) {
-          fila.remove();
-        }
-      });
-
-      toggleEliminarBoton();
-    }
 
     function filtrarProducto() {
       const filtro = buscadorProducto.value.toLowerCase();
@@ -166,6 +104,12 @@
         const nombre = fila.cells[0].textContent.toLowerCase();
         fila.style.display = nombre.includes(filtro) ? '' : 'none';
       });
+    }
+
+    function toggleEliminarBoton() {
+      const checkboxes = tbodyInventario.querySelectorAll('input[type="checkbox"]');
+      const algunoSeleccionado = Array.from(checkboxes).some(chk => chk.checked);
+      botonEliminarContainer.style.display = algunoSeleccionado ? 'block' : 'none';
     }
   </script>
 </body>

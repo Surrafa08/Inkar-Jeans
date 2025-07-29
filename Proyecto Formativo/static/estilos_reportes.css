@@ -1,189 +1,250 @@
-body {
-  font-family: Arial, sans-serif;
-  margin: 20px auto;
-  background-color: skyblue;
-  color: #000;
-  max-width: 900px;
-  padding: 30px;
+/* Reset y base */
+* {
   box-sizing: border-box;
 }
 
-nav {
-  background-color: #0051a2;
-  color: white;
-  padding: 15px 20px;
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #142636;
+  color: #e0e7ff;
+  margin: 0;
+  padding: 20px;
+  padding-top: 84px; /* Para compensar la barra fija */
+  min-height: 100vh;
+}
+
+/* Barra de navegación */
+nav .enlaces {
+  background-color: #1e40af;
+  box-shadow: 0 8px 30px rgba(30, 64, 175, 0.7);
+  padding: 20px 50px;
   display: flex;
-  align-items: center;
   justify-content: space-between;
-  flex-wrap: wrap;
+  align-items: center;
+
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  border-radius: 0;
+  margin: 0;
+  z-index: 1000;
+  box-sizing: border-box;
 }
 
-.enlaces {
+nav .logo {
   display: flex;
   align-items: center;
-  width: 100%;
-  justify-content: space-between;
+  gap: 12px;
+  filter: drop-shadow(1px 1px 2px rgba(0,0,0,0.5));
 }
 
-.logo {
-  display: flex;
-  align-items: center;
-  gap: 15px;
+nav .logo img {
+  width: 52px;
+  height: 52px;
+  border-radius: 8px;
+  transition: transform 0.3s ease;
 }
 
-.logo img {
-  height: 60px;
-  border-radius: 5px;
+nav .logo img:hover {
+  transform: scale(1.1);
 }
 
-.titu {
-  position: relative;
-  right: 10px;
-  top: 1px;
-  color: white;
-  font-size: 20px;
+nav .logo .titu {
+  color: #f0f9ff;
+  font-size: 13px;
+  line-height: 1.3;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  text-shadow: 0 0 4px rgba(240, 249, 255, 0.8);
+  display: block;
 }
 
-.titu span {
-  font-size: 0.8em;
-  color: white;
-}
-
-button.l {
-  padding: 10px 20px;
-  background-color: #888;
-  color: white;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  margin: 20px;
-  transition: background-color 0.3s ease;
-}
-
-button.l:hover {
-  background-color: #666;
-}
-
-h1 {
-  color: white;
-  font-size: 30px;
+nav .Titulo {
+  color: #dbeafe;
+  font-size: 32px;
+  font-weight: 700;
+  text-shadow: 0 0 8px rgba(219, 234, 254, 0.8);
+  margin: 0 20px;
+  white-space: nowrap;
+  flex-grow: 1;
   text-align: center;
-  margin-bottom: 20px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
-form#formReportes {
-  background-color: #0051a2;
-  padding: 25px;
-  border-radius: 12px;
-  max-width: 300px;
+/* Botón Volver */
+nav a.BotonVolver {
+  background-color: white;
+  color: #1e40af;
+  width: 120px;
+  border-radius: 18px;
+  text-decoration: none;
+  font-weight: 700;
+  display: inline-block;
+  padding: 8px 14px;
+  cursor: pointer;
+  user-select: none;
+  text-align: center;
+  box-shadow: 0 4px 12px rgba(30, 64, 175, 0.25);
+  transition: background-color 0.3s ease, color 0.3s ease, box-shadow 0.3s ease;
+}
+
+nav a.BotonVolver:hover {
+  background-color: #3b82f6;
   color: white;
-  margin: 0 auto 30px auto;
-  font-size: 16px;
+  box-shadow: 0 6px 18px rgba(59, 130, 246, 0.6);
+}
+
+/* Contenedor principal (cuadro centrado) */
+main {
+  max-width: 480px;        /* ancho cómodo */
+  margin: 20px auto;       /* centrado horizontal y margen vertical */
+  background: rgba(30, 64, 175, 0.85);
+  border-radius: 20px;
+  padding: 24px;
+  box-shadow: 0 0 30px rgba(30, 64, 175, 0.6);
+  color: #e0e7ff;
+  backdrop-filter: blur(8px);
+  box-sizing: border-box;
+
   display: flex;
   flex-direction: column;
-  gap: 15px;
-  box-sizing: border-box;
+  align-items: center;
+  gap: 30px; /* espacio entre formulario y tabla */
 }
 
-form#formReportes input[type="text"] {
-  padding: 10px 12px 10px 35px;
-  border-radius: 8px;
-  border: 1px solid #ccc;
-  font-size: 14px;
+/* Formulario para agregar reporte */
+form {
   width: 100%;
-  background-repeat: no-repeat;
-  background-position: 10px center;
-  background-size: 16px;
-  color: #000;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  justify-content: center;
+}
+
+/* Inputs del formulario */
+form input[type="text"] {
+  padding: 14px 22px;
+  border-radius: 16px;
+  border: 2px solid #60a5fa;
+  font-size: 16px;
+  background-color: rgba(255, 255, 255, 0.12);
+  color: #cbd5e1;
+  transition: background-color 0.4s ease, border-color 0.4s ease, color 0.4s ease;
+  box-shadow: inset 0 0 8px rgba(0,0,0,0.15);
+  box-sizing: border-box;
+  flex: 1 1 140px;
+  min-width: 140px;
+  max-width: 200px;
+}
+
+form input[type="text"]:focus {
+  background-color: rgba(255, 255, 255, 0.25);
+  border-color: #2563eb;
+  color: #1e40af;
+  outline: none;
+  box-shadow: 0 0 12px #2563eb;
+}
+
+/* Botón agregar */
+form button {
+  flex-shrink: 0;
+  padding: 12px 28px;
+  border-radius: 25px;
+  background: linear-gradient(90deg, #3b82f6, #60a5fa);
+  color: #1e3a8a;
+  font-weight: 900;
+  border: none;
+  cursor: pointer;
+  transition: background 0.5s ease, box-shadow 0.3s ease;
+  box-shadow: 0 6px 18px rgba(59, 130, 246, 0.6);
+  user-select: none;
+  letter-spacing: 1px;
+  text-transform: uppercase;
   box-sizing: border-box;
 }
 
-#tipoReporte {
-  background-image: url('https://cdn-icons-png.flaticon.com/512/833/833314.png');
+form button:hover {
+  background: linear-gradient(90deg, #60a5fa, #3b82f6);
+  box-shadow: 0 8px 26px rgba(96, 165, 250, 0.8);
+  color: #e0e7ff;
+  transform: translateY(-2px);
 }
 
-#fechaReporte {
-  background-image: url('https://cdn-icons-png.flaticon.com/512/992/992651.png');
-}
-
-form#formReportes button[type="submit"] {
-  background-color: #007bff;
-  border: none;
-  color: white;
-  border-radius: 8px;
-  font-weight: bold;
-  padding: 12px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-}
-
-form#formReportes button[type="submit"]:hover {
-  background-color: #0056b3;
-}
-
+/* Tabla */
 table {
   width: 100%;
   border-collapse: collapse;
-  border-radius: 8px;
-  overflow: hidden;
-  box-shadow: 0 0 10px rgba(0,0,0,0.1);
-  background-color: white;
+  font-size: 16px;
+  color: #dbeafe;
 }
 
-table thead {
-  background-color: #0051a2;
-  color: white;
+/* Encabezado tabla */
+thead tr {
+  background: linear-gradient(90deg, #2563eb, #1e40af);
+  font-weight: 700;
+  text-shadow: 0 0 5px rgba(224, 231, 255, 0.95);
 }
 
 th, td {
-  padding: 12px;
-  border: 1px solid #ddd;
-  text-align: center;
+  padding: 12px 16px;
+  text-align: left;
+  border-bottom: 1px solid rgba(224, 231, 255, 0.3);
 }
 
+/* Filas pares */
 tbody tr:nth-child(even) {
-  background-color: #67a9f4;
-  color: #fff;
+  background-color: rgba(30, 64, 175, 0.45);
 }
 
-tbody tr:nth-child(odd) {
-  background-color: #e8f0fe;
-  color: #000;
+/* Hover en filas */
+tbody tr:hover {
+  background-color: rgba(96, 165, 250, 0.45);
 }
 
-button.eliminar {
-  background-color: crimson;
-  color: white;
-  border-radius: 20px;
-  cursor: pointer;
-  padding: 12px 25px;
-  font-weight: bold;
+/* Botón eliminar dentro de tabla */
+tbody button {
+  background: #ef4444;
   border: none;
-  width: 150px;
-  transition: background-color 0.3s ease;
+  color: white;
+  padding: 6px 14px;
+  border-radius: 16px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background 0.3s ease;
+  user-select: none;
 }
 
-button.eliminar:hover {
-  background-color: #b02a37;
+tbody button:hover {
+  background: #b91c1c;
 }
 
-tbody td[colspan="3"] {
-  font-style: italic;
-  color: #555;
-}
-
+/* Responsive */
 @media (max-width: 600px) {
-  form#formReportes {
+  nav .enlaces {
+    flex-wrap: wrap;
+    justify-content: center;
+    padding: 10px 20px;
+  }
+
+  nav .Titulo {
+    flex-basis: 100%;
+    margin: 8px 0 0 0;
+    font-size: 20px;
+    text-align: center;
+  }
+
+  form {
+    justify-content: center;
+  }
+
+  form input[type="text"] {
+    flex-basis: 100%;
     max-width: 100%;
-    padding: 20px;
   }
 
-  table {
-    font-size: 14px;
-  }
-
-  button.eliminar {
+  form button {
     width: 100%;
-    padding: 10px 0;
+    padding: 14px;
   }
 }

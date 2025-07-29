@@ -1,0 +1,153 @@
+  .FondoHorasTrabajadas {
+    background-color: skyblue;
+    background-image: none;
+  }
+
+  .Titulo {
+    color: white;
+    font-size: 30px;
+  }
+
+  .BotonVolver {
+    background-color: rgb(255, 255, 255);
+    color: rgb(0, 69, 173);
+    padding: 15px 20px;
+    border-radius: 10px;
+    text-decoration: none;
+    font-size: 19px;
+    font-weight: bold;
+    text-align: center;
+  }
+
+  .BotonVolver:hover{
+    background-color: #c8c8c8;
+  }
+  
+  .ContenedorBlanco{
+    background-color: #ffffff;
+    padding: 20px;
+    width: auto;
+  }
+
+  .ContenedorHorizontal {
+    display: flex;
+    gap: 30px;
+  }
+
+/*Esto es para que el cuadro ocupe todo el espacio faltante*/
+  .ContenedorTabla {
+    flex-grow: 1;
+  }
+
+  .BuscadorDeEmpleado {
+  padding: 8px 8px 8px 30px;
+  border-radius: 8px;
+  width: 200px;
+  margin-bottom: 15px;
+
+  background-image: url('https://cdn-icons-png.flaticon.com/512/622/622669.png');
+  background-size: 16px;
+  background-repeat: no-repeat;
+  background-position: 8px center;
+  border: 1px solid #ccc;
+  font-size: 14px;
+}
+
+
+  .TituloFormulario { 
+    color: white;
+    text-align: center;
+    font-size: 30px;
+    margin-top: 0px;
+  }
+
+  .ContenedorDelFormulario {
+    background-color: #0051a2;
+    padding: 25px;
+    border-radius: 12px;
+    max-width: 200px;
+   
+  }
+  
+  .FormularioVertical {
+    display: flex;
+    flex-direction: column; 
+    gap: 20px;
+  }
+
+  .BotonEliminarEmpleado {
+      background-color: crimson;
+      color: white;
+      border-radius: 20px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+      margin-top: 15px;
+      width: 100%;
+    }
+
+/*Esto es para el tamaño del boton redondo a la hora que seleccionamos*/
+  input[type="radio"] {
+     transform: scale(1.6);
+     cursor: pointer;
+}
+  
+  form input, form button {
+    padding: 10px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    font-size: 14px;
+  }
+  
+  form input {
+    width: 180px;
+  }
+  
+  form button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    transition: background-color 0.3s ease;
+    cursor: pointer;
+    position: relative;
+    top: 2px;
+    left: 1px;
+  }
+  
+  form button:hover {
+    background-color: #0056b3;
+  }
+  
+  table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  table thead {
+    background-color: #0051a2;
+    color: white;
+  }
+  
+  table th, table td {
+    padding: 12px;
+    border: 1px solid #ddd;
+    text-align: center;
+  }
+  
+  table tbody tr:nth-child(even) {
+    background-color: #67a9f4;
+  }
+  
+  form[action*="eliminar_hora"] button {
+    background-color: #dc3545;
+    color: white;
+    border: none;
+    padding: 8px 12px;  
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  form[action*="eliminar_hora"] button:hover {
+    background-color: #b02a37;
+  }
+  

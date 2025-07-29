@@ -1,0 +1,123 @@
+body{
+    background-image: url(https://media.istockphoto.com/id/1305533078/photo/multicolored-straight-strands-texture-background-sewing-equipment-loom-equipment-at-a-garment.jpg?s=612x612&w=0&k=20&c=zGDhSsF_nCyM7vIA0WB3dIqkHE_TpNRDRxWDAqpLFlI=);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+    background-color: transparent;
+    overflow: hidden;
+    height: auto;
+}
+
+.contenedor_form{
+    background-color: darkblue;
+    padding: 10px;
+    border-radius: 15px;
+    max-width: 250px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    position: relative;
+    left: 450px;
+    top: 20px;
+}
+
+.contenedor_form input{
+    padding: 10px;
+    border-radius: 16px;
+    border: solid 1px skyblue;
+    font-size: 15px;
+    margin: auto;
+}
+
+.contenedor_form input[name="email"] {
+    background-image: url(imgs/email.jpg);
+    background-repeat: no-repeat;
+    background-position: 10px center;
+    padding-left: 35px;
+    background-size: 16px 16px;
+    margin-bottom: 2px;
+}
+
+.contenedor_form input[name="password"] {
+    background-image: url(imgs/iconkey.png);
+    background-repeat: no-repeat;
+    background-position: 10px center;
+    padding-left: 35px;
+    background-size: 16px 16px;
+    margin-bottom: 3px;
+}
+
+button{
+    padding: 10px;
+    border: none;
+    border-radius: 15px;
+    font-weight: bold;
+    cursor: pointer;
+    background-color: cyan;
+    color: purple;
+    position: relative;
+    top: 5px;
+}
+
+a{
+    background-color: transparent;
+    color: aqua;
+    width: 115px;
+    border-radius: 100%;
+    text-decoration: none;
+}
+
+#contratitu{
+    position: relative;
+    left: 420px;
+    color: seashell;
+}
+
+.logo{
+    display: flex;
+    left: 40px;
+}
+
+.logo img{
+    width: 50px;
+    height: 50px;
+}
+
+.logo span{
+    display: block;
+    letter-spacing: 0.5px;
+    color: snow;
+    font-size: 12px;
+}
+
+#textito{
+    color: snow;
+    position: relative;
+    bottom: 70px;
+    left: 60px;
+}
+
+#span{
+    color: snow;
+}
+
+#ojo{
+    position: relative;
+    bottom: 40px;
+    left: 80%;
+    cursor: pointer;
+}
+
+#restable{
+    position: relative;
+    top: 50px;
+    left: 130px;
+    width: 100px;
+}
+
+#restable_volver{
+    position: relative;
+    bottom: 64px;
+    width: 100px;
+
+}

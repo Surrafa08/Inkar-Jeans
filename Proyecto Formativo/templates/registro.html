@@ -1,36 +1,35 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <link rel="stylesheet" href="{{ url_for('static', filename='estilos.css') }}">
+        <link rel="stylesheet" href="{{ url_for('static', filename='estilos_registro.css') }}">
         <title>Registro de usuario</title>
         <script>
-            const usuregistrados=["liebe@gmail.com", "luna@hotmail.com"]
-
-            function registrar(){
-                const email=document.getElementById("email").value;
-                if(usuregistrados.includes(email)){
-                    alert("Ya estás registrado.");
-                    return false;
-                } else{
-                    alert("Cuenta registrada éxitosamente.");
-                    return true;
-                }
+            function mostrar_ocultar_password(){
+                const passwordocult=document.getElementById("ocultar");
+                const type=passwordocult.getAttribute("type");
+                passwordocult.setAttribute("type", type==="password" ? "text" : "password");
             }
         </script>
     </head>
     <body>
         <h1 id="registitu">Crear cuenta</h1>
         <div class="contenedor_form">
-            <div id="textito">
-                <h1>Inkar Jeans</h1>
-                <p>Automatización Empresarial</p>
+            <div class="logo">
+                <img src="{{url_for('static', filename='imgs/logoInkar.jpg')}}">
             </div>
-                <input type="text" name="icon" placeholder="Nombre completo" required>
-                <input type="email" id="email" name="icon" placeholder="Correo electronico" required>
-                <input type="text" name="usuario" placeholder="Usuario" required>
-                <input type="text" name="password" placeholder="Contraseña" required>
-            <button type="submit">Registrar</button>
-            <p id="textito">¿Ya tienes una cuenta? <a href="{{url_for('inicio_sesion')}}">Iniciar Sesion</a></p>
+            <div class="tituregis">
+                <h1 id="h1_regist">Inkar Jeans</h1>
+                <p id="p_regist">Automatización Empresarial</p>
+            </div>
+            <form method="POST" action="{{url_for('registro')}}">
+                <input type="text" name="nombre" placeholder="Nombre completo" required>
+                <input type="email" name="email" placeholder="Correo electronico" required>
+                <input type="text" name="usuarioregis" placeholder="Usuario" required>
+                <input type="password" name="password" id="ocultar" placeholder="Contraseña" required>
+                <span onclick="mostrar_ocultar_password()">👁️</span>
+                <button type="submit">Registrar</button>
+            </form>
+            <p id="textito">¿Ya tienes una cuenta? <a href="{{url_for('index')}}">Iniciar Sesion</a></p>
         </div>
     </body>
 </html>

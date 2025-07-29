@@ -1,168 +1,330 @@
+/* Fondo y cuerpo */
 body {
-  font-family: Arial, sans-serif;
-  max-width: 600px;
-  margin: 2rem auto;
-  padding: 0 1rem;
-  background-color: #f9f9f9;
-  color: #333;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #142636;
+  color: #e0e7ff;
+  margin: 0;
+  padding: 20px;
+  padding-top: 84px; /* Para compensar la barra fija */
 }
 
-h1 {
-  text-align: center;
-  margin-bottom: 1.5rem;
-  color: #1d3557;
-}
-
-form {
+/* Navbar */
+nav .enlaces {
+  background-color: #1e40af;
+  box-shadow: 0 8px 30px rgba(30, 64, 175, 0.7);
+  padding: 20px 50px;
   display: flex;
-  justify-content: center;
-  gap: 0.5rem;
-  margin-bottom: 1.5rem;
-  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  box-sizing: border-box;
+  border-radius: 0;
+  margin: 0;
+  z-index: 1000;
 }
 
-form input[type="text"],
-form input[type="number"] {
-  padding: 0.5rem;
-  font-size: 1rem;
-  border: 1px solid #ccc;
-  border-radius: 6px;
-  width: 180px;
-  transition: border-color 0.3s ease;
+nav .logo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  filter: drop-shadow(1px 1px 2px rgba(0,0,0,0.5));
 }
 
-form input[type="text"]:focus,
-form input[type="number"]:focus {
-  outline: none;
-  border-color: #0051a2;
+nav .logo img {
+  width: 52px;
+  height: 52px;
+  border-radius: 8px;
+  transition: transform 0.3s ease;
 }
 
-form button {
-  padding: 0.6rem 1rem;
-  background-color: #007bff;
-  color: white;
-  border: none;
-  border-radius: 6px;
+nav .logo img:hover {
+  transform: scale(1.1);
+}
+
+nav .logo .titu {
+  display: block;
+  letter-spacing: 0.5px;
+  color: #f0f9ff;
+  font-size: 13px;
+  line-height: 1.3;
+  font-weight: 700;
+  text-shadow: 0 0 4px rgba(240, 249, 255, 0.8);
+}
+
+nav .Titulo {
+  color: #dbeafe;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-size: 32px;
+  font-weight: 700;
+  text-shadow: 0 0 8px rgba(219, 234, 254, 0.8);
+  margin: 0 20px;
+  white-space: nowrap;
+  flex-grow: 1;
+  text-align: center;
+}
+
+/* Botón volver */
+nav a.BotonVolver {
+  background-color: white;
+  color: #1e40af;
+  width: 120px;
+  border-radius: 18px;
+  text-decoration: none;
+  font-weight: 700;
+  display: inline-block;
+  padding: 8px 14px;
   cursor: pointer;
-  transition: background-color 0.3s ease;
+  user-select: none;
+  position: relative;
+  text-align: center;
+  box-shadow: 0 4px 12px rgba(30, 64, 175, 0.25);
+  transition: background-color 0.3s ease, color 0.3s ease, box-shadow 0.3s ease;
 }
 
-form button:hover {
-  background-color: #0056b3;
+nav a.BotonVolver:hover {
+  background-color: #3b82f6;
+  color: white;
+  box-shadow: 0 6px 18px rgba(59, 130, 246, 0.6);
 }
 
-table {
+/* Contenedor principal */
+.ContenedorBlanco {
+  margin: 40px auto;
+  max-width: 960px;
+  padding: 30px;
+  background: rgba(30, 64, 175, 0.85);
+  border-radius: 20px;
+  box-shadow: 0 0 30px rgba(30, 64, 175, 0.6);
+  color: #e0e7ff;
+  backdrop-filter: blur(8px);
+  box-sizing: border-box;
+}
+
+/* Contenedor horizontal para formulario y tabla */
+.ContenedorHorizontal {
+  display: flex;
+  gap: 36px;
+  flex-wrap: wrap;
+  justify-content: center;
+  box-sizing: border-box;
+}
+
+/* Contenedor del formulario */
+.ContenedorDelFormulario {
+  background: rgba(49, 84, 195, 0.85);
+  padding: 28px 36px;
+  border-radius: 25px;
+  max-width: 380px;
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+  box-shadow:
+    0 10px 22px rgba(30, 64, 175, 0.5),
+    inset 0 0 15px rgba(255, 255, 255, 0.15);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: #dbeafe;
+  transition: box-shadow 0.4s ease;
+  box-sizing: border-box;
+}
+
+.ContenedorDelFormulario:hover {
+  box-shadow:
+    0 14px 28px rgba(59, 130, 246, 0.7),
+    inset 0 0 20px rgba(255, 255, 255, 0.3);
+}
+
+.TituloFormulario {
+  color: #e0e7ff;
+  font-size: 24px;
+  margin: 0 0 14px 0;
+  font-weight: 800;
+  text-align: center;
+  letter-spacing: 0.8px;
+  text-shadow: 0 0 6px rgba(224, 231, 255, 0.8);
+}
+
+/* Inputs en formulario */
+.ContenedorDelFormulario input[type="text"],
+.ContenedorDelFormulario input[type="number"] {
+  padding: 14px 22px;
+  border-radius: 16px;
+  border: 2px solid #60a5fa;
+  font-size: 16px;
+  background-color: rgba(255, 255, 255, 0.12);
+  color: #cbd5e1;
+  transition: background-color 0.4s ease, border-color 0.4s ease, color 0.4s ease;
+  box-shadow: inset 0 0 8px rgba(0, 0, 0, 0.15);
+  box-sizing: border-box;
+}
+
+.ContenedorDelFormulario input[type="text"]:focus,
+.ContenedorDelFormulario input[type="number"]:focus {
+  background-color: rgba(255, 255, 255, 0.25);
+  border-color: #2563eb;
+  color: #1e40af;
+  outline: none;
+  box-shadow: 0 0 12px #2563eb;
+}
+
+/* Botón agregar */
+.ContenedorDelFormulario button {
+  padding: 12px 28px;
+  border-radius: 25px;
+  background: linear-gradient(90deg, #3b82f6, #60a5fa);
+  color: #1e3a8a;
+  font-weight: 900;
+  border: none;
+  cursor: pointer;
+  transition: background 0.5s ease, box-shadow 0.3s ease;
+  box-shadow: 0 6px 18px rgba(59, 130, 246, 0.6);
+  user-select: none;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  box-sizing: border-box;
+}
+
+.ContenedorDelFormulario button:hover {
+  background: linear-gradient(90deg, #60a5fa, #3b82f6);
+  box-shadow: 0 8px 26px rgba(96, 165, 250, 0.8);
+  color: #e0e7ff;
+  transform: translateY(-2px);
+}
+
+/* Buscador arriba de la tabla */
+.BuscadorDeProducto {
+  padding: 12px 20px;
+  border-radius: 20px;
+  border: 2.5px solid #60a5fa;
+  font-size: 16px;
+  margin-bottom: 18px;
+  width: 100%;
+  box-sizing: border-box;
+  color: #1e40af;
+  font-weight: 700;
+  background-color: #e0e7ff;
+  box-shadow: 0 3px 8px rgba(96, 165, 250, 0.4);
+  transition: background-color 0.4s ease, border-color 0.4s ease, color 0.4s ease;
+  letter-spacing: 0.6px;
+  text-shadow: 0 0 3px rgba(96, 165, 250, 0.5);
+}
+
+.BuscadorDeProducto::placeholder {
+  color: #2563eb;
+  font-weight: 800;
+  opacity: 0.8;
+}
+
+.BuscadorDeProducto:focus {
+  background-color: #dbeafe;
+  border-color: #2563eb;
+  color: #1e40af;
+  outline: none;
+  box-shadow: 0 0 16px #2563eb;
+}
+
+/* Contenedor tabla */
+.ContenedorTabla {
+  flex-grow: 1;
+  overflow-x: auto;
+  max-width: 650px;
+  color: #e0e7ff;
+  border-radius: 14px;
+  box-shadow: 0 0 22px rgba(30, 64, 175, 0.6);
+  background: linear-gradient(145deg, #1e40af, #1e3a8a);
+  box-sizing: border-box;
+}
+
+/* Tabla */
+.ContenedorTabla table {
   width: 100%;
   border-collapse: collapse;
-  background-color: white;
-  box-shadow: 0 0 8px rgba(0,0,0,0.1);
-  border-radius: 8px;
-  overflow: hidden;
+  font-size: 15px;
+  letter-spacing: 0.6px;
+  text-align: center;
+  color: #dbeafe;
 }
 
-th, td {
-  text-align: left;
-  padding: 0.75rem;
-  border-bottom: 1px solid #ddd;
+/* Encabezado tabla */
+.ContenedorTabla thead tr {
+  background: linear-gradient(90deg, #2563eb, #1e40af);
+  color: #e0e7ff;
+  font-weight: 700;
+  text-shadow: 0 0 4px rgba(224, 231, 255, 0.9);
 }
 
-th {
-  background-color: #0051a2;
-  color: white;
+.ContenedorTabla th,
+.ContenedorTabla td {
+  padding: 16px 12px;
+  border-bottom: 1px solid rgba(224, 231, 255, 0.3);
 }
 
-tbody tr:nth-child(even) {
-  background-color: #d7e8fc;
+/* Filas alternas */
+.ContenedorTabla tbody tr:nth-child(even) {
+  background-color: rgba(30, 64, 175, 0.4);
 }
 
-tbody tr:hover {
-  background-color: #a9cdfb;
-}
-
-button.eliminar {
-  background-color: #f44336;
-  border: none;
-  color: white;
-  padding: 0.4rem 0.7rem;
-  border-radius: 4px;
+/* Hover filas */
+.ContenedorTabla tbody tr:hover {
+  background-color: rgba(96, 165, 250, 0.35);
   cursor: pointer;
-  transition: background-color 0.3s ease;
 }
 
-button.eliminar:hover {
-  background-color: #d32f2f;
-}
-
-.logo {
-  display: flex;
-  align-items: center;
-  gap: 15px;
-}
-
-.logo img {
-  height: 60px;
-  border-radius: 5px;
-}
-
-.titu {
-  font-size: 1.1em;
-  font-weight: bold;
-  line-height: 1.2;
-  color: white;
-}
-
-.titu span {
-  font-size: 0.8em;
-  color: #ccc;
-}
-
-nav {
-  background-color: #0051a2;
-  color: white;
-  padding: 15px 20px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  flex-wrap: wrap;
-}
-
-.enlaces {
-  display: flex;
-  align-items: center;
-  width: 100%;
-  justify-content: space-between;
-}
-
-button.l {
-  padding: 10px 20px;
-  background-color: #888;
-  color: white;
-  border: none;
-  border-radius: 5px;
+/* Inputs checkbox */
+.ContenedorTabla input[type="checkbox"] {
   cursor: pointer;
-  margin: 20px;
-  transition: background-color 0.3s ease;
+  width: 20px;
+  height: 20px;
 }
 
-button.l:hover {
-  background-color: #666;
+/* Botón eliminar productos seleccionados */
+.BotonEliminarProducto {
+  margin-top: 12px;
+  padding: 10px 28px;
+  border-radius: 25px;
+  background: linear-gradient(90deg, #ef4444, #dc2626);
+  color: white;
+  font-weight: 900;
+  border: none;
+  cursor: pointer;
+  transition: background 0.5s ease, box-shadow 0.3s ease;
+  box-shadow: 0 6px 18px rgba(239, 68, 68, 0.8);
+  user-select: none;
+  letter-spacing: 1px;
+  text-transform: uppercase;
 }
 
-@media (max-width: 600px) {
-  form {
+.BotonEliminarProducto:hover {
+  background: linear-gradient(90deg, #dc2626, #b91c1c);
+  box-shadow: 0 8px 26px rgba(185, 28, 28, 0.9);
+}
+
+/* Scroll horizontal barra tabla */
+.ContenedorTabla::-webkit-scrollbar {
+  height: 8px;
+}
+
+.ContenedorTabla::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.ContenedorTabla::-webkit-scrollbar-thumb {
+  background: #2563eb;
+  border-radius: 10px;
+}
+
+/* Responsividad */
+@media (max-width: 880px) {
+  .ContenedorHorizontal {
     flex-direction: column;
     align-items: center;
   }
 
-  form input[type="text"],
-  form input[type="number"],
-  form button {
-    width: 100%;
-    max-width: 300px;
-  }
-
-  .enlaces {
-    flex-direction: column;
-    gap: 10px;
+  .ContenedorDelFormulario,
+  .ContenedorTabla {
+    max-width: 100%;
   }
 }

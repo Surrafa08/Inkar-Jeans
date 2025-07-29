@@ -2,121 +2,77 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-  <title>Reportes - Inkar Jeans</title>
+  <title>Productos - Inkar Jeans</title>
   <link rel="stylesheet" href="{{ url_for('static', filename='estilos_reportes.css') }}" />
-  <!-- Enlace a FontAwesome para los iconos -->
-  <link
-    rel="stylesheet"
-    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
-    integrity="sha512-pVn7cU0MTQ9yUeWh0bJ0qWvjutrU6R4oBQH5+4jb6xw1M7p5+qvjVV7jR2EWVU7Qk2rdF+X3V1HpqvZ8YWf6kw=="
-    crossorigin="anonymous"
-    referrerpolicy="no-referrer"
-  />
 </head>
 <body>
-  <h1>Reportes</h1>
-
-  <a href="{{ url_for('administracion') }}">
-    <button class="regresar"> Regresar</button>
-  </a>
-
-  <form id="formReportes" novalidate>
-    <div class="input-icon">
-      <i class="fa-solid fa-file-lines" aria-hidden="true"></i>
-      <input
-        type="text"
-        name="tipo"
-        id="tipoReporte"
-        placeholder="Tipo de reporte"
-        pattern="[A-Za-zA-y\s]+"
-        title="Solo letras y espacios permitidos"
-        required
-        autocomplete="off"
-        aria-label="Tipo de reporte"
-      />
+  <nav>
+    <div class="enlaces">
+      <div class="logo">
+        <img src="{{ url_for('static', filename='imgs/logoInkar.jpg') }}" alt="Logo Inkar" />
+        <div class="titu">
+          Inkar Jeans<br />
+          <span>SISTEMA ADMINISTRATIVO</span>
+        </div>
+      </div>
+      <h1 class="Titulo">Gestión de Productos</h1>
+      <a href="{{ url_for('administracion') }}" class="BotonVolver">Volver</a>
     </div>
-    <input
-      type="text"
-      name="fecha"
-      id="fechaReporte"
-      placeholder="Fecha (DD/MM/AAAA)"
-      pattern="^(0[1-9]|[12][0-9]|3[01])/(0[1-9]|1[012])/\d{4}$"
-      title="Formato fecha valido: DD/MM/AAAA"
-      required
-      autocomplete="off"
-      aria-label="Fecha de reporte"
-    />
-    <button type="submit">Agregar</button>
-  </form>
+  </nav>
 
-  <table>
-    <thead>
-      <tr>
-        <th>Tipo</th>
-        <th>Fecha</th>
-        <th>Accion</th>
-      </tr>
-    </thead>
-    <tbody id="tbodyReportes">
-      <tr><td colspan="3">No hay reportes.</td></tr>
-    </tbody>
-  </table>
+  <main>
+    <!-- Formulario para agregar reporte -->
+    <form method="POST" action="{{ url_for('agregar_reporte') }}">
+      <input 
+        type="text" 
+        name="tipo" 
+        placeholder="Tipo de reporte" 
+        required 
+        autocomplete="off"
+      />
+      <input 
+        type="text" 
+        name="fecha" 
+        placeholder="Fecha (DD/MM/AAAA)" 
+        pattern="^(0[1-9]|[12][0-9]|3[01])/(0[1-9]|1[012])/\d{4}$" 
+        required 
+        autocomplete="off"
+        title="Formato fecha: DD/MM/AAAA"
+      />
+      <button type="submit">Agregar</button>
+    </form>
 
-  <script>
-    const reportes = [];
-    const tbody = document.getElementById('tbodyReportes');
-    const form = document.getElementById('formReportes');
-
-    function render() {
-      tbody.innerHTML = '';
-      if (reportes.length === 0) {
-        tbody.innerHTML = '<tr><td colspan="3">No hay reportes.</td></tr>';
-        return;
-      }
-      reportes.forEach((item, i) => {
-        const tr = document.createElement('tr');
-        tr.innerHTML = `
-          <td>${item.tipo}</td>
-          <td>${item.fecha}</td>
-          <td>
-            <button class="eliminar" aria-label="Eliminar reporte de tipo ${item.tipo}" onclick="eliminar(${i})">Eliminar</button>
-          </td>
-        `;
-        tbody.appendChild(tr);
-      });
-    }
-
-    function eliminar(index) {
-      reportes.splice(index, 1);
-      render();
-    }
-    window.eliminar = eliminar;
-
-    form.addEventListener('submit', e => {
-      e.preventDefault();
-      const tipoInput = form.tipo;
-      const fechaInput = form.fecha;
-      const tipoVal = tipoInput.value.trim();
-      const fechaVal = fechaInput.value.trim();
-      const tipoRegex = /^[A-Za-zA-y\s]+$/;
-      const fechaRegex = /^(0[1-9]|[12][0-9]|3[01])\/(0[1-9]|1[012])\/\d{4}$/;
-      if (!tipoRegex.test(tipoVal)) {
-        alert('El campo "Tipo de reporte" solo acepta letras y espacios.');
-        tipoInput.focus();
-        return;
-      }
-      if (!fechaRegex.test(fechaVal)) {
-        alert('El campo "Fecha" debe tener el formato DD/MM/AAAA valido.');
-        fechaInput.focus();
-        return;
-      }
-      reportes.push({ tipo: tipoVal, fecha: fechaVal });
-      form.reset();
-      render();
-    });
-
-    render();
-  </script>
+    <!-- Tabla con lista de reportes -->
+    <table>
+      <thead>
+        <tr>
+          <th>Tipo de Reporte</th>
+          <th>Fecha</th>
+          <th>Acción</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% if reportes %}
+          {% for rep in reportes %}
+            <tr>
+              <td>{{ rep.tipo }}</td>
+              <td>{{ rep.fecha }}</td>
+              <td>
+                <form method="POST" action="{{ url_for('eliminar_reporte', id=rep.id) }}" style="display:inline;">
+                  <button type="submit" aria-label="Eliminar reporte {{ rep.tipo }}" onclick="return confirm('¿Está seguro que desea eliminar este reporte?');">
+                    Eliminar
+                  </button>
+                </form>
+              </td>
+            </tr>
+          {% endfor %}
+        {% else %}
+          <tr>
+            <td colspan="3" style="text-align:center;">No hay reportes.</td>
+          </tr>
+        {% endif %}
+      </tbody>
+    </table>
+  </main>
 </body>
 </html>

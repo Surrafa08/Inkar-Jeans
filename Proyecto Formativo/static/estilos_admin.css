@@ -1,0 +1,214 @@
+body{
+    background-image: url(https://media.istockphoto.com/id/1305533078/photo/multicolored-straight-strands-texture-background-sewing-equipment-loom-equipment-at-a-garment.jpg?s=612x612&w=0&k=20&c=zGDhSsF_nCyM7vIA0WB3dIqkHE_TpNRDRxWDAqpLFlI=);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+    background-color: transparent;
+    overflow: hidden;
+    height: auto;
+}
+
+body.x{
+    background-color: aliceblue;
+    background-image: none;
+}
+
+button{
+    padding: 7px;
+    border: none;
+    border-radius: 5px;
+    font-weight: bold;
+    cursor: pointer;
+    background-color: cyan;
+    color: purple;
+    position: relative;
+    top: 3px;
+}
+
+a{
+    background-color: transparent;
+    color: aqua;
+    width: 115px;
+    border-radius: 100%;
+    text-decoration: none;
+}
+
+.titulo{
+    position: relative;
+    left: 480px;
+    color: aliceblue;
+}
+
+.titulito{
+    color: white;
+}
+
+.h1_titu{
+    position: relative;
+    left: 55px;
+    bottom: 85px;
+}
+
+.span_titu{
+    position: relative;
+    left: 55px;
+    bottom: 110px;
+}
+
+.enlaces{
+    background-color: darkblue;
+    box-shadow: 0px 5px 50px black;
+    padding: 20px 50px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+    bottom: 8px;
+    right: 10px;
+    width: 94%;
+}
+
+.texnav{
+    color: white;
+    position: relative;
+    left: 50%;
+    display: flex;
+    align-items: center;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 30px;
+}
+
+.logo{
+    display: flex;
+    left: 40px;
+}
+
+.logo img{
+    width: 50px;
+    height: 50px;
+}
+
+.logo span{
+    display: block;
+    letter-spacing: 0.5px;
+    color: snow;
+    font-size: 12px;
+}
+
+.titu{
+    color: snow;
+    position: relative;
+    font-size: 30px;
+    left: 10px;
+    top: 1px
+}
+
+.links{
+    display: flex;
+    gap: 30px;
+}
+
+.links a{
+    text-decoration: none;
+    font-weight: 500;
+    color: skyblue;
+    transition: color 0.3s ease;
+}
+.links a:hover{
+    color: blue;
+}
+
+.botonsesion{
+    background-color: transparent;
+    color: white;
+    padding: 8px 10px;
+    border-radius: 10px;
+    text-decoration: none;
+    font-size: 18px;
+    font-weight: bold;
+    text-align: center;
+}
+.botonsesion:hover{
+    color: white;
+    text-decoration: underline;
+}
+
+.bienvenido h1{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: blue;
+}
+
+.bienvenido p{
+    position: relative;
+    left: 350px;
+    font-size: 20px;
+    color: blue;
+}
+
+.cont_card{
+    background-color: transparent;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 50px;
+    padding: 80px;
+    max-width: 100%;
+}
+
+.card{
+    background-color: silver;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    border-radius: 20px;
+    padding: 30px;
+    position: relative;
+    bottom: 50px;
+    box-shadow: black;
+    margin: 10px;
+    transition: trasnform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover{
+    transform: translateY(-5px);
+    box-shadow: 0px 1px 3px rgb(157, 118, 107);
+}
+
+#textito{
+    color: snow;
+    margin-bottom: 0px;
+}
+
+#span{
+    color: snow;
+}
+
+.icono{
+    font-size: 23px;
+}
+
+.card .text{
+    font-size: 20px;
+    color: purple;
+    background-color: transparent;
+}
+
+.iconoempleados::before{content: '👤';}
+.iconohoras::before{content: '⏱️';}
+.icononomina::before{content: '💸';}
+.iconoinventario::before{content: '📦';}
+.iconoreportes::before{content: '📊';}
+.iconoproduc::before{content: '📄';}
+
+#error{
+    color: red;
+}
+
+#ojo{
+    position: relative;
+    bottom: 118px;
+    left: 80%;
+    cursor: pointer;
+}
