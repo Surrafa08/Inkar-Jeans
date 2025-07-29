@@ -2,15 +2,24 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
   <title>Reportes - Inkar Jeans</title>
-  <link rel="stylesheet" href="{{url_for('static', filename='estilos_reportes.css')}}" />
+  <link rel="stylesheet" href="{{ url_for('static', filename='estilos_reportes.css') }}" />
+  <!-- Enlace a FontAwesome para los iconos -->
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    integrity="sha512-pVn7cU0MTQ9yUeWh0bJ0qWvjutrU6R4oBQH5+4jb6xw1M7p5+qvjVV7jR2EWVU7Qk2rdF+X3V1HpqvZ8YWf6kw=="
+    crossorigin="anonymous"
+    referrerpolicy="no-referrer"
+  />
 </head>
 <body>
   <h1>Reportes</h1>
 
-  
-  <a href="{{url_for('administracion')}}"><button class="regresar">← Regresar</button></a>
+  <a href="{{ url_for('administracion') }}">
+    <button class="regresar"> Regresar</button>
+  </a>
 
   <form id="formReportes" novalidate>
     <div class="input-icon">
@@ -20,7 +29,7 @@
         name="tipo"
         id="tipoReporte"
         placeholder="Tipo de reporte"
-        pattern="[A-Za-zÀ-ÿ\s]+"
+        pattern="[A-Za-zA-y\s]+"
         title="Solo letras y espacios permitidos"
         required
         autocomplete="off"
@@ -33,7 +42,7 @@
       id="fechaReporte"
       placeholder="Fecha (DD/MM/AAAA)"
       pattern="^(0[1-9]|[12][0-9]|3[01])/(0[1-9]|1[012])/\d{4}$"
-      title="Formato fecha válido: DD/MM/AAAA"
+      title="Formato fecha valido: DD/MM/AAAA"
       required
       autocomplete="off"
       aria-label="Fecha de reporte"
@@ -46,7 +55,7 @@
       <tr>
         <th>Tipo</th>
         <th>Fecha</th>
-        <th>Acción</th>
+        <th>Accion</th>
       </tr>
     </thead>
     <tbody id="tbodyReportes">
@@ -90,7 +99,7 @@
       const fechaInput = form.fecha;
       const tipoVal = tipoInput.value.trim();
       const fechaVal = fechaInput.value.trim();
-      const tipoRegex = /^[A-Za-zÀ-ÿ\s]+$/;
+      const tipoRegex = /^[A-Za-zA-y\s]+$/;
       const fechaRegex = /^(0[1-9]|[12][0-9]|3[01])\/(0[1-9]|1[012])\/\d{4}$/;
       if (!tipoRegex.test(tipoVal)) {
         alert('El campo "Tipo de reporte" solo acepta letras y espacios.');
@@ -98,7 +107,7 @@
         return;
       }
       if (!fechaRegex.test(fechaVal)) {
-        alert('El campo "Fecha" debe tener el formato DD/MM/AAAA válido.');
+        alert('El campo "Fecha" debe tener el formato DD/MM/AAAA valido.');
         fechaInput.focus();
         return;
       }
