@@ -9,6 +9,19 @@ body{
     color: black;
 }
 
+.contenedor{
+    background-color: darkblue;
+    box-shadow: 0 2px 20px black;
+    padding: 20px 50px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+    bottom: 10px;
+    right: 10px;
+    width: 93%;
+}
+
 .panel{
     background-color: white;
     border-radius: 10px;
@@ -72,18 +85,6 @@ h2{
     background-color: darkgreen;
 }
 
-.contenedor{
-    background-color: darkblue;
-    padding: 15px 50px;
-    position: relative;
-    bottom: 20px;
-    right: 30px;
-    width: 1148px;
-    box-shadow: 0 2px 20px black;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
 
 .botonvolver{
     background-color: white;
