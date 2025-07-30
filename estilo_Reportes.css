@@ -1,0 +1,166 @@
+/* Reset básico */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, sans-serif;
+}
+
+body.x {
+  background-color: #f4f4f4;
+  color: #333;
+  padding: 0 20px 40px;
+}
+
+/* NAVIGATION BAR */
+nav {
+  background-color: #1a1a1a;
+  color: white;
+  padding: 15px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.enlaces {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  justify-content: space-between;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.logo img {
+  height: 60px;
+  border-radius: 5px;
+}
+
+.titu {
+  font-size: 1.1em;
+  font-weight: bold;
+  line-height: 1.2;
+}
+
+.titu span {
+  font-size: 0.8em;
+  color: #ccc;
+}
+
+.texnav {
+  margin-left: 20px;
+  font-style: italic;
+  font-size: 0.9em;
+  color: #aaa;
+}
+
+.botonsesion {
+  background-color: #e63946;
+  color: white;
+  padding: 10px 15px;
+  text-decoration: none;
+  border-radius: 5px;
+  font-weight: bold;
+  transition: background 0.3s;
+}
+
+.botonsesion:hover {
+  background-color: #c91828;
+}
+
+/* BIENVENIDO */
+.bienvenido {
+  margin: 30px 0 20px;
+  text-align: center;
+}
+
+.bienvenido h1 {
+  font-size: 2em;
+  color: #1d3557;
+  margin-bottom: 10px;
+}
+
+.bienvenido p {
+  font-size: 1em;
+  color: #555;
+}
+
+/* INVENTARIO */
+h1 {
+  text-align: center;
+  margin: 30px 0 20px;
+  color: #1d3557;
+}
+
+form {
+  margin: 0 auto 30px;
+  max-width: 600px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: center;
+}
+
+input[type="text"],
+input[type="number"] {
+  padding: 10px;
+  font-size: 1em;
+  border: 1px solid #aaa;
+  border-radius: 5px;
+  width: calc(50% - 15px);
+}
+
+input[type="text"]#buscadorProducto {
+  width: 100%;
+  max-width: 600px;
+  margin: 0 auto 20px;
+  display: block;
+}
+
+button {
+  padding: 10px 20px;
+  font-size: 1em;
+  background-color: #457b9d;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #1d3557;
+}
+
+/* TABLA */
+table {
+  width: 100%;
+  max-width: 800px;
+  margin: 0 auto;
+  border-collapse: collapse;
+  background-color: white;
+  box-shadow: 0 0 8px rgba(0,0,0,0.1);
+}
+
+thead {
+  background-color: #a8dadc;
+}
+
+th, td {
+  padding: 12px 15px;
+  text-align: center;
+  border-bottom: 1px solid #ddd;
+}
+
+tbody tr:hover {
+  background-color: #f1f1f1;
+}
+
+#botonEliminarContainer {
+  text-align: center;
+  margin-top: 20px;
+}
