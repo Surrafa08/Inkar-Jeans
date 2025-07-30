@@ -3,7 +3,7 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" href="{{ url_for('static', filename='estilos.css') }}">
+        <link rel="stylesheet" href="{{url_for('static', filename='estilos_admin.css')}}">
         <title>Inkar Jeans - Sistema Administrativo</title>
     </head>
     <body class="x">
@@ -15,6 +15,7 @@
                         Inkar Jeans<br>
                         <span>SISTEMA ADMINISTRATIVO</span>
                     </div>
+                    <div class="texnav">Panel Administrativo</div>
                 </div>
                 <a href="{{url_for('index')}}" class="botonsesion">Cerrar sesion</a>
             </div>
@@ -22,7 +23,7 @@
         {% if nombre %}
         <div class="bienvenido">
             <h1>Bienvenido {{nombre}}</h1>
-            <p> Este es el panel principal del sistema administrativo de Inkar Jeans </p>
+            <p>Este es el panel principal del sistema administrativo de Inkar Jeans</p>
         </div>
         {% else %}
         <div class="bienvenido">
@@ -36,28 +37,25 @@
                 <span class="icono iconoempleados"></span>
                 <a href="{{url_for('empleados')}}"><button class="text">Empleados</button></a>
             </div>
-
             <div class="card">
                 <span class="icono iconohoras"></span>
-                <a href="{{ url_for('horas_trabajadas') }}"><button class="text">Horas trabajadas</button></a>
+                <a href="{{url_for('horas_trabajadas')}}"><button class="text">Horas trabajadas</button></a>
             </div>
-            
-
             <div class="icono card">
                 <span class="icon iconoproduc"></span>
-                <button class="text">Productos</button>
+                <a href="{{url_for('productos')}}"><button class="text">Productos</button></a>
             </div>
-            <div class="card">
+            <div class="icono card">
                 <span class="icono icononomina"></span>
-                <button class="text">Nómina</button>
+                <a href="{{ url_for('calculo_nomina') }}"><button class="text">Nómina</button></a>
             </div>
             <div class="card">
                 <span class="icono iconoinventario"></span>
-                <button class="text">Inventario</button>
+                <a href="{{url_for('inventario')}}"><button class="text">Inventario</button></a>
             </div>
             <div class="card">
                 <span class="icono iconoreportes"></span>
-                <button class="text">Reportes</button>
+                <a href="{{url_for('reportes')}}"><button class="text">Reportes</button></a>
             </div>
         </div>
     </body>

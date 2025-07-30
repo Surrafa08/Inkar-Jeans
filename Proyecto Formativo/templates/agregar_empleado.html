@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" href="{{url_for('static', filename='estilos_empleado.css')}}">
+        <title>Agregar Empleado - Inkar Jeans</title>
+    </head>
+    <body>
+        <h1>Registrar empleado</h1>
+        <form action="{{url_for('agregar_empleado')}}" method="POST">
+            <div class="contenedor">
+                <input type="text" name="nombre" placeholder="Nombre completo" required>
+                <input type="text" name="cedula" placeholder="Cedula" required>
+                <input type="email" name="correo" placeholder="Correo" required>
+                <input type="number" name="telefono" placeholder="Telefono" required>
+                <input type="text" name="direccion" placeholder="Direccion"required>
+                <input type="text" name="salario" placeholder="Salario" required>
+                <input type="text" name="horario" placeholder="Horario" required>
+            </div>
+            <button type="submit">Aceptar</button>
+            <a href="{{url_for('empleados')}}"><button type="button">Cancelar</button></a>
+        </form>
+    </body>
+</html>

@@ -1,0 +1,64 @@
+    <!DOCTYPE html>
+    <html lang="es">
+    <head>
+    <meta charset="UTF-8">
+    <title>Calculo Nomina - Inkar Jeans</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='estilos.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='calculo_nomina.css') }}">
+    
+    </head>
+    <body class="FondoHorasTrabajadas">
+        
+    <nav>
+        <div class="enlaces">
+        <div class="logo">
+            <img src="{{ url_for('static', filename='imgs/logoInkar.jpg') }}" alt="Logo Inkar">
+            <div class="titu">
+            Inkar Jeans<br>
+            <span>SISTEMA ADMINISTRATIVO</span>
+            </div>
+        </div>
+        <h1 class="Titulo">Calculo Nomina,</h1>
+        <a href="{{ url_for('administracion') }}" class="BotonVolver">Volver</a>
+        </div>
+    </nav>
+
+    <div class="ContenedorBlanco">
+
+    <h2 class="TituloFormulario1">Calcular Nmina del Empleado</h2>
+
+    <form method="POST" class="FormularioVertical">
+        <label for="empleado">Empleado:</label>
+        <select name="empleado" required>
+            {% for emp in empleados %}
+            <option value="{{ emp }}">{{ emp }}</option>
+            {% endfor %}
+        </select>
+
+        <label for="fecha_inicio">Desde:</label>
+        <input type="date" name="fecha_inicio" required>
+
+        <label for="fecha_fin">Hasta:</label>
+        <input type="date" name="fecha_fin" required>
+
+        <label for="valor_dia">Pago por día (COP):</label>
+        <input type="number" name="valor_dia" placeholder="Ej: 50000" required>
+
+        <button type="submit" class="BotonCalcularNomina1">Calcular Nómina</button>
+        </form>
+        </div>
+
+    {% if dias_trabajados is not none %}
+    <div class="resultado">
+        <h3>Resultado:</h3>
+        <p><strong>Empleado:</strong> {{ nombre_empleado }}</p>
+        <p><strong>Días trabajados:</strong> {{ dias_trabajados }}</p>
+        <p><strong>Total de horas trabajadas:</strong> {{ total_horas }}</p>
+        <p><strong>Pago por día:</strong> ${{ "{:,.0f}".format(valor_por_dia) }} COP</p>
+        <p><strong>Sueldo estimado:</strong> ${{ "{:,.0f}".format(sueldo_estimado) }} COP</p>
+    </div>
+    {% endif %}
+    </div>
+
+    </body>
+    </html>

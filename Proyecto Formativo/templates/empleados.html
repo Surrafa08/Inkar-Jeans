@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Horas Trabajadas - Inkar Jeans</title>
+  <link rel="stylesheet" href="{{url_for('static', filename='estilos_empleados.css')}}">
+</head>
+<body class="FondoHorasTrabajadas">
+
+  <!-- Esto es el encabezado -->
+  <nav>
+    <div class="enlacesuwu">
+      <div class="logo">
+        <img src="{{ url_for('static', filename='imgs/logoInkar.jpg') }}" alt="Logo Inkar">
+        <div class="titu">
+          Inkar Jeans<br>
+          <span>SISTEMA ADMINISTRATIVO</span>
+        </div>
+      </div>
+      <h1 class="Titulo">Registro de Horas Trabajadas</h1>
+      <a href="{{ url_for('administracion') }}" class="BotonVolver">Volver</a>
+    </div>
+  </nav>
+        <section class="panel">
+            <a href="{{url_for('agregar_empleado')}}"><button class="agregaremple">Agregar empleado</button></a>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Nombre completo</th>
+                        <th>Cedula</th>
+                        <th>Correo</th>
+                        <th>Telefono</th>
+                        <th>Direccion</th>
+                        <th>Salario</th>
+                        <th>Horario</th>
+                        <th>Fecha de ingreso</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for dato in empleados %}
+                    <tr>
+                        <td>{{dato.nombre}}</td>
+                        <td>{{dato.cedula}}</td>
+                        <td>{{dato.correo}}</td>
+                        <td>{{dato.telefono}}</td>
+                        <td>{{dato.direccion}}</td>
+                        <td>{{dato.salario}}</td>
+                        <td>{{dato.horario}}</td>
+                        <td>{{dato.fechaingreso}}</td>
+                        <td>
+                            <a href="{{url_for('editar_empleado', id=dato.id)}}"><button>Editar</button></a>
+                        </td>
+                        <td>
+                            <form method="POST" action="{{url_for('eliminar_empleado', id=dato.id)}}" onsubmit="return confirm('¿Seguro que quiere eliminar este empleado?');">
+                                <button type="submit">Eliminar</button>
+                            </form>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </section>
+    </body>
+</html>

@@ -5,12 +5,6 @@ body{
     background-attachment: fixed;
     background-color: transparent;
     overflow: hidden;
-    height: auto;
-}
-
-body.x{
-    background-color: aliceblue;
-    background-image: none;
 }
 
 .contenedor_form{
@@ -20,7 +14,6 @@ body.x{
     max-width: 250px;
     display: flex;
     flex-direction: column;
-    gap: 10px;
     position: relative;
     left: 450px;
     top: 20px;
@@ -33,7 +26,25 @@ body.x{
     font-size: 15px;
     margin: auto;
     position: relative;
-    bottom: 80px;
+    bottom: 100px;
+}
+
+.contenedor_form input[name="nombre"] {
+    background-image: url(imgs/usuario.webp);
+    background-repeat: no-repeat;
+    background-position: 10px center;
+    padding-left: 35px;
+    background-size: 16px 16px;
+    margin-bottom: 5px;
+}
+
+.contenedor_form input[name="email"] {
+    background-image: url(imgs/email.jpg);
+    background-repeat: no-repeat;
+    background-position: 10px center;
+    padding-left: 35px;
+    background-size: 16px 16px;
+    margin-bottom: 5px;
 }
 
 .contenedor_form input[name="usuario"] {
@@ -54,6 +65,15 @@ body.x{
     margin-bottom: 5px;
 }
 
+.contenedor_form input[name="usuarioregis"] {
+    background-image: url(imgs/usuario.webp);
+    background-repeat: no-repeat;
+    background-position: 10px center;
+    padding-left: 35px;
+    background-size: 16px 16px;
+    margin-bottom: 5px;
+}
+
 button{
     padding: 7px;
     border: none;
@@ -63,61 +83,14 @@ button{
     background-color: cyan;
     color: purple;
     position: relative;
-    bottom: 70px;
-    left: 40px;
+    bottom: 90px;
+    left: 50px;
 }
 
 a{
     background-color: transparent;
     color: aqua;
-    width: 115px;
-    border-radius: 100%;
     text-decoration: none;
-}
-
-.titulo{
-    position: relative;
-    left: 480px;
-    color: aliceblue;
-}
-
-.titulito{
-    color: white;
-}
-
-.h1_titu{
-    position: relative;
-    left: 55px;
-    bottom: 85px;
-}
-
-.span_titu{
-    position: relative;
-    left: 55px;
-    bottom: 110px;
-}
-
-.enlaces{
-    background-color: darkblue;
-    box-shadow: 0px 5px 50px black;
-    padding: 20px 50px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    position: relative;
-    bottom: 8px;
-    right: 10px;
-    width: 94%;
-}
-
-.texnav{
-    color: white;
-    position: relative;
-    left: 50%;
-    display: flex;
-    align-items: center;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    font-size: 30px;
 }
 
 .logo{
@@ -130,30 +103,45 @@ a{
     height: 50px;
 }
 
-.logo span{
-    display: block;
-    letter-spacing: 0.5px;
-    color: snow;
-    font-size: 12px;
-}
-
-p{
+#textito{
     color: snow;
     margin-bottom: 0px;
-}
-
-#span{
-    color: snow;
-}
-
-#error{
-    color: red;
     margin-top: -60px;
 }
 
-#ojo{
+#registitu{
+    display: flex;
+    justify-content: center;
     position: relative;
-    bottom: 118px;
-    left: 80%;
+    right: 30px;
+    color: seashell;
+}
+
+.tituregis{
+    color: snow;
+}
+
+#h1_regist{
+    position: relative;
+    left: 60px;
+    bottom: 75px;
+}
+
+#p_regist{
+    position: relative;
+    left: 60px;
+    bottom: 100px;
+}
+
+#contratitu{
+    position: relative;
+    left: 420px;
+    color: seashell;
+}
+
+span{
+    position: relative;
+    bottom: 136px;
+    left: 200px;
     cursor: pointer;
 }
