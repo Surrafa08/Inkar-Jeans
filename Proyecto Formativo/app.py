@@ -221,8 +221,6 @@ def eliminar_hora():
     return redirect(url_for('horas_trabajadas'))
 
 
-from flask import Flask, render_template, request, redirect, url_for
-
 @app.route("/calculo_nomina", methods=["GET", "POST"])
 def calculo_nomina():
     empleados = session.query(HorasTrabajadas.empleado).distinct().all()
