@@ -40,6 +40,7 @@ class HorasTrabajadas(tablita):
     horas = Column(Integer, nullable=False)
     actividad = Column(String(200), nullable=False)
 
+
 class Producto(tablita):
     __tablename__ = "Productos"
     id = Column(Integer, primary_key=True)
@@ -218,6 +219,47 @@ def eliminar_hora():
             session.delete(hora)
             session.commit()
     return redirect(url_for('horas_trabajadas'))
+
+
+from flask import Flask, render_template, request, redirect, url_for
+
+@app.route("/calculo_nomina", methods=["GET", "POST"])
+def calculo_nomina():
+    empleados = session.query(HorasTrabajadas.empleado).distinct().all()
+    empleados = [emp[0] for emp in empleados]
+
+    if request.method == "POST":
+        empleado_nombre = request.form["empleado"]
+        fecha_inicio = request.form["fecha_inicio"]
+        fecha_fin = request.form["fecha_fin"]
+
+        valor_por_dia_raw = request.form.get("valor_dia", "50000")
+        valor_por_dia_raw = valor_por_dia_raw.replace('.', '').replace(',', '.')
+
+        try:
+            valor_por_dia = float(valor_por_dia_raw)
+        except (ValueError, TypeError):
+            valor_por_dia = 50000
+
+        registros = session.query(HorasTrabajadas).filter(
+            HorasTrabajadas.empleado == empleado_nombre,
+            HorasTrabajadas.fecha >= fecha_inicio,
+            HorasTrabajadas.fecha <= fecha_fin
+        ).all()
+
+        total_horas = sum(r.horas for r in registros)
+        dias_trabajados = len(set(r.fecha for r in registros))
+        sueldo_estimado = dias_trabajados * valor_por_dia
+
+        return render_template("resultado_nomina.html",
+            nombre_empleado=empleado_nombre,
+            dias_trabajados=dias_trabajados,
+            total_horas=total_horas,
+            sueldo_estimado=sueldo_estimado,
+            valor_por_dia=valor_por_dia
+        )
+
+    return render_template("calculo_nomina.html", empleados=empleados, dias_trabajados=None) 
 
 @app.route('/inventario', methods=['GET', 'POST'])
 def inventario():
