@@ -70,7 +70,7 @@
                 <td>{{ producto.cantidad }}</td>
                 <td>
                   <form method="POST" action="{{ url_for('eliminar_producto', id=producto.id) }}" style="display:inline;">
-                    <button type="submit" onclick="return confirm('¿Estás seguro de eliminar este producto?');" aria-label="Eliminar producto {{ producto.nombre }}">
+                    <button class="BotonEliminarProducto" type="submit" onclick="return confirm('¿Estás seguro de eliminar este producto?');" aria-label="Eliminar producto {{ producto.nombre }}">
                       Eliminar
                     </button>
                   </form>
