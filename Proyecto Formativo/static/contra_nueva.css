@@ -35,7 +35,7 @@ body{
     background-position: 10px center;
     padding-left: 35px;
     background-size: 16px 16px;
-    margin-bottom: 2px;
+    margin-bottom: 10px;
 }
 
 .contenedor_form input[name="password"] {
@@ -44,7 +44,7 @@ body{
     background-position: 10px center;
     padding-left: 35px;
     background-size: 16px 16px;
-    margin-bottom: 3px;
+    margin-bottom: -30px;
 }
 
 button{
@@ -81,6 +81,7 @@ a{
 .logo img{
     width: 50px;
     height: 50px;
+    border-radius: 8px;
 }
 
 .logo span{
@@ -90,11 +91,22 @@ a{
     font-size: 12px;
 }
 
-#textito{
+.titucontra{
     color: snow;
+}
+
+h2{
     position: relative;
-    bottom: 70px;
+    bottom: 80px;
     left: 60px;
+    margin-bottom: -80px;
+}
+
+p{
+    position: relative;
+    left: 60px;
+    bottom: 20px;
+    margin-bottom: -10px;
 }
 
 #span{
@@ -103,19 +115,19 @@ a{
 
 #ojo{
     position: relative;
-    bottom: 40px;
+    bottom: 25px;
     left: 80%;
     cursor: pointer;
 }
 
-#restable{
+#aceptar{
     position: relative;
     top: 50px;
-    left: 130px;
+    left: 120px;
     width: 100px;
 }
 
-#restable_volver{
+#volver{
     position: relative;
     bottom: 64px;
     width: 100px;

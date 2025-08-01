@@ -10,15 +10,18 @@
             <div class="logo">
                 <img src="{{url_for('static', filename='imgs/logoInkar.jpg')}}">
             </div>
-            <h2 id="textito">Inkar Jeans</h2>
-            <span id="span">Ingrese la contraseña nueva y asegurate de guardarlo o anotarlo para que no se te olvide🤗</span id="span">
+            <div class="titucontra">
+                <h2 id="textito">Inkar Jeans</h2>
+                <p>Automatización Empresarial</p>
+            </div>
+            <span id="span">Ingrese la contraseña nueva y asegurate de guardarlo o anotarlo para que no se te olvide🤗</span>
             <form action="{{url_for('restablecer_contra')}}" method="POST">
-                <input type="email" name="email" placeholder="Correo electrónico" required><br></br>
+                <input type="email" name="email" placeholder="Correo electrónico" required>
                 <input type="password" name="password" id="ocultar" placeholder="Contraseña nueva" required>
                 <span onclick="mostrar_ocultar_password()" id="ojo">👁️</span>
-                <button type="submit" id="restable">Aceptar</button>
+                <button type="submit" id="aceptar">Aceptar</button>
             </form>
-            <a href="{{url_for('index')}}"><button id="restable_volver">Volver</button></a>
+            <a href="{{url_for('index')}}"><button id="volver">Volver</button></a>
         </div>
 
         <script>

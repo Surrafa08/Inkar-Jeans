@@ -5,17 +5,19 @@
         <title>Gestion de empleados</title>
     </head>
     <body>
-        <div class="contenedor">
-            <div class="logo">
-                <img src="{{url_for('static', filename='imgs/logoInkar.jpg')}}">
-                <div class="titu">
-                    Inkar Jeans<br>
-                    <span>SISTEMA ADMINISTRATIVO</span>
+        <nav>
+            <div class="contenedor">
+                <div class="logo">
+                    <img src="{{url_for('static', filename='imgs/logoInkar.jpg')}}">
+                    <div class="titu">
+                        Inkar Jeans<br>
+                        <span>SISTEMA ADMINISTRATIVO</span>
+                    </div>
                 </div>
+                <h2 class="texnav">Lista de empleados</h2>
+                <a href="{{url_for('administracion')}}"><button class="botonvolver">Volver</button></a>
             </div>
-            <h2>Lista de empleados</h2>
-            <a href="{{url_for('administracion')}}"><button class="botonvolver">Volver</button></a>
-        </div>
+        </nav>
         <section class="panel">
             <a href="{{url_for('agregar_empleado')}}"><button class="agregaremple">Agregar empleado</button></a>
             <table>

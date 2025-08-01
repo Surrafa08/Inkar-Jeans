@@ -1,9 +1,7 @@
 body{
-    background-color: transparent;
-    background-image: url(https://media.istockphoto.com/id/1305533078/photo/multicolored-straight-strands-texture-background-sewing-equipment-loom-equipment-at-a-garment.jpg?s=612x612&w=0&k=20&c=zGDhSsF_nCyM7vIA0WB3dIqkHE_TpNRDRxWDAqpLFlI=);
+    background-color: skyblue;
     background-repeat: no-repeat;
     background-size: cover;
-    font-family: Arial, Helvetica, sans-serif;
     color: black;
 }
 
@@ -28,6 +26,7 @@ body{
     margin: auto;
     padding: 5px 50px;
     border: 1px solid white;
+    font-family: Arial, Helvetica, sans-serif;
 }
 
 h2{
@@ -48,6 +47,12 @@ h2{
 .logo img{
     width: 50px;
     height: 50px;
+    border-radius: 8px;
+    transition: transform 0.3s ease;
+}
+
+.logo img:hover{
+    transform: scale(1.1);
 }
 
 .logo span{
@@ -65,6 +70,14 @@ h2{
     top: 1px
 }
 
+.texnav{
+    color: white;
+    display: flex;
+    align-items: center;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 25px;
+}
+
 .agregaremple{
     background-color: green;
     color: white;
@@ -75,7 +88,7 @@ h2{
     margin-bottom: 15px;
     padding: 10px 20px;
     position: relative;
-    left: 86%;
+    left: 88%;
     top: 70px;
 }
 
@@ -94,8 +107,9 @@ h2{
 }
 
 .botonvolver:hover{
-    background-color: #c8c8c8;
-    color: darkblue;
+    background-color: blue;
+    color: white;
+    box-shadow: 0px 5px 16px blue;
 }
 
 table{
@@ -112,7 +126,7 @@ thead{
 th, td{
     padding: 10px 14px;
     text-align: left;
-    border-bottom: 1px solid white;
+    border-bottom: 1px solid darkgray;
 }
 
 tr:hover{
