@@ -1,11 +1,10 @@
 from flask import Flask, render_template, request, redirect, url_for, session as flask_session
-from sqlalchemy import create_engine, Column, Integer, String
-from sqlalchemy.orm import declarative_base, sessionmaker
+from sqlalchemy import create_engine, Column, Integer, String, ForeignKey
+from sqlalchemy.orm import declarative_base, sessionmaker, relationship
+from datetime import datetime
 import bcrypt
 import sqlite3
-from datetime import datetime
 import os
-import mysql.connector
 
 app=Flask(__name__)
 app.secret_key=os.urandom(23)
@@ -22,6 +21,9 @@ class Usuario(tablita):
     usuario=Column(String(50), nullable=False)
     password=Column(String(100),nullable=False)
 
+    productos = relationship("Producto", back_populates="creador")
+    reportes = relationship("Reporte", back_populates="creador")
+
 class Empleado(tablita):
     __tablename__="Empleados"
     id=Column(Integer, primary_key=True)
@@ -33,14 +35,18 @@ class Empleado(tablita):
     salario=Column(String(50), nullable=False)
     horario=Column(String(50), nullable=False)
     fechaingreso=Column(String(50), default=datetime.now().strftime("%Y-%m-%d"))
+
+    horas_trabajadas = relationship("HorasTrabajadas", back_populates="empleado", cascade="all, delete-orphan")
     
 class HorasTrabajadas(tablita):
     __tablename__ = "Horas"
     id = Column(Integer, primary_key=True)
-    empleado = Column(String(100), nullable=False)
+    empleado_id=Column(Integer, ForeignKey("Empleados.id"), nullable=False)
     fecha = Column(String(20), nullable=False)
     horas = Column(Integer, nullable=False)
     actividad = Column(String(200), nullable=False)
+
+    empleado = relationship("Empleado", back_populates="horas_trabajadas")
 
 
 class Producto(tablita):
@@ -49,11 +55,17 @@ class Producto(tablita):
     nombre = Column(String(100), nullable=False)
     cantidad = Column(Integer, nullable=False)
 
+    usuario_id = Column(Integer, ForeignKey("Usuarios.id"))
+    creador = relationship("Usuario", back_populates="productos")
+
 class Reporte(tablita):
     __tablename__ = "Reportes"
     id = Column(Integer, primary_key=True)
     tipo = Column(String(100), nullable=False)
     fecha = Column(String(20), nullable=False)
+
+    usuario_id = Column(Integer, ForeignKey("Usuarios.id"))
+    creador = relationship("Usuario", back_populates="reportes")
 
 tablita.metadata.create_all(engine)
 
@@ -193,13 +205,13 @@ def eliminar_empleado(id):
 @app.route('/horas', methods=['GET', 'POST'])
 def horas_trabajadas():
     if request.method == 'POST':
-        empleado = request.form['empleado']
+        empleados_id = request.form['empleados_id']
         fecha = request.form['fecha']
         horas = request.form['horas']
         actividad = request.form['actividad']
 
         nueva_hora = HorasTrabajadas(
-            empleado=empleado,
+            empleado_id=empleados_id,
             fecha=fecha,
             horas=horas,
             actividad=actividad
@@ -209,7 +221,8 @@ def horas_trabajadas():
         return redirect(url_for('horas_trabajadas'))
 
     horas = session.query(HorasTrabajadas).all()
-    return render_template('horas_trabajadas.html', horas=horas)
+    empleados = session.query(Empleado).all()
+    return render_template('horas_trabajadas.html', horas=horas, empleados=empleados)
 
 
 @app.route('/eliminar_hora', methods=['POST'])
