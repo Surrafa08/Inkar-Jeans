@@ -5,12 +5,14 @@ import bcrypt
 import sqlite3
 from datetime import datetime
 import os
+import mysql.connector
 
 app=Flask(__name__)
 app.secret_key=os.urandom(23)
 
 engine = create_engine("sqlite:///basedatos.db", echo=True)
 tablita=declarative_base()
+
 
 class Usuario(tablita):
     __tablename__='Usuarios'
