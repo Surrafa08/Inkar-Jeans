@@ -238,11 +238,11 @@ def eliminar_hora():
 
 @app.route("/calculo_nomina", methods=["GET", "POST"])
 def calculo_nomina():
-    empleados = session.query(HorasTrabajadas.empleado).distinct().all()
-    empleados = [emp[0] for emp in empleados]
+    empleados = session.query(Empleado).all()
 
     if request.method == "POST":
-        empleado_nombre = request.form["empleado"]
+        empleado_id = int(request.form["empleado"])
+        empleado = session.query(Empleado).get(empleado_id)
         fecha_inicio = request.form["fecha_inicio"]
         fecha_fin = request.form["fecha_fin"]
 
@@ -255,7 +255,7 @@ def calculo_nomina():
             valor_por_dia = 50000
 
         registros = session.query(HorasTrabajadas).filter(
-            HorasTrabajadas.empleado == empleado_nombre,
+            HorasTrabajadas.empleado_id == empleado_id,
             HorasTrabajadas.fecha >= fecha_inicio,
             HorasTrabajadas.fecha <= fecha_fin
         ).all()
@@ -265,7 +265,8 @@ def calculo_nomina():
         sueldo_estimado = dias_trabajados * valor_por_dia
 
         return render_template("resultado_nomina.html",
-            nombre_empleado=empleado_nombre,
+            empleados=empleados,
+            nombre_empleado=empleado.nombre,
             dias_trabajados=dias_trabajados,
             total_horas=total_horas,
             sueldo_estimado=sueldo_estimado,
@@ -316,7 +317,7 @@ def agregar_reporte():
 
         import re
         tipoRegex = re.compile(r'^[A-Za-zÀ-ÿ\s]+$')
-        fechaRegex = re.compile(r'^(0[1-9]|[12][0-9]|3[01])/(0[1-9]|1[012])/\d{4}$')
+        fechaRegex = re.compile(r'^\d{4}-\d{2}-\d{2}$')
         
         if not tipoRegex.match(tipo):
             return "El campo 'tipo' solo acepta letras y espacios.", 400

@@ -18,20 +18,20 @@
             <span>SISTEMA ADMINISTRATIVO</span>
             </div>
         </div>
-        <h1 class="Titulo">Calculo Nomina</h1>
+        <h1 class="Titulo">Calculo Nómina</h1>
         <a href="{{ url_for('administracion') }}" class="BotonVolver">Volver</a>
         </div>
     </nav>
 
     <div class="ContenedorBlanco">
 
-    <h2 class="TituloFormulario1">Calcular Nmina del Empleado</h2>
+    <h2 class="TituloFormulario1">Calcular Nómina del Empleado</h2>
 
     <form method="POST" class="FormularioVertical">
         <label for="empleado">Empleado:</label>
         <select name="empleado" required>
             {% for emp in empleados %}
-            <option value="{{ emp }}">{{ emp }}</option>
+            <option value="{{ emp.id }}">{{ emp.nombre }}</option>
             {% endfor %}
         </select>
 
