@@ -2,13 +2,11 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Inventario - Inkar Jeans</title>
   <link rel="stylesheet" href="{{ url_for('static', filename='estilos_inventario.css') }}" />
 </head>
-<body class="FondoInventario">
-
- 
+<body>
+  <!-- Esto es el encabezado -->
   <nav>
     <div class="enlaces">
       <div class="logo">
@@ -18,17 +16,16 @@
           <span>SISTEMA ADMINISTRATIVO</span>
         </div>
       </div>
-      <h1 class="Titulo">Inventario</h1>
+      <h1 class="Titulo">Inventario de Productos</h1>
       <a href="{{ url_for('administracion') }}" class="BotonVolver">Volver</a>
     </div>
   </nav>
-  
+
   <div class="ContenedorBlanco">
-
     <div class="ContenedorHorizontal">
-      
-      <div class="ContenedorTabla">
 
+      <!-- Tabla con productos -->
+      <div class="ContenedorTabla">
         <input
           type="text"
           id="buscadorProducto"
@@ -37,7 +34,8 @@
           onkeyup="filtrarProducto()"
         />
 
-        <form id="formEliminar" onsubmit="eliminarProducto(event)">
+        <!-- Formulario de eliminación -->
+        <form id="formEliminar" method="POST" action="{{ url_for('eliminar_productos') }}">
           <table>
             <thead>
               <tr>
@@ -46,25 +44,35 @@
                 <th>Seleccionar</th>
               </tr>
             </thead>
+
             <tbody id="tbodyInventario">
-           
+              {% for producto in productos %}
+              <tr>
+                <td>{{ producto.nombre }}</td>
+                <td>{{ producto.cantidad }}</td>
+                <td>
+                  <input type="checkbox" name="eliminar_ids" value="{{ producto.id }}" onchange="toggleEliminarBoton()">
+                </td>
+              </tr>
+              {% endfor %}
             </tbody>
+            <tbody id="tbodyInventario"></tbody>
           </table>
 
           <div id="botonEliminarContainer" style="display:none;">
-            <button type="submit" class="BotonEliminarProducto">Eliminar producto</button>
+            <button type="submit" class="BotonEliminarProducto">Eliminar productos seleccionados</button>
           </div>
         </form>
       </div>
-
     </div>
   </div>
 
+  <!-- Script de búsqueda y mostrar botón -->
   <script>
-    const formInventario = document.getElementById('formInventario');
+    const buscadorProducto = document.getElementById('buscadorProducto');
     const tbodyInventario = document.getElementById('tbodyInventario');
     const botonEliminarContainer = document.getElementById('botonEliminarContainer');
-    const buscadorProducto = document.getElementById('buscadorProducto');
+
 
     formInventario.addEventListener('submit', function(e) {
       e.preventDefault();
@@ -81,7 +89,6 @@
         return;
       }
 
-      
       const tr = document.createElement('tr');
 
       const tdNombre = document.createElement('td');
@@ -102,7 +109,6 @@
 
       tbodyInventario.appendChild(tr);
 
-      
       nombreInput.value = '';
       cantidadInput.value = '';
 
@@ -138,6 +144,12 @@
         const nombre = fila.cells[0].textContent.toLowerCase();
         fila.style.display = nombre.includes(filtro) ? '' : 'none';
       });
+    }
+
+    function toggleEliminarBoton() {
+      const checkboxes = tbodyInventario.querySelectorAll('input[type="checkbox"]');
+      const algunoSeleccionado = Array.from(checkboxes).some(chk => chk.checked);
+      botonEliminarContainer.style.display = algunoSeleccionado ? 'block' : 'none';
     }
   </script>
 </body>

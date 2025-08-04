@@ -365,13 +365,15 @@ def agregar_producto():
     return render_template('agregar_producto.html')
 
 
-@app.route('/productos/eliminar/<int:id>', methods=['POST'])
-def eliminar_producto(id):
-    producto = session.query(Producto).get(id)
-    if producto:
-        session.delete(producto)
+@app.route('/productos/eliminar', methods=['POST'])
+def eliminar_productos():
+    ids = request.form.getlist('eliminar_ids')
+    if ids:
+        productos = session.query(Producto).filter(Producto.id.in_(ids)).all()
+        for producto in productos:
+            session.delete(producto)
         session.commit()
-    return redirect(url_for('productos'))
+    return redirect(url_for('inventario'))
 
 
 @app.route('/mostrar_index')
