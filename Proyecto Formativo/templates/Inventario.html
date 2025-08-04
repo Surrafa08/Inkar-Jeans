@@ -6,11 +6,7 @@
   <link rel="stylesheet" href="{{ url_for('static', filename='estilos_inventario.css') }}" />
 </head>
 <body>
-<<<<<<< HEAD
-  <!-- Encabezado -->
-=======
   <!-- Esto es el encabezado -->
->>>>>>> df9f7a91d2245a440dc1ce32d1d1fc6ace79b7bf
   <nav>
     <div class="enlaces">
       <div class="logo">
@@ -28,38 +24,11 @@
   <div class="ContenedorBlanco">
     <div class="ContenedorHorizontal">
 
-<<<<<<< HEAD
       <!-- Formulario para agregar producto -->
-=======
->>>>>>> df9f7a91d2245a440dc1ce32d1d1fc6ace79b7bf
-      <div class="ContenedorDelFormulario">
-        <h2 class="TituloFormulario">Agregar Producto</h2>
-        <form method="POST" action="{{ url_for('inventario') }}">
-          <input
-            type="text"
-            name="nombre"
-            id="nombreProducto"
-            placeholder="Nombre del producto"
-            pattern="[A-Za-z\s]+"
-            title="Solo letras y espacios"
-            required
-          />
-          <input
-            type="number"
-            name="cantidad"
-            id="cantidadProducto"
-            placeholder="Cantidad"
-            min="1"
-            required
-          />
-          <button type="submit">Agregar</button>
-        </form>
-      </div>
 
-<<<<<<< HEAD
+      
+
       <!-- Tabla con productos -->
-=======
->>>>>>> df9f7a91d2245a440dc1ce32d1d1fc6ace79b7bf
       <div class="ContenedorTabla">
         <input
           type="text"
@@ -79,7 +48,7 @@
                 <th>Seleccionar</th>
               </tr>
             </thead>
-<<<<<<< HEAD
+
             <tbody id="tbodyInventario">
               {% for producto in productos %}
               <tr>
@@ -91,9 +60,7 @@
               </tr>
               {% endfor %}
             </tbody>
-=======
             <tbody id="tbodyInventario"></tbody>
->>>>>>> df9f7a91d2245a440dc1ce32d1d1fc6ace79b7bf
           </table>
 
           <div id="botonEliminarContainer" style="display:none;">
@@ -109,9 +76,7 @@
     const buscadorProducto = document.getElementById('buscadorProducto');
     const tbodyInventario = document.getElementById('tbodyInventario');
     const botonEliminarContainer = document.getElementById('botonEliminarContainer');
-<<<<<<< HEAD
-=======
-    const buscadorProducto = document.getElementById('buscadorProducto');
+
 
     formInventario.addEventListener('submit', function(e) {
       e.preventDefault();
@@ -174,7 +139,6 @@
 
       toggleEliminarBoton();
     }
->>>>>>> df9f7a91d2245a440dc1ce32d1d1fc6ace79b7bf
 
     function filtrarProducto() {
       const filtro = buscadorProducto.value.toLowerCase();
