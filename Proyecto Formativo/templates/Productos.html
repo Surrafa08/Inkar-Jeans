@@ -51,38 +51,6 @@
           <button type="submit">Agregar</button>
         </form>
       </div>
-
-      <!-- Tabla con productos -->
-      <div class="ContenedorTabla">
-        <table>
-          <thead>
-            <tr>
-              <th>Nombre</th>
-              <th>Cantidad</th>
-              <th>Acción</th>
-            </tr>
-          </thead>
-          <tbody>
-            {% if productos %}
-              {% for producto in productos %}
-              <tr>
-                <td>{{ producto.nombre }}</td>
-                <td>{{ producto.cantidad }}</td>
-                <td>
-                  <form method="POST" action="{{ url_for('eliminar_producto', id=producto.id) }}" style="display:inline;">
-                    <button type="submit" onclick="return confirm('¿Estás seguro de eliminar este producto?');" aria-label="Eliminar producto {{ producto.nombre }}">
-                      Eliminar
-                    </button>
-                  </form>
-                </td>
-              </tr>
-              {% endfor %}
-            {% else %}
-              <tr><td colspan="3">No hay productos registrados.</td></tr>
-            {% endif %}
-          </tbody>
-        </table>
-      </div>
     </div>
   </div>
 </body>
