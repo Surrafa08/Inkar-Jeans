@@ -34,7 +34,12 @@
         <h2 class="TituloFormulario">Formulario</h2>
         <form method="POST">
           <div class="FormularioVertical">
-            <input type="text" name="empleado" placeholder="Empleado" required>
+            <select name="empleados_id" required>
+              <option value="" disabled selected>Seleccione un empleado</option>
+              {% for empleado in empleados %}
+              <option value="{{ empleado.id }}">{{ empleado.nombre }}</option>
+              {% endfor %}
+            </select>
             <input type="date" name="fecha" required>
             <input type="number" name="horas" placeholder="Horas" required>
             <input type="text" name="actividad" placeholder="Actividad Realizada" required>
@@ -71,7 +76,7 @@
           <tbody>
             {% for hora in horas %}
             <tr>
-              <td>{{ hora.empleado }}</td>
+              <td>{{ hora.empleado.nombre }}</td>
               <td>{{ hora.fecha }}</td>
               <td>{{ hora.horas }}</td>
               <td>{{ hora.actividad }}</td>

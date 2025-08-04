@@ -1,11 +1,10 @@
 from flask import Flask, render_template, request, redirect, url_for, session as flask_session
-from sqlalchemy import create_engine, Column, Integer, String
-from sqlalchemy.orm import declarative_base, sessionmaker
+from sqlalchemy import create_engine, Column, Integer, String, ForeignKey
+from sqlalchemy.orm import declarative_base, sessionmaker, relationship
+from datetime import datetime
 import bcrypt
 import sqlite3
-from datetime import datetime
 import os
-import mysql.connector
 
 app=Flask(__name__)
 app.secret_key=os.urandom(23)
@@ -22,6 +21,9 @@ class Usuario(tablita):
     usuario=Column(String(50), nullable=False)
     password=Column(String(100),nullable=False)
 
+    productos = relationship("Producto", back_populates="creador")
+    reportes = relationship("Reporte", back_populates="creador")
+
 class Empleado(tablita):
     __tablename__="Empleados"
     id=Column(Integer, primary_key=True)
@@ -33,14 +35,18 @@ class Empleado(tablita):
     salario=Column(String(50), nullable=False)
     horario=Column(String(50), nullable=False)
     fechaingreso=Column(String(50), default=datetime.now().strftime("%Y-%m-%d"))
+
+    horas_trabajadas = relationship("HorasTrabajadas", back_populates="empleado", cascade="all, delete-orphan")
     
 class HorasTrabajadas(tablita):
     __tablename__ = "Horas"
     id = Column(Integer, primary_key=True)
-    empleado = Column(String(100), nullable=False)
+    empleado_id=Column(Integer, ForeignKey("Empleados.id"), nullable=False)
     fecha = Column(String(20), nullable=False)
     horas = Column(Integer, nullable=False)
     actividad = Column(String(200), nullable=False)
+
+    empleado = relationship("Empleado", back_populates="horas_trabajadas")
 
 
 class Producto(tablita):
@@ -49,11 +55,17 @@ class Producto(tablita):
     nombre = Column(String(100), nullable=False)
     cantidad = Column(Integer, nullable=False)
 
+    usuario_id = Column(Integer, ForeignKey("Usuarios.id"))
+    creador = relationship("Usuario", back_populates="productos")
+
 class Reporte(tablita):
     __tablename__ = "Reportes"
     id = Column(Integer, primary_key=True)
     tipo = Column(String(100), nullable=False)
     fecha = Column(String(20), nullable=False)
+
+    usuario_id = Column(Integer, ForeignKey("Usuarios.id"))
+    creador = relationship("Usuario", back_populates="reportes")
 
 tablita.metadata.create_all(engine)
 
@@ -193,13 +205,13 @@ def eliminar_empleado(id):
 @app.route('/horas', methods=['GET', 'POST'])
 def horas_trabajadas():
     if request.method == 'POST':
-        empleado = request.form['empleado']
+        empleados_id = request.form['empleados_id']
         fecha = request.form['fecha']
         horas = request.form['horas']
         actividad = request.form['actividad']
 
         nueva_hora = HorasTrabajadas(
-            empleado=empleado,
+            empleado_id=empleados_id,
             fecha=fecha,
             horas=horas,
             actividad=actividad
@@ -209,7 +221,8 @@ def horas_trabajadas():
         return redirect(url_for('horas_trabajadas'))
 
     horas = session.query(HorasTrabajadas).all()
-    return render_template('horas_trabajadas.html', horas=horas)
+    empleados = session.query(Empleado).all()
+    return render_template('horas_trabajadas.html', horas=horas, empleados=empleados)
 
 
 @app.route('/eliminar_hora', methods=['POST'])
@@ -225,11 +238,11 @@ def eliminar_hora():
 
 @app.route("/calculo_nomina", methods=["GET", "POST"])
 def calculo_nomina():
-    empleados = session.query(HorasTrabajadas.empleado).distinct().all()
-    empleados = [emp[0] for emp in empleados]
+    empleados = session.query(Empleado).all()
 
     if request.method == "POST":
-        empleado_nombre = request.form["empleado"]
+        empleado_id = int(request.form["empleado"])
+        empleado = session.query(Empleado).get(empleado_id)
         fecha_inicio = request.form["fecha_inicio"]
         fecha_fin = request.form["fecha_fin"]
 
@@ -242,7 +255,7 @@ def calculo_nomina():
             valor_por_dia = 50000
 
         registros = session.query(HorasTrabajadas).filter(
-            HorasTrabajadas.empleado == empleado_nombre,
+            HorasTrabajadas.empleado_id == empleado_id,
             HorasTrabajadas.fecha >= fecha_inicio,
             HorasTrabajadas.fecha <= fecha_fin
         ).all()
@@ -252,7 +265,8 @@ def calculo_nomina():
         sueldo_estimado = dias_trabajados * valor_por_dia
 
         return render_template("resultado_nomina.html",
-            nombre_empleado=empleado_nombre,
+            empleados=empleados,
+            nombre_empleado=empleado.nombre,
             dias_trabajados=dias_trabajados,
             total_horas=total_horas,
             sueldo_estimado=sueldo_estimado,
@@ -303,7 +317,7 @@ def agregar_reporte():
 
         import re
         tipoRegex = re.compile(r'^[A-Za-zÀ-ÿ\s]+$')
-        fechaRegex = re.compile(r'^(0[1-9]|[12][0-9]|3[01])/(0[1-9]|1[012])/\d{4}$')
+        fechaRegex = re.compile(r'^\d{4}-\d{2}-\d{2}$')
         
         if not tipoRegex.match(tipo):
             return "El campo 'tipo' solo acepta letras y espacios.", 400
