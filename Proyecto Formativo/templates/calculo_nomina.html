@@ -30,6 +30,7 @@
     <form method="POST" class="FormularioVertical">
         <label for="empleado">Empleado:</label>
         <select name="empleado" required>
+            <option value="" disabled selected>Seleccione un empleado</option>
             {% for emp in empleados %}
             <option value="{{ emp.id }}">{{ emp.nombre }}</option>
             {% endfor %}
